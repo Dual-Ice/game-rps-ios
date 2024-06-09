@@ -9,21 +9,21 @@
 /* Begin PBXBuildFile section */
 		D9023F442C15CA7800FF0001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F432C15CA7800FF0001 /* AppDelegate.swift */; };
 		D9023F462C15CA7800FF0001 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F452C15CA7800FF0001 /* SceneDelegate.swift */; };
-		D9023F482C15CA7800FF0001 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F472C15CA7800FF0001 /* ViewController.swift */; };
-		D9023F4B2C15CA7800FF0001 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D9023F4A2C15CA7800FF0001 /* Base */; };
+		D9023F482C15CA7800FF0001 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F472C15CA7800FF0001 /* RulesViewController.swift */; };
 		D9023F4D2C15CA7A00FF0001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9023F4C2C15CA7A00FF0001 /* Assets.xcassets */; };
 		D9023F502C15CA7A00FF0001 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D9023F4F2C15CA7A00FF0001 /* Base */; };
+		D9023F5E2C1611C700FF0001 /* RulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F5D2C1611C700FF0001 /* RulesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D9023F402C15CA7800FF0001 /* rps-game-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "rps-game-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9023F432C15CA7800FF0001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9023F452C15CA7800FF0001 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D9023F472C15CA7800FF0001 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D9023F4A2C15CA7800FF0001 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D9023F472C15CA7800FF0001 /* RulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
 		D9023F4C2C15CA7A00FF0001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D9023F4F2C15CA7A00FF0001 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D9023F512C15CA7A00FF0001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D9023F5D2C1611C700FF0001 /* RulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +56,63 @@
 		D9023F422C15CA7800FF0001 /* rps-game-ios */ = {
 			isa = PBXGroup;
 			children = (
-				D9023F432C15CA7800FF0001 /* AppDelegate.swift */,
-				D9023F452C15CA7800FF0001 /* SceneDelegate.swift */,
-				D9023F472C15CA7800FF0001 /* ViewController.swift */,
-				D9023F492C15CA7800FF0001 /* Main.storyboard */,
-				D9023F4C2C15CA7A00FF0001 /* Assets.xcassets */,
-				D9023F4E2C15CA7A00FF0001 /* LaunchScreen.storyboard */,
 				D9023F512C15CA7A00FF0001 /* Info.plist */,
+				D9023F592C1610FD00FF0001 /* App */,
+				D9023F5C2C16114D00FF0001 /* Extensions */,
+				D9023F5A2C16110700FF0001 /* Modules */,
+				D9023F582C1610F300FF0001 /* Services */,
+				D9023F5B2C16111A00FF0001 /* Resources */,
 			);
 			path = "rps-game-ios";
+			sourceTree = "<group>";
+		};
+		D9023F572C160D0700FF0001 /* Rules */ = {
+			isa = PBXGroup;
+			children = (
+				D9023F472C15CA7800FF0001 /* RulesViewController.swift */,
+				D9023F5D2C1611C700FF0001 /* RulesView.swift */,
+			);
+			path = Rules;
+			sourceTree = "<group>";
+		};
+		D9023F582C1610F300FF0001 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D9023F592C1610FD00FF0001 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				D9023F432C15CA7800FF0001 /* AppDelegate.swift */,
+				D9023F452C15CA7800FF0001 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		D9023F5A2C16110700FF0001 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				D9023F572C160D0700FF0001 /* Rules */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		D9023F5B2C16111A00FF0001 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D9023F4C2C15CA7A00FF0001 /* Assets.xcassets */,
+				D9023F4E2C15CA7A00FF0001 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D9023F5C2C16114D00FF0001 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +175,6 @@
 			files = (
 				D9023F4D2C15CA7A00FF0001 /* Assets.xcassets in Resources */,
 				D9023F502C15CA7A00FF0001 /* Base in Resources */,
-				D9023F4B2C15CA7800FF0001 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,7 +185,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9023F482C15CA7800FF0001 /* ViewController.swift in Sources */,
+				D9023F5E2C1611C700FF0001 /* RulesView.swift in Sources */,
+				D9023F482C15CA7800FF0001 /* RulesViewController.swift in Sources */,
 				D9023F442C15CA7800FF0001 /* AppDelegate.swift in Sources */,
 				D9023F462C15CA7800FF0001 /* SceneDelegate.swift in Sources */,
 			);
@@ -147,14 +195,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D9023F492C15CA7800FF0001 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D9023F4A2C15CA7800FF0001 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D9023F4E2C15CA7A00FF0001 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -296,9 +336,9 @@
 				INFOPLIST_FILE = "rps-game-ios/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -323,9 +363,9 @@
 				INFOPLIST_FILE = "rps-game-ios/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
