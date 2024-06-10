@@ -45,16 +45,29 @@ final class StartScreenViewController: UIViewController {
         return button
     }()
     
+    private let rulesButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setBackgroundImage(UIImage(named: "rules"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
 //    MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         createUI()
+        targetAction()
         
     }
     
     //    MARK: - Selectors
+    
+    @objc func rulesVC() {
+        let secondVC = RulesViewController()
+        navigationController?.pushViewController(secondVC, animated: true)
+    }
     
     @objc func startGame() {
         print("Start Game")
@@ -69,18 +82,36 @@ final class StartScreenViewController: UIViewController {
     private func createUI() {
         view.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.968627451, blue: 0.9843137255, alpha: 1)
         
+        view.addSubview(rulesButton)
+        rulesButtonConstranints()
+        
         view.addSubview(startButton)
         startButtonConstraints()
-        startButton.addTarget(self, action: #selector(startGame), for: .touchUpInside)
         
         view.addSubview(resultsButton)
         resultsButtonConstraints()
-        resultsButton.addTarget(self, action: #selector(resultsGame), for: .touchUpInside)
         
         view.addSubview(startLabel)
         startLabelConstraints()
 //        применение тени к тексту
         startLabel.shadowStartLabel("EPIC RPS")
+    }
+    
+//    таргет для кнопок
+    func targetAction() {
+        rulesButton.addTarget(self, action: #selector(rulesVC), for: .touchUpInside)
+        resultsButton.addTarget(self, action: #selector(resultsGame), for: .touchUpInside)
+        startButton.addTarget(self, action: #selector(startGame), for: .touchUpInside)
+    }
+    
+    func rulesButtonConstranints() {
+        NSLayoutConstraint.activate([
+//            если делаю как надо 35х35 не срабатывате action. Увеличиваю 100x100 и все работает
+            rulesButton.widthAnchor.constraint(equalToConstant: 35),
+            rulesButton.heightAnchor.constraint(equalToConstant: 35),
+            rulesButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 45),
+            rulesButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -21)
+        ])
     }
     
     func startLabelConstraints() {
