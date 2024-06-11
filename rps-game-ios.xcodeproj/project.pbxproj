@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B607C7F12C17DF9000AFC2B3 /* FightResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B607C7F02C17DF9000AFC2B3 /* FightResultViewController.swift */; };
 		B607C7F32C17DFA600AFC2B3 /* FightResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B607C7F22C17DFA600AFC2B3 /* FightResultView.swift */; };
+		B6387DD52C187BD900ABA2A8 /* UIViewController+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6387DD42C187BD900ABA2A8 /* UIViewController+Preview.swift */; };
 		D9023F442C15CA7800FF0001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F432C15CA7800FF0001 /* AppDelegate.swift */; };
 		D9023F462C15CA7800FF0001 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F452C15CA7800FF0001 /* SceneDelegate.swift */; };
 		D9023F482C15CA7800FF0001 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F472C15CA7800FF0001 /* RulesViewController.swift */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		B607C7F02C17DF9000AFC2B3 /* FightResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FightResultViewController.swift; sourceTree = "<group>"; };
 		B607C7F22C17DFA600AFC2B3 /* FightResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FightResultView.swift; sourceTree = "<group>"; };
+		B6387DD42C187BD900ABA2A8 /* UIViewController+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Preview.swift"; sourceTree = "<group>"; };
 		D9023F402C15CA7800FF0001 /* rps-game-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "rps-game-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9023F432C15CA7800FF0001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9023F452C15CA7800FF0001 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 		D9023F5C2C16114D00FF0001 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B6387DD42C187BD900ABA2A8 /* UIViewController+Preview.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6387DD52C187BD900ABA2A8 /* UIViewController+Preview.swift in Sources */,
 				D9023F5E2C1611C700FF0001 /* RulesView.swift in Sources */,
 				D93C69062C1763220033BF0E /* ButtonFactory.swift in Sources */,
 				B607C7F12C17DF9000AFC2B3 /* FightResultViewController.swift in Sources */,

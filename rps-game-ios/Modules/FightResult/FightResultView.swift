@@ -6,6 +6,9 @@
 //
 
 import UIKit
+#if DEBUG
+import SwiftUI
+#endif
 
 final class FightResultView: UIView {
 	
@@ -228,3 +231,17 @@ private extension FightResultView {
 		buttonStack.distribution = .equalSpacing
 	}
 }
+
+#if DEBUG
+import SwiftUI
+#endif
+
+#if DEBUG
+struct FightResultViewProvider: PreviewProvider {
+	static var previews: some View {
+		Group {
+			FightResultViewController().previw()
+		}
+	}
+}
+#endif

@@ -6,6 +6,9 @@
 //
 
 import UIKit
+#if DEBUG
+import SwiftUI
+#endif
 
 protocol IFightResultViewControllerDelegate: AnyObject {
 	func homeGame()
@@ -53,3 +56,13 @@ extension FightResultViewController: IFightResultViewControllerDelegate {
 		print("Repeat")
 	}
 }
+
+#if DEBUG
+struct FightResultViewControllerProvider: PreviewProvider {
+	static var previews: some View {
+		Group {
+			FightResultViewController().previw()
+		}
+	}
+}
+#endif
