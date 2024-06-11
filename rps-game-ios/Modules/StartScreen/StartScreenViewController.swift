@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class StartScreenViewController: UIViewController, StartScreenViewDelegate {
+final class StartScreenViewController: UIViewController {
     
     private let startScreenView = StartScreenView()
     
@@ -25,6 +25,9 @@ final class StartScreenViewController: UIViewController, StartScreenViewDelegate
         navigationController?.pushViewController(secondVC, animated: true)
     }
     
+}
+
+extension StartScreenViewController: StartScreenViewDelegate {
     func didTapStartButton() {
         print("start")
     }

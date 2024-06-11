@@ -101,7 +101,13 @@ final class StartScreenView: UIView {
      func setViews() {
         backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.968627451, blue: 0.9843137255, alpha: 1)
         [
-            rulesButton, startButton, resultsButton, startLabel, settingsButton, rightHandImageView, leftHandImageView
+            rulesButton,
+            startButton,
+            resultsButton,
+            startLabel,
+            settingsButton,
+            rightHandImageView,
+            leftHandImageView
         ].forEach { addSubview($0) }
     }
     
@@ -144,14 +150,14 @@ final class StartScreenView: UIView {
             settingsButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 10),
             settingsButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 21),
             
-//            rightHand ImageView consraints
+            //            rightHand ImageView consraints
             rightHandImageView.widthAnchor.constraint(equalToConstant: 200),
             rightHandImageView.heightAnchor.constraint(equalToConstant: 83),
             rightHandImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             rightHandImageView.bottomAnchor.constraint(equalTo: startLabel.topAnchor, constant: -20),
             
             //            leftHand ImageView consraints
-                        leftHandImageView.widthAnchor.constraint(equalToConstant: 200),
+            leftHandImageView.widthAnchor.constraint(equalToConstant: 200),
             leftHandImageView.heightAnchor.constraint(equalToConstant: 83),
             leftHandImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             leftHandImageView.topAnchor.constraint(equalTo: startLabel.bottomAnchor, constant: 20)
