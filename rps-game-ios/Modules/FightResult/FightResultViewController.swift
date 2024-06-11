@@ -14,24 +14,18 @@ final class FightResultViewController: UIViewController {
 
 	// MARK: - Private properties
 
-	private let fightResultView = FightResultView()
+	private lazy var fightResultView = FightResultView(delegate: self)
 
 	// MARK: - Lifecycle
 
 	override func loadView() {
 		view = fightResultView
-
-		fightResultView.delegate = self
-		fightResultView.playerImage = UIImage(systemName: "person.fill")
-		fightResultView.resultText = "You Lose"
-		fightResultView.colorResultText = .black
-		fightResultView.scoreText = "1 - 3"
-		fightResultView.backgroundImage = UIImage(named: "red-background")
 	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		fightResultView.setupUI()
+		fightResultView.setStubState()
 	}
 
 	override func viewDidLayoutSubviews() {
