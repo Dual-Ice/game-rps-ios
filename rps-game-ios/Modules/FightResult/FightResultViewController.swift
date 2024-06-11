@@ -6,9 +6,6 @@
 //
 
 import UIKit
-#if DEBUG
-import SwiftUI
-#endif
 
 protocol IFightResultViewControllerDelegate: AnyObject {
 	func homeGame()
@@ -31,6 +28,7 @@ final class FightResultViewController: UIViewController {
 		fightResultView.resultText = "You Lose"
 		fightResultView.colorResultText = .black
 		fightResultView.scoreText = "1 - 3"
+		fightResultView.backgroundImage = UIImage(named: "red-background")
 	}
 
 	override func viewDidLoad() {
@@ -55,29 +53,3 @@ extension FightResultViewController: IFightResultViewControllerDelegate {
 		print("Repeat")
 	}
 }
-
-#if DEBUG
-struct ViewControllerProvider: PreviewProvider {
-	static var previews: some View {
-		Group {
-			FightResultViewController().previw()
-		}
-	}
-}
-
-extension UIViewController {
-	struct Preview: UIViewControllerRepresentable {
-		let viewController: UIViewController
-		
-		func makeUIViewController(context: Context) -> some UIViewController {
-			viewController
-		}
-		
-		func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) { }
-	}
-	
-	func previw() -> some View {
-		Preview(viewController: self).edgesIgnoringSafeArea(.all)
-	}
-}
-#endif

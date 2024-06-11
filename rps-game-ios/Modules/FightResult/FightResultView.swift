@@ -6,9 +6,6 @@
 //
 
 import UIKit
-#if DEBUG
-import SwiftUI
-#endif
 
 final class FightResultView: UIView {
 	
@@ -53,9 +50,13 @@ final class FightResultView: UIView {
 	/// scoreText = "3 - 1"
 	/// ```
 	var scoreText: String?
-	
+
+	/// Фон view
+	var backgroundImage: UIImage?
+
 	// MARK: - Private properties
 
+	private lazy var backgroundImageView: UIImageView = makeImageView()
 	private lazy var mainStack: UIStackView = makeStack()
 
 	private lazy var circleView: UIView = makeView()
@@ -79,10 +80,21 @@ extension FightResultView {
 		addSubviews()
 		addActions()
 
+		setupBackgroundImageView()
 		setupMainStack()
+		setupCharacterImage()
 		setupLabelStack()
 		setupResultLabel()
 		setupButtonStack()
+	}
+	
+	private func makeImageView() -> UIImageView {
+		let element = UIImageView()
+		
+		element.contentMode = .scaleAspectFill
+		element.translatesAutoresizingMaskIntoConstraints = false
+		
+		return element
 	}
 
 	private func makeStack() -> UIStackView {
@@ -98,16 +110,6 @@ extension FightResultView {
 
 		element.backgroundColor = UIColor(red: 43 / 255.0, green: 40 / 255.0, blue: 112 / 255.0, alpha: 1)
 		element.layer.cornerRadius = 88
-		element.translatesAutoresizingMaskIntoConstraints = false
-
-		return element
-	}
-
-	private func makeImageView() -> UIImageView {
-		let element = UIImageView()
-
-		element.image = playerImage
-		element.contentMode = .scaleAspectFill
 		element.translatesAutoresizingMaskIntoConstraints = false
 
 		return element
@@ -133,6 +135,11 @@ extension FightResultView {
 	/// Настройка констреинтов
 	func layout() {
 		NSLayoutConstraint.activate([
+			backgroundImageView.topAnchor.constraint(equalTo: topAnchor),
+			backgroundImageView.widthAnchor.constraint(equalTo: widthAnchor),
+			backgroundImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+			backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+
 			mainStack.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
 			mainStack.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
 			mainStack.widthAnchor.constraint(equalToConstant: 176),
@@ -171,6 +178,7 @@ private extension FightResultView {
 private extension FightResultView {
 
 	func addSubviews() {
+		addSubview(backgroundImageView)
 		addSubview(mainStack)
 
 		mainStack.addArrangedSubview(circleView)
@@ -191,6 +199,10 @@ private extension FightResultView {
 		repeatButton.addTarget(self, action: #selector(repeatButtonTapped), for: .touchUpInside)
 	}
 
+	func setupBackgroundImageView() {
+		backgroundImageView.image = backgroundImage
+	}
+
 	func setupResultLabel() {
 		resultLabel.textAlignment = .center
 
@@ -204,6 +216,10 @@ private extension FightResultView {
 		mainStack.axis = .vertical
 	}
 
+	func setupCharacterImage() {
+		characterImage.image = playerImage
+	}
+
 	func setupLabelStack() {
 		labelStack.axis = .vertical
 	}
@@ -212,13 +228,3 @@ private extension FightResultView {
 		buttonStack.distribution = .equalSpacing
 	}
 }
-
-#if DEBUG
-struct FightResultViewProvider: PreviewProvider {
-	static var previews: some View {
-		Group {
-			FightResultViewController().previw()
-		}
-	}
-}
-#endif
