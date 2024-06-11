@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import AVFAudio
 
 final class RulesViewController: UIViewController {
     private let rulesView = RulesView()
