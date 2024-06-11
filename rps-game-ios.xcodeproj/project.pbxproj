@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11973DFF2C17497C00DC011E /* StartScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11973DFE2C17497C00DC011E /* StartScreenViewController.swift */; };
+		11A80A1E2C1828ED002F9CE4 /* StartScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A80A1D2C1828ED002F9CE4 /* StartScreenView.swift */; };
 		1179376D2C181A7500652C75 /* Rubik-VariableFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1179376C2C181A7500652C75 /* Rubik-VariableFont.ttf */; };
 		117937712C181E2D00652C75 /* FontExtension .swift in Sources */ = {isa = PBXBuildFile; fileRef = 117937702C181E2D00652C75 /* FontExtension .swift */; };
 		117937732C1823F300652C75 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117937722C1823F300652C75 /* ImageExtension.swift */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		11973DFE2C17497C00DC011E /* StartScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenViewController.swift; sourceTree = "<group>"; };
+		11A80A1D2C1828ED002F9CE4 /* StartScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenView.swift; sourceTree = "<group>"; };
 		1179376C2C181A7500652C75 /* Rubik-VariableFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-VariableFont.ttf"; sourceTree = "<group>"; };
 		117937702C181E2D00652C75 /* FontExtension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FontExtension .swift"; sourceTree = "<group>"; };
 		117937722C1823F300652C75 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
@@ -55,6 +59,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		11A80A1C2C1827FF002F9CE4 /* StartScreen */ = {
+			isa = PBXGroup;
+			children = (
+				11973DFE2C17497C00DC011E /* StartScreenViewController.swift */,
+				11A80A1D2C1828ED002F9CE4 /* StartScreenView.swift */,
+			);
+			path = StartScreen;
+			sourceTree = "<group>";
+		};
 		117937692C18161100652C75 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				D9023F572C160D0700FF0001 /* Rules */,
+				11A80A1C2C1827FF002F9CE4 /* StartScreen */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -240,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9023F5E2C1611C700FF0001 /* RulesView.swift in Sources */,
+				11A80A1E2C1828ED002F9CE4 /* StartScreenView.swift in Sources */,
 				D93C69062C1763220033BF0E /* ButtonFactory.swift in Sources */,
 				1179377A2C182C3A00652C75 /* SoundExtension.swift in Sources */,
 				D9023F482C15CA7800FF0001 /* RulesViewController.swift in Sources */,
@@ -247,6 +262,7 @@
 				D93C69082C178F5A0033BF0E /* LabelFactory.swift in Sources */,
 				D9023F442C15CA7800FF0001 /* AppDelegate.swift in Sources */,
 				D9023F462C15CA7800FF0001 /* SceneDelegate.swift in Sources */,
+				11973DFF2C17497C00DC011E /* StartScreenViewController.swift in Sources */,
 				117937732C1823F300652C75 /* ImageExtension.swift in Sources */,
 				117937812C18785500652C75 /* ColorExtension.swift in Sources */,
 			);

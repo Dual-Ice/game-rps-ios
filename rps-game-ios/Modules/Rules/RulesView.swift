@@ -35,7 +35,8 @@ final class RulesView: UIView {
     }
     
     func layoutViews() {
-        self.translatesAutoresizingMaskIntoConstraints = false
+//        если убрать коментарий бедет черный экран
+//        self.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             title.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
