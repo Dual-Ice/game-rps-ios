@@ -10,13 +10,18 @@ import UIKit
 import SwiftUI
 #endif
 
+protocol IFightResultViewDelegate: AnyObject {
+	func homeGame()
+	func repeatGame()
+}
+
 final class FightResultView: UIView {
 	
 	// MARK: - Public properties
 
 	
 	/// Делегат fight result view controller
-	weak var delegate: IFightResultViewControllerDelegate?
+	weak var delegate: IFightResultViewDelegate?
 
 	/// Картинка игрока
 	var playerImage: UIImage?

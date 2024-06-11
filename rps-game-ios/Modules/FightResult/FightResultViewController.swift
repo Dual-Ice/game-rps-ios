@@ -10,11 +10,6 @@ import UIKit
 import SwiftUI
 #endif
 
-protocol IFightResultViewControllerDelegate: AnyObject {
-	func homeGame()
-	func repeatGame()
-}
-
 final class FightResultViewController: UIViewController {
 
 	// MARK: - Private properties
@@ -47,7 +42,7 @@ final class FightResultViewController: UIViewController {
 
 // MARK: - IFightResultViewControllerDelegate
 
-extension FightResultViewController: IFightResultViewControllerDelegate {
+extension FightResultViewController: IFightResultViewDelegate {
 	func homeGame() {
 		print("Go home")
 	}
