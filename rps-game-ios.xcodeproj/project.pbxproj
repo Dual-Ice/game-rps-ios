@@ -14,6 +14,8 @@
 		D9023F4D2C15CA7A00FF0001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9023F4C2C15CA7A00FF0001 /* Assets.xcassets */; };
 		D9023F502C15CA7A00FF0001 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D9023F4F2C15CA7A00FF0001 /* Base */; };
 		D9023F5E2C1611C700FF0001 /* RulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F5D2C1611C700FF0001 /* RulesView.swift */; };
+		D93C69062C1763220033BF0E /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93C69052C1763220033BF0E /* ButtonFactory.swift */; };
+		D93C69082C178F5A0033BF0E /* LabelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93C69072C178F5A0033BF0E /* LabelFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		D9023F4F2C15CA7A00FF0001 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D9023F512C15CA7A00FF0001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9023F5D2C1611C700FF0001 /* RulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesView.swift; sourceTree = "<group>"; };
+		D93C69052C1763220033BF0E /* ButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFactory.swift; sourceTree = "<group>"; };
+		D93C69072C178F5A0033BF0E /* LabelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,7 @@
 		D9023F422C15CA7800FF0001 /* rps-game-ios */ = {
 			isa = PBXGroup;
 			children = (
+				D93C69042C17630C0033BF0E /* Factories */,
 				D9023F512C15CA7A00FF0001 /* Info.plist */,
 				D9023F592C1610FD00FF0001 /* App */,
 				D9023F5C2C16114D00FF0001 /* Extensions */,
@@ -116,6 +121,15 @@
 			children = (
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D93C69042C17630C0033BF0E /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				D93C69052C1763220033BF0E /* ButtonFactory.swift */,
+				D93C69072C178F5A0033BF0E /* LabelFactory.swift */,
+			);
+			path = Factories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,7 +203,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9023F5E2C1611C700FF0001 /* RulesView.swift in Sources */,
+				D93C69062C1763220033BF0E /* ButtonFactory.swift in Sources */,
 				D9023F482C15CA7800FF0001 /* RulesViewController.swift in Sources */,
+				D93C69082C178F5A0033BF0E /* LabelFactory.swift in Sources */,
 				D9023F442C15CA7800FF0001 /* AppDelegate.swift in Sources */,
 				D9023F462C15CA7800FF0001 /* SceneDelegate.swift in Sources */,
 				11973DFF2C17497C00DC011E /* StartScreenViewController.swift in Sources */,
