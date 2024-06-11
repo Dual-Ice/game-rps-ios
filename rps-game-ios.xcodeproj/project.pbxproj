@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1179377D2C1849E900652C75 /* LoadScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1179377C2C1849E900652C75 /* LoadScreenView.swift */; };
+		1179377F2C184A0700652C75 /* LoadScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1179377E2C184A0700652C75 /* LoadScreenViewController.swift */; };
 		D9023F442C15CA7800FF0001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F432C15CA7800FF0001 /* AppDelegate.swift */; };
 		D9023F462C15CA7800FF0001 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F452C15CA7800FF0001 /* SceneDelegate.swift */; };
 		D9023F482C15CA7800FF0001 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F472C15CA7800FF0001 /* RulesViewController.swift */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1179377C2C1849E900652C75 /* LoadScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadScreenView.swift; sourceTree = "<group>"; };
+		1179377E2C184A0700652C75 /* LoadScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadScreenViewController.swift; sourceTree = "<group>"; };
 		D9023F402C15CA7800FF0001 /* rps-game-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "rps-game-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9023F432C15CA7800FF0001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9023F452C15CA7800FF0001 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +45,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1179377B2C18494E00652C75 /* LoadScreen */ = {
+			isa = PBXGroup;
+			children = (
+				1179377C2C1849E900652C75 /* LoadScreenView.swift */,
+				1179377E2C184A0700652C75 /* LoadScreenViewController.swift */,
+			);
+			path = LoadScreen;
+			sourceTree = "<group>";
+		};
 		D9023F372C15CA7800FF0001 = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +112,7 @@
 		D9023F5A2C16110700FF0001 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				1179377B2C18494E00652C75 /* LoadScreen */,
 				D9023F572C160D0700FF0001 /* Rules */,
 			);
 			path = Modules;
@@ -199,10 +213,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1179377F2C184A0700652C75 /* LoadScreenViewController.swift in Sources */,
 				D9023F5E2C1611C700FF0001 /* RulesView.swift in Sources */,
 				D93C69062C1763220033BF0E /* ButtonFactory.swift in Sources */,
 				D9023F482C15CA7800FF0001 /* RulesViewController.swift in Sources */,
 				D93C69082C178F5A0033BF0E /* LabelFactory.swift in Sources */,
+				1179377D2C1849E900652C75 /* LoadScreenView.swift in Sources */,
 				D9023F442C15CA7800FF0001 /* AppDelegate.swift in Sources */,
 				D9023F462C15CA7800FF0001 /* SceneDelegate.swift in Sources */,
 			);
