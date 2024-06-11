@@ -8,6 +8,7 @@ protocol StartScreenViewDelegate: AnyObject {
     func didTapRulesButton()
     func didTapStartButton()
     func didTapResultButton()
+    func didTapSettingsButton()
 }
 
 import UIKit
@@ -34,6 +35,13 @@ final class StartScreenView: UIView {
     private let rulesButton: UIButton = {
         let button = UIButton(type: .system)
         button.setBackgroundImage(UIImage(named: "rules"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private let settingsButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setBackgroundImage(UIImage(named: "settings"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -65,7 +73,11 @@ final class StartScreenView: UIView {
     }
     
     @objc func resultsGame() {
-        delegate?.didTapRulesButton()
+        delegate?.didTapResultButton()
+    }
+    
+    @objc func settingsVC() {
+        delegate?.didTapSettingsButton()
     }
     
     //    MARK: - Helpers
@@ -73,7 +85,7 @@ final class StartScreenView: UIView {
      func setViews() {
         backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.968627451, blue: 0.9843137255, alpha: 1)
         [
-            rulesButton, startButton, resultsButton, startLabel
+            rulesButton, startButton, resultsButton, startLabel, settingsButton
         ].forEach { addSubview($0) }
     }
     
@@ -82,11 +94,12 @@ final class StartScreenView: UIView {
         rulesButton.addTarget(self, action: #selector(rulesVC), for: .touchUpInside)
         resultsButton.addTarget(self, action: #selector(resultsGame), for: .touchUpInside)
         startButton.addTarget(self, action: #selector(startGame), for: .touchUpInside)
+        settingsButton.addTarget(self, action: #selector(settingsVC), for: .touchUpInside)
     }
     
     func layoutView() {
         NSLayoutConstraint.activate([
-
+            
             //  rulesButton constraints
             rulesButton.widthAnchor.constraint(equalToConstant: 35),
             rulesButton.heightAnchor.constraint(equalToConstant: 35),
@@ -108,6 +121,12 @@ final class StartScreenView: UIView {
             resultsButton.heightAnchor.constraint(equalToConstant: 53),
             resultsButton.topAnchor.constraint(equalTo: startButton.bottomAnchor, constant: 11),
             resultsButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 90.5),
+            
+            //            settingsButton constraints
+            settingsButton.widthAnchor.constraint(equalToConstant: 35),
+            settingsButton.heightAnchor.constraint(equalToConstant: 35),
+            settingsButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 10),
+            settingsButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 21)
         ])
     }
 }

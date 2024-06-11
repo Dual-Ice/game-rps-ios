@@ -32,4 +32,8 @@ final class StartScreenViewController: UIViewController, StartScreenViewDelegate
     func didTapResultButton() {
         print("result")
     }
+    
+    func didTapSettingsButton() {
+        print("settings")
+    }
 }
