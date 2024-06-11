@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		11973DFF2C17497C00DC011E /* StartScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11973DFE2C17497C00DC011E /* StartScreenViewController.swift */; };
 		11A80A1E2C1828ED002F9CE4 /* StartScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A80A1D2C1828ED002F9CE4 /* StartScreenView.swift */; };
+		1179376D2C181A7500652C75 /* Rubik-VariableFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1179376C2C181A7500652C75 /* Rubik-VariableFont.ttf */; };
+		117937712C181E2D00652C75 /* FontExtension .swift in Sources */ = {isa = PBXBuildFile; fileRef = 117937702C181E2D00652C75 /* FontExtension .swift */; };
+		117937732C1823F300652C75 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117937722C1823F300652C75 /* ImageExtension.swift */; };
+		117937762C182B1B00652C75 /* buttonClick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 117937752C182B1B00652C75 /* buttonClick.mp3 */; };
+		117937782C182B5200652C75 /* backgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 117937772C182B5200652C75 /* backgroundMusic.mp3 */; };
+		1179377A2C182C3A00652C75 /* SoundExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117937792C182C3A00652C75 /* SoundExtension.swift */; };
+		117937812C18785500652C75 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117937802C18785500652C75 /* ColorExtension.swift */; };
 		D9023F442C15CA7800FF0001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F432C15CA7800FF0001 /* AppDelegate.swift */; };
 		D9023F462C15CA7800FF0001 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F452C15CA7800FF0001 /* SceneDelegate.swift */; };
 		D9023F482C15CA7800FF0001 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F472C15CA7800FF0001 /* RulesViewController.swift */; };
@@ -22,6 +29,13 @@
 /* Begin PBXFileReference section */
 		11973DFE2C17497C00DC011E /* StartScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenViewController.swift; sourceTree = "<group>"; };
 		11A80A1D2C1828ED002F9CE4 /* StartScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenView.swift; sourceTree = "<group>"; };
+		1179376C2C181A7500652C75 /* Rubik-VariableFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-VariableFont.ttf"; sourceTree = "<group>"; };
+		117937702C181E2D00652C75 /* FontExtension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FontExtension .swift"; sourceTree = "<group>"; };
+		117937722C1823F300652C75 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
+		117937752C182B1B00652C75 /* buttonClick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = buttonClick.mp3; sourceTree = "<group>"; };
+		117937772C182B5200652C75 /* backgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backgroundMusic.mp3; sourceTree = "<group>"; };
+		117937792C182C3A00652C75 /* SoundExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundExtension.swift; sourceTree = "<group>"; };
+		117937802C18785500652C75 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		D9023F402C15CA7800FF0001 /* rps-game-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "rps-game-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9023F432C15CA7800FF0001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9023F452C15CA7800FF0001 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +68,34 @@
 			path = StartScreen;
 			sourceTree = "<group>";
 		};
+		117937692C18161100652C75 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				1179376C2C181A7500652C75 /* Rubik-VariableFont.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		1179376F2C181DF700652C75 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				117937702C181E2D00652C75 /* FontExtension .swift */,
+				117937792C182C3A00652C75 /* SoundExtension.swift */,
+				117937722C1823F300652C75 /* ImageExtension.swift */,
+				117937802C18785500652C75 /* ColorExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		117937742C182B0B00652C75 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				117937772C182B5200652C75 /* backgroundMusic.mp3 */,
+				117937752C182B1B00652C75 /* buttonClick.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		D9023F372C15CA7800FF0001 = {
 			isa = PBXGroup;
 			children = (
@@ -73,10 +115,10 @@
 		D9023F422C15CA7800FF0001 /* rps-game-ios */ = {
 			isa = PBXGroup;
 			children = (
+				1179376F2C181DF700652C75 /* Extensions */,
 				D93C69042C17630C0033BF0E /* Factories */,
 				D9023F512C15CA7A00FF0001 /* Info.plist */,
 				D9023F592C1610FD00FF0001 /* App */,
-				D9023F5C2C16114D00FF0001 /* Extensions */,
 				D9023F5A2C16110700FF0001 /* Modules */,
 				D9023F582C1610F300FF0001 /* Services */,
 				D9023F5B2C16111A00FF0001 /* Resources */,
@@ -121,17 +163,12 @@
 		D9023F5B2C16111A00FF0001 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				117937742C182B0B00652C75 /* Sounds */,
+				117937692C18161100652C75 /* Fonts */,
 				D9023F4C2C15CA7A00FF0001 /* Assets.xcassets */,
 				D9023F4E2C15CA7A00FF0001 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		D9023F5C2C16114D00FF0001 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		D93C69042C17630C0033BF0E /* Factories */ = {
@@ -201,7 +238,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1179376D2C181A7500652C75 /* Rubik-VariableFont.ttf in Resources */,
+				117937762C182B1B00652C75 /* buttonClick.mp3 in Resources */,
 				D9023F4D2C15CA7A00FF0001 /* Assets.xcassets in Resources */,
+				117937782C182B5200652C75 /* backgroundMusic.mp3 in Resources */,
 				D9023F502C15CA7A00FF0001 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,11 +256,15 @@
 				D9023F5E2C1611C700FF0001 /* RulesView.swift in Sources */,
 				11A80A1E2C1828ED002F9CE4 /* StartScreenView.swift in Sources */,
 				D93C69062C1763220033BF0E /* ButtonFactory.swift in Sources */,
+				1179377A2C182C3A00652C75 /* SoundExtension.swift in Sources */,
 				D9023F482C15CA7800FF0001 /* RulesViewController.swift in Sources */,
+				117937712C181E2D00652C75 /* FontExtension .swift in Sources */,
 				D93C69082C178F5A0033BF0E /* LabelFactory.swift in Sources */,
 				D9023F442C15CA7800FF0001 /* AppDelegate.swift in Sources */,
 				D9023F462C15CA7800FF0001 /* SceneDelegate.swift in Sources */,
 				11973DFF2C17497C00DC011E /* StartScreenViewController.swift in Sources */,
+				117937732C1823F300652C75 /* ImageExtension.swift in Sources */,
+				117937812C18785500652C75 /* ColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
