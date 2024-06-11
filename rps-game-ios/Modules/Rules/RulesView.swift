@@ -8,6 +8,10 @@
 import UIKit
 
 final class RulesView: UIView {
+    
+    private let tableViewController = UITableViewController(style: .plain)
+    
+    
     private var title: UILabel = {
         let label = UILabel()
         label.text = "Rules"
