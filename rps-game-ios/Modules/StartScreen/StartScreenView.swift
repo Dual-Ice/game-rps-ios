@@ -90,7 +90,7 @@ final class StartScreenView: UIView {
     }
     
     //    MARK: - Helpers
-    
+
      func setViews() {
         backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.968627451, blue: 0.9843137255, alpha: 1)
         [
@@ -109,36 +109,32 @@ final class StartScreenView: UIView {
     }
     
     func layoutView() {
-        
         NSLayoutConstraint.activate([
-//            если делаю как надо 35х35 не срабатывате action. Увеличиваю 100x100 и все работает
+
+            //  rulesButton constraints
             rulesButton.widthAnchor.constraint(equalToConstant: 35),
             rulesButton.heightAnchor.constraint(equalToConstant: 35),
-            rulesButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 45),
-            rulesButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -21)
-        ])
-        
-        NSLayoutConstraint.activate([
+            rulesButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 10),
+            rulesButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -21),
+            
+            //            startLabel constraints
             startLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            startLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
+            startLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            
+            //            startButton constraints
             startButton.widthAnchor.constraint(equalToConstant: 196),
             startButton.heightAnchor.constraint(equalToConstant: 53),
-            startButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 622),
-            startButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 90.5)
-        ])
-        
-        NSLayoutConstraint.activate([
+            startButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 622),
+            startButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 90.5),
+            
+            //            resultsButton constraints
             resultsButton.widthAnchor.constraint(equalToConstant: 196),
             resultsButton.heightAnchor.constraint(equalToConstant: 53),
             resultsButton.topAnchor.constraint(equalTo: startButton.bottomAnchor, constant: 11),
-            resultsButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 90.5)
+            resultsButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 90.5),
         ])
-        
     }
-
+    
 }
 
 // MARK: - Extensions
