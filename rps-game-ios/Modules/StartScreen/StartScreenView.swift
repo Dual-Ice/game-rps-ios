@@ -4,10 +4,17 @@
 //
 //  Created by Alexander Bokhulenkov on 11.06.2024.
 //
+protocol StartScreenViewDelegate: AnyObject {
+    func didTapRulesButton()
+    func didTapStartButton()
+    func didTapResultButton()
+}
 
 import UIKit
 
 final class StartScreenView: UIView {
+    
+    weak var delegate: StartScreenViewDelegate?
     
     private let startLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 138, height: 36))
@@ -57,28 +64,29 @@ final class StartScreenView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setViews()
+        layoutView()
         targetAction()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setViews()
+        layoutView()
         targetAction()
     }
     
     //    MARK: - Selectors
     
     @objc func rulesVC() {
-//        let secondVC = RulesViewController()
-//        navigationController?.pushViewController(secondVC, animated: true)
+        delegate?.didTapRulesButton()
     }
     
     @objc func startGame() {
-        print("Start Game")
+        delegate?.didTapStartButton()
     }
     
     @objc func resultsGame() {
-        print("Results Game")
+        delegate?.didTapRulesButton()
     }
     
     //    MARK: - Helpers
@@ -89,17 +97,6 @@ final class StartScreenView: UIView {
             rulesButton, startButton, resultsButton, startLabel
         ].forEach { addSubview($0) }
         
-         
-        rulesButtonConstranints()
-        
-       
-        startButtonConstraints()
-        
-        
-        resultsButtonConstraints()
-        
-        
-        startLabelConstraints()
 //        применение тени к тексту
         startLabel.shadowStartLabel("EPIC RPS")
     }
@@ -111,7 +108,8 @@ final class StartScreenView: UIView {
         startButton.addTarget(self, action: #selector(startGame), for: .touchUpInside)
     }
     
-    func rulesButtonConstranints() {
+    func layoutView() {
+        
         NSLayoutConstraint.activate([
 //            если делаю как надо 35х35 не срабатывате action. Увеличиваю 100x100 и все работает
             rulesButton.widthAnchor.constraint(equalToConstant: 35),
@@ -119,31 +117,26 @@ final class StartScreenView: UIView {
             rulesButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 45),
             rulesButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -21)
         ])
-    }
-    
-    func startLabelConstraints() {
+        
         NSLayoutConstraint.activate([
             startLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             startLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         ])
-    }
-    
-    func startButtonConstraints() {
+        
         NSLayoutConstraint.activate([
             startButton.widthAnchor.constraint(equalToConstant: 196),
             startButton.heightAnchor.constraint(equalToConstant: 53),
             startButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 622),
             startButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 90.5)
         ])
-    }
-    
-    func resultsButtonConstraints() {
+        
         NSLayoutConstraint.activate([
             resultsButton.widthAnchor.constraint(equalToConstant: 196),
             resultsButton.heightAnchor.constraint(equalToConstant: 53),
             resultsButton.topAnchor.constraint(equalTo: startButton.bottomAnchor, constant: 11),
             resultsButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 90.5)
         ])
+        
     }
 
 }
