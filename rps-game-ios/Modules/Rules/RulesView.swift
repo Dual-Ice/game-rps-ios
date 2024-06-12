@@ -49,6 +49,10 @@ final class RulesView: UIView {
     
     func setViews() {
         backgroundColor = UIColor(red: 245/255.0, green: 247/255.0, blue: 251/255.0, alpha: 1.0)
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor(red: 245/255.0, green: 247/255.0, blue: 251/255.0, alpha: 1.0)
+        tableView.backgroundView = backgroundView
+        
         [
             title,
             tableView
@@ -60,7 +64,7 @@ final class RulesView: UIView {
     }
     
     func layoutViews() {
-         
+        
         NSLayoutConstraint.activate([
             title.topAnchor.constraint(equalTo: self.topAnchor, constant: 70),
             title.centerXAnchor.constraint(equalTo: self.centerXAnchor),
