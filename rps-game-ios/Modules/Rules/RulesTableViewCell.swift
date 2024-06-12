@@ -9,10 +9,8 @@ import UIKit
 
 class RulesTableViewCell: UITableViewCell {
     
-    
-    
 //    инконки кулак, бумага, ножницы
-    private let iconImageView: UIImageView = {
+    let iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -28,7 +26,7 @@ class RulesTableViewCell: UITableViewCell {
         return label
     }()
     
-    private let descriptionLabel: UILabel = {
+     let descriptionLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -48,14 +46,13 @@ class RulesTableViewCell: UITableViewCell {
                     numberLebel.widthAnchor.constraint(equalToConstant: 30),
                     numberLebel.heightAnchor.constraint(equalToConstant: 30),
                     
-                    iconImageView.leadingAnchor.constraint(equalTo: descriptionLabel.trailingAnchor, constant: 10),
-                    iconImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-                    iconImageView.widthAnchor.constraint(equalToConstant: 30),
-                    iconImageView.heightAnchor.constraint(equalToConstant: 30),
-                    
                     descriptionLabel.leadingAnchor.constraint(equalTo: numberLebel.trailingAnchor, constant: 10),
                     descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-                    descriptionLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+                    descriptionLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+                    
+                    iconImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+                    iconImageView.widthAnchor.constraint(equalToConstant: 30),
+                    iconImageView.heightAnchor.constraint(equalToConstant: 30)
                 ])
     }
     
@@ -66,6 +63,12 @@ class RulesTableViewCell: UITableViewCell {
 //    конфигурация ячейки
     func configureCell(number: Int, description: String, icon: UIImage?) {
         numberLebel.text = "\(number)"
+        descriptionLabel.text = description
+        iconImageView.image = icon
+    }
+    
+    func configureCellWithImage(description: String, icon: UIImage?) {
+        numberLebel.backgroundColor = .clear
         descriptionLabel.text = description
         iconImageView.image = icon
     }
