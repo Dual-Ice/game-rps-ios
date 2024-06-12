@@ -10,35 +10,132 @@ import UIKit
 final class LoadScreenView: UIView {
     // MARK: - Private properties
     
+    // Background image view
     private lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "winBackground")
+        imageView.image = UIImage.CustomImage.winBackgroundImage
         return imageView
     }()
     
+    // Player one image view
     private lazy var playerOneImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "playerOne")
+        imageView.image = UIImage.CustomImage.playerOneImage
         return imageView
     }()
     
+    // Player two image view
     private lazy var playerTwoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "playerTwo")
+        imageView.image = UIImage.CustomImage.playerTwoImage
         return imageView
     }()
     
+    // Player one victories label
+    private lazy var victoriesLabelPlayerOne: UILabel = {
+        let label = UILabel()
+        let attributedText = NSMutableAttributedString(
+            string: "10 ",
+            attributes: [
+                NSAttributedString.Key.font : RubikFont.Bold.size(of: 20),
+                NSAttributedString.Key.foregroundColor : UIColor.CustomColors.pastelYellowText
+            ]
+        )
+        attributedText.append(NSAttributedString(
+            string: "Victories/",
+            attributes: [
+                NSAttributedString.Key.font : RubikFont.Bold.size(of: 20),
+                NSAttributedString.Key.foregroundColor : UIColor.white
+            ])
+        )
+        label.attributedText = attributedText
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    
+    // Player one loses label
+    private lazy var loseLabelPlayerOne: UILabel = {
+        let label = UILabel()
+        let attributedText = NSMutableAttributedString(
+            string: "2 ",
+            attributes: [
+                NSAttributedString.Key.font : RubikFont.Bold.size(of: 20),
+                NSAttributedString.Key.foregroundColor : UIColor.CustomColors.darkYellowPinkText
+            ]
+        )
+        attributedText.append(NSAttributedString(
+            string: "Lose",
+            attributes: [
+                NSAttributedString.Key.font : RubikFont.Bold.size(of: 20),
+                NSAttributedString.Key.foregroundColor : UIColor.white
+            ])
+        )
+        label.attributedText = attributedText
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    
+    // Player two victories label
+    private lazy var victoriesLabelPlayerTwo: UILabel = {
+        let label = UILabel()
+        let attributedText = NSMutableAttributedString(
+            string: "23 ",
+            attributes: [
+                NSAttributedString.Key.font : RubikFont.Bold.size(of: 20),
+                NSAttributedString.Key.foregroundColor : UIColor.CustomColors.pastelYellowText
+            ]
+        )
+        attributedText.append(NSAttributedString(
+            string: "Victories/",
+            attributes: [
+                NSAttributedString.Key.font : RubikFont.Bold.size(of: 20),
+                NSAttributedString.Key.foregroundColor : UIColor.white
+            ])
+        )
+        label.attributedText = attributedText
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    
+    // Player two loses label
+    private lazy var loseLabelPlayerTwo: UILabel = {
+        let label = UILabel()
+        let attributedText = NSMutableAttributedString(
+            string: "1 ",
+            attributes: [
+                NSAttributedString.Key.font : RubikFont.Bold.size(of: 20),
+                NSAttributedString.Key.foregroundColor : UIColor.CustomColors.darkYellowPinkText
+            ]
+        )
+        attributedText.append(NSAttributedString(
+            string: "Lose",
+            attributes: [
+                NSAttributedString.Key.font : RubikFont.Bold.size(of: 20),
+                NSAttributedString.Key.foregroundColor : UIColor.white
+            ])
+        )
+        label.attributedText = attributedText
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    // VS label
     private let vsLabel = LabelFactory.makeLargeLabel(text: "VS")
+    
+    // Get ready label
     private let getReadyLabel = LabelFactory.makeSmallLabel(text: "Get ready...")
     
     
-    //MARK: Initializers
+    //MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
         setViews()
@@ -54,22 +151,43 @@ final class LoadScreenView: UIView {
     // MARK: - Layout Views
     func layoutViews() {
         NSLayoutConstraint.activate([
+            // Background image constraints
             backgroundImageView.topAnchor.constraint(equalTo: topAnchor),
             backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
             backgroundImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             backgroundImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
+            // VS label constraints
             vsLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             vsLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             
+            // Get ready label constraints
             getReadyLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             getReadyLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -56),
             
+            // Player one image constraints
             playerOneImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             playerOneImageView.topAnchor.constraint(equalTo: topAnchor, constant: 153),
             
+            // Player two image constraints
             playerTwoImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            playerTwoImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -213)
+            playerTwoImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -213),
+            
+            // Player one victories label constraints
+            victoriesLabelPlayerOne.centerXAnchor.constraint(equalTo: centerXAnchor),
+            victoriesLabelPlayerOne.topAnchor.constraint(equalTo: playerOneImageView.bottomAnchor, constant: 10),
+            
+            // Player one loses label constraints
+            loseLabelPlayerOne.centerXAnchor.constraint(equalTo: centerXAnchor),
+            loseLabelPlayerOne.topAnchor.constraint(equalTo: victoriesLabelPlayerOne.bottomAnchor, constant: 2),
+            
+            // Player two victories label constraints
+            victoriesLabelPlayerTwo.centerXAnchor.constraint(equalTo: centerXAnchor),
+            victoriesLabelPlayerTwo.topAnchor.constraint(equalTo: playerTwoImageView.bottomAnchor, constant: 10),
+            
+            // Player two loses label constraints
+            loseLabelPlayerTwo.centerXAnchor.constraint(equalTo: centerXAnchor),
+            loseLabelPlayerTwo.topAnchor.constraint(equalTo: victoriesLabelPlayerTwo.bottomAnchor, constant: 2),
         ])
     }
     
@@ -80,7 +198,11 @@ final class LoadScreenView: UIView {
             vsLabel,
             getReadyLabel,
             playerOneImageView,
-            playerTwoImageView
+            playerTwoImageView,
+            victoriesLabelPlayerOne,
+            loseLabelPlayerOne,
+            victoriesLabelPlayerTwo,
+            loseLabelPlayerTwo
         ].forEach { addSubview($0) }
 
     }

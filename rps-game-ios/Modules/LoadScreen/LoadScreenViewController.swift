@@ -21,7 +21,6 @@ class LoadScreenViewController: UIViewController {
 
     }
     
-
     /*
     // MARK: - Navigation
 
