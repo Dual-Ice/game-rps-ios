@@ -10,9 +10,9 @@ import UIKit
 final class LabelFactory {
     static func makeLargeLabel(text: String) -> UILabel {
         let label = UILabel()
-        label.textColor = UIColor(red: 255/255.0, green: 178/255.0, blue: 76/255.0, alpha: 1.0)
+        label.textColor = UIColor.CustomColors.pastelYellowText
         label.numberOfLines = 1
-        label.font = UIFont.boldSystemFont(ofSize: 56)
+        label.font = RubikFont.Bold.size(of: 56)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text.uppercased()
         return label
@@ -20,9 +20,9 @@ final class LabelFactory {
     
     static func makeSmallLabel(text: String) -> UILabel  {
         let label = UILabel()
-        label.textColor = UIColor(red: 255/255.0, green: 178/255.0, blue: 76/255.0, alpha: 1.0)
+        label.textColor = UIColor.CustomColors.pastelYellowText
         label.numberOfLines = 1
-        label.font = UIFont.boldSystemFont(ofSize: 21)
+        label.font = RubikFont.Bold.size(of: 21)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text
         return label
@@ -30,9 +30,9 @@ final class LabelFactory {
     
     static func makeScreenLabel(text: String) -> UILabel {
         let label = UILabel()
-        label.textColor = UIColor(red: 60/255.0, green: 58/255.0, blue: 58/255.0, alpha: 1.0)
+        label.textColor = UIColor.CustomColors.customBlack
         label.numberOfLines = 1
-        label.font = UIFont.systemFont(ofSize: 25)
+        label.font = RubikFont.Regular.size(of: 25)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text
         return label
