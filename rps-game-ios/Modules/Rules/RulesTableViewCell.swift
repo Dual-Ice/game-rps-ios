@@ -16,7 +16,7 @@ class RulesTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    private let numberLebel: UILabel = {
+    private let numberLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = UIColor(named: "darkTangerineTextColor")
         label.textAlignment = .center
@@ -43,16 +43,16 @@ class RulesTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(iconImageView)
-        contentView.addSubview(numberLebel)
+        contentView.addSubview(numberLabel)
         contentView.addSubview(descriptionLabel)
         
         NSLayoutConstraint.activate([
-                    numberLebel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
-                    numberLebel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-                    numberLebel.widthAnchor.constraint(equalToConstant: 30),
-                    numberLebel.heightAnchor.constraint(equalToConstant: 30),
+                    numberLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+                    numberLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+                    numberLabel.widthAnchor.constraint(equalToConstant: 30),
+                    numberLabel.heightAnchor.constraint(equalToConstant: 30),
                     
-                    descriptionLabel.leadingAnchor.constraint(equalTo: numberLebel.trailingAnchor, constant: 10),
+                    descriptionLabel.leadingAnchor.constraint(equalTo: numberLabel.trailingAnchor, constant: 10),
                     descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
                     descriptionLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
                     
@@ -68,12 +68,12 @@ class RulesTableViewCell: UITableViewCell {
     
 //    конфигурация ячейки
     func configureCell(number: Int, description: String) {
-        numberLebel.text = "\(number)"
+        numberLabel.text = "\(number)"
         descriptionLabel.text = description
     }
     
     func configureCellWithImage(description: String, icon: UIImage?) {
-        numberLebel.backgroundColor = .clear
+        numberLabel.backgroundColor = .clear
         descriptionLabel.text = description
         iconImageView.image = icon
     }
