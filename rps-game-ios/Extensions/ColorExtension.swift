@@ -20,5 +20,6 @@ extension UIColor {
         static let darkYellowPinkText = UIColor(named: "darkYellowPink") ?? UIColor()
         static let darkBrown = UIColor(named: "dark-brown") ?? UIColor()
         static let customBlack = UIColor(named: "customBlack") ?? UIColor()
+		static let darkBlueCircle = UIColor(named: "darkBlueCircle") ?? UIColor()
     }
 }

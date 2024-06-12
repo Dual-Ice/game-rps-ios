@@ -33,12 +33,12 @@ final class FightResultView: UIView {
 	private lazy var characterImage: UIImageView = makeImageView()
 
 	private lazy var labelStack: UIStackView = makeStack()
-	private lazy var resultLabel: UILabel = LabelFactory.makeSmallLabel(text: "")
+	private let resultLabel: UILabel = LabelFactory.makeSmallLabel(text: "")
 	private lazy var scoreLabel: UILabel = makeLabel()
 
 	private lazy var buttonStack: UIStackView = makeStack()
-	private lazy var homeButton: UIButton = ButtonFactory.make3DButtonWithIcon(imageName: "house-icon")
-	private lazy var repeatButton: UIButton = ButtonFactory.make3DButtonWithIcon(imageName: "repeat-icon")
+	private let homeButton: UIButton = ButtonFactory.make3DButtonWithIcon(imageName: "house-icon")
+	private let repeatButton: UIButton = ButtonFactory.make3DButtonWithIcon(imageName: "repeat-icon")
 	
 	// MARK: - Initialization
 
@@ -56,7 +56,7 @@ final class FightResultView: UIView {
 	/// Заглушка для экрана
 	func setStubState() {
 		backgroundImageView.image = ResultGame.lose.backgroundImage
-		characterImage.image = UIImage(systemName: "person.fill")
+		characterImage.image = UIImage.CustomImage.playerOneImage
 		resultLabel.text = ResultGame.lose.text
 		resultLabel.textColor = .black
 		scoreLabel.text = "1 - 3"
@@ -121,7 +121,7 @@ extension FightResultView {
 	private func makeView() -> UIView {
 		let element = UIView()
 
-		element.backgroundColor = UIColor(red: 43 / 255.0, green: 40 / 255.0, blue: 112 / 255.0, alpha: 1)
+		element.backgroundColor = UIColor.CustomColors.darkBlueCircle
 		element.layer.cornerRadius = 88
 		element.translatesAutoresizingMaskIntoConstraints = false
 
@@ -131,7 +131,7 @@ extension FightResultView {
 	private func makeLabel() -> UILabel {
 		let element = UILabel()
 
-		element.font = .systemFont(ofSize: 41, weight: .bold)
+		element.font = RubikFont.Medium.size(of: 41)
 		element.textColor = .white
 		element.textAlignment = .center
 		element.translatesAutoresizingMaskIntoConstraints = false
@@ -235,9 +235,6 @@ private extension FightResultView {
 
 	enum ResultGame {
 
-		static let blueBackground = UIImage(named: "blue-background")
-		static let redBackground = UIImage(named: "red-background")
-
 		case win
 		case lose
 
@@ -253,9 +250,9 @@ private extension FightResultView {
 		var backgroundImage: UIImage? {
 			switch self {
 			case .win:
-				ResultGame.blueBackground
+				UIImage.CustomImage.winBackgroundImage
 			case .lose:
-				ResultGame.redBackground
+				UIImage.CustomImage.loseBackgroundImage
 			}
 		}
 	}
