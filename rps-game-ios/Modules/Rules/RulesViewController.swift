@@ -9,7 +9,7 @@ import UIKit
 
 final class RulesViewController: UIViewController {
     private let rulesView = RulesView()
-    
+ 
     override func loadView() {
         view = rulesView
     }
@@ -17,9 +17,7 @@ final class RulesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
-
-
 }
+
 
