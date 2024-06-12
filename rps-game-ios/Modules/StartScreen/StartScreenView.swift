@@ -135,14 +135,14 @@ final class StartScreenView: UIView {
             //            startButton constraints
             startButton.widthAnchor.constraint(equalToConstant: 196),
             startButton.heightAnchor.constraint(equalToConstant: 53),
-            startButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 622),
             startButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 90.5),
+            startButton.bottomAnchor.constraint(equalTo: resultsButton.topAnchor, constant: -11),
             
             //            resultsButton constraints
             resultsButton.widthAnchor.constraint(equalToConstant: 196),
             resultsButton.heightAnchor.constraint(equalToConstant: 53),
-            resultsButton.topAnchor.constraint(equalTo: startButton.bottomAnchor, constant: 11),
             resultsButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 90.5),
+            resultsButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -20),
             
             //            settingsButton constraints
             settingsButton.widthAnchor.constraint(equalToConstant: 35),
