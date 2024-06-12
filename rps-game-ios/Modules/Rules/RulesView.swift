@@ -9,20 +9,26 @@ import UIKit
 
 final class RulesView: UIView {
     
-    private let tableView = UITableView(frame: .zero, style: .insetGrouped)
+    private let tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .insetGrouped)
+        tableView.separatorStyle = .none
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
     
-    private let cellIdentifier = "RulesCell"
+    
+    let cellIdentifier = "RulesCell"
     
     private let rules = [
-            ("Игра проводится между игроком и компьютером.", nil),
-            ("Жесты:", nil),
-            ("Кулак > Ножницы", UIImage(named: "rules")),
-            ("Бумага > Кулак", UIImage(named: "rules")),
-            ("Ножницы > Бумага", UIImage(named: "rules")),
-            ("У игрока есть 30 сек. для выбора жеста.", nil),
-            ("Игра ведётся до трёх побед одного из участников.", nil),
-            ("За каждую победу игрок получает 500 баллов, которые можно посмотреть на доске лидеров.", nil)
-        ]
+        ("Игра проводится между игроком и компьютером.", nil),
+        ("Жесты:", nil),
+        ("Кулак > Ножницы", UIImage(named: "rules")),
+        ("Бумага > Кулак", UIImage(named: "rules")),
+        ("Ножницы > Бумага", UIImage(named: "scissorsIcon")),
+        ("У игрока есть 30 сек. для выбора жеста.", nil),
+        ("Игра ведётся до трёх побед одного из участников.", nil),
+        ("За каждую победу игрок получает 500 баллов, которые можно посмотреть на доске лидеров.", nil)
+    ]
     
     private var title: UILabel = {
         let label = UILabel()
@@ -53,19 +59,18 @@ final class RulesView: UIView {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(RulesTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-        
     }
     
     func layoutViews() {
-//        если убрать коментарий бедет черный экран
-//        self.translatesAutoresizingMaskIntoConstraints = false
-        
+         
         NSLayoutConstraint.activate([
-            title.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
+            title.topAnchor.constraint(equalTo: self.topAnchor, constant: 70),
             title.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             
-            tableView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            tableView.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+            tableView.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 5),
+            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
     }
 }

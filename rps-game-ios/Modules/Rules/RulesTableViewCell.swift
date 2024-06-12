@@ -8,7 +8,9 @@
 import UIKit
 
 class RulesTableViewCell: UITableViewCell {
-
+    
+    
+    
 //    инконки кулак, бумага, ножницы
     private let iconImageView: UIImageView = {
         let imageView = UIImageView()
@@ -18,10 +20,10 @@ class RulesTableViewCell: UITableViewCell {
     
     private let numberLebel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .yellow
+        label.backgroundColor = .orange
         label.textAlignment = .center
         label.clipsToBounds = true
-        label.layer.cornerRadius = 10
+        label.layer.cornerRadius = 30/2
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -29,6 +31,7 @@ class RulesTableViewCell: UITableViewCell {
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -40,17 +43,17 @@ class RulesTableViewCell: UITableViewCell {
         contentView.addSubview(descriptionLabel)
         
         NSLayoutConstraint.activate([
-                    numberLebel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+                    numberLebel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
                     numberLebel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
                     numberLebel.widthAnchor.constraint(equalToConstant: 30),
                     numberLebel.heightAnchor.constraint(equalToConstant: 30),
                     
-                    iconImageView.leadingAnchor.constraint(equalTo: numberLebel.trailingAnchor, constant: 10),
+                    iconImageView.leadingAnchor.constraint(equalTo: descriptionLabel.trailingAnchor, constant: 10),
                     iconImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
                     iconImageView.widthAnchor.constraint(equalToConstant: 30),
                     iconImageView.heightAnchor.constraint(equalToConstant: 30),
                     
-                    descriptionLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 10),
+                    descriptionLabel.leadingAnchor.constraint(equalTo: numberLebel.trailingAnchor, constant: 10),
                     descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
                     descriptionLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
                 ])
