@@ -18,7 +18,7 @@ class RulesTableViewCell: UITableViewCell {
     
     private let numberLebel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .orange
+        label.backgroundColor = UIColor(named: "darkTangerineTextColor")
         label.textAlignment = .center
         label.clipsToBounds = true
         label.layer.cornerRadius = 30/2
@@ -61,10 +61,9 @@ class RulesTableViewCell: UITableViewCell {
     }
     
 //    конфигурация ячейки
-    func configureCell(number: Int, description: String, icon: UIImage?) {
+    func configureCell(number: Int, description: String) {
         numberLebel.text = "\(number)"
         descriptionLabel.text = description
-        iconImageView.image = icon
     }
     
     func configureCellWithImage(description: String, icon: UIImage?) {

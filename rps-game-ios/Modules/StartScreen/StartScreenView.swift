@@ -99,7 +99,7 @@ final class StartScreenView: UIView {
     //    MARK: - Helpers
 
      func setViews() {
-        backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.968627451, blue: 0.9843137255, alpha: 1)
+        backgroundColor = UIColor(red: 245/255.0, green: 247/255.0, blue: 251/255.0, alpha: 1.0)
         [
             rulesButton,
             startButton,

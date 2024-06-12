@@ -18,6 +18,11 @@ final class StartScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         startScreenView.delegate = self
+        
+        // Установка пустого текста для кнопки "Назад"
+            let backButton = UIBarButtonItem()
+            backButton.title = ""
+            navigationItem.backBarButtonItem = backButton
     }
     
     func didTapRulesButton() {
