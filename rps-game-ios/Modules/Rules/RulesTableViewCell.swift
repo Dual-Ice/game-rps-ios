@@ -20,8 +20,14 @@ class RulesTableViewCell: UITableViewCell {
         let label = UILabel()
         label.backgroundColor = UIColor(named: "darkTangerineTextColor")
         label.textAlignment = .center
-        label.clipsToBounds = true
         label.layer.cornerRadius = 30/2
+//        label.clipsToBounds = true
+        label.layer.masksToBounds = false
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowOpacity = 0.8
+        label.layer.shadowOffset = CGSize(width: 2, height: 2)
+        label.layer.shadowRadius = 4
+        
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -72,3 +78,4 @@ class RulesTableViewCell: UITableViewCell {
         iconImageView.image = icon
     }
 }
+
