@@ -14,6 +14,8 @@
 		117937782C182B5200652C75 /* backgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 117937772C182B5200652C75 /* backgroundMusic.mp3 */; };
 		1179377A2C182C3A00652C75 /* SoundExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117937792C182C3A00652C75 /* SoundExtension.swift */; };
 		117937812C18785500652C75 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117937802C18785500652C75 /* ColorExtension.swift */; };
+		117937842C1986FB00652C75 /* LoadScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117937832C1986FB00652C75 /* LoadScreenView.swift */; };
+		117937862C19872F00652C75 /* LoadScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117937852C19872F00652C75 /* LoadScreenViewController.swift */; };
 		11973DFF2C17497C00DC011E /* StartScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11973DFE2C17497C00DC011E /* StartScreenViewController.swift */; };
 		11A80A1E2C1828ED002F9CE4 /* StartScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A80A1D2C1828ED002F9CE4 /* StartScreenView.swift */; };
 		11A80A262C1895D4002F9CE4 /* RulesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A80A252C1895D4002F9CE4 /* RulesTableViewCell.swift */; };
@@ -38,6 +40,8 @@
 		117937772C182B5200652C75 /* backgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backgroundMusic.mp3; sourceTree = "<group>"; };
 		117937792C182C3A00652C75 /* SoundExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundExtension.swift; sourceTree = "<group>"; };
 		117937802C18785500652C75 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		117937832C1986FB00652C75 /* LoadScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadScreenView.swift; sourceTree = "<group>"; };
+		117937852C19872F00652C75 /* LoadScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadScreenViewController.swift; sourceTree = "<group>"; };
 		11973DFE2C17497C00DC011E /* StartScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenViewController.swift; sourceTree = "<group>"; };
 		11A80A1D2C1828ED002F9CE4 /* StartScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenView.swift; sourceTree = "<group>"; };
 		11A80A252C1895D4002F9CE4 /* RulesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesTableViewCell.swift; sourceTree = "<group>"; };
@@ -94,6 +98,15 @@
 				117937752C182B1B00652C75 /* buttonClick.mp3 */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		117937822C19866500652C75 /* LoadScreen */ = {
+			isa = PBXGroup;
+			children = (
+				117937832C1986FB00652C75 /* LoadScreenView.swift */,
+				117937852C19872F00652C75 /* LoadScreenViewController.swift */,
+			);
+			path = LoadScreen;
 			sourceTree = "<group>";
 		};
 		11A80A1C2C1827FF002F9CE4 /* StartScreen */ = {
@@ -164,6 +177,7 @@
 		D9023F5A2C16110700FF0001 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				117937822C19866500652C75 /* LoadScreen */,
 				D906EB3F2C1979400090EA9C /* FightResult */,
 				D9023F572C160D0700FF0001 /* Rules */,
 				11A80A1C2C1827FF002F9CE4 /* StartScreen */,
@@ -283,7 +297,9 @@
 				117937712C181E2D00652C75 /* FontExtension .swift in Sources */,
 				D93C69082C178F5A0033BF0E /* LabelFactory.swift in Sources */,
 				D9023F442C15CA7800FF0001 /* AppDelegate.swift in Sources */,
+				117937862C19872F00652C75 /* LoadScreenViewController.swift in Sources */,
 				D9023F462C15CA7800FF0001 /* SceneDelegate.swift in Sources */,
+				117937842C1986FB00652C75 /* LoadScreenView.swift in Sources */,
 				11973DFF2C17497C00DC011E /* StartScreenViewController.swift in Sources */,
 				D906EB402C1979400090EA9C /* FightResultView.swift in Sources */,
 				D906EB3C2C1979370090EA9C /* UIViewController+Preview.swift in Sources */,
