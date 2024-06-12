@@ -16,15 +16,15 @@
 		117937812C18785500652C75 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117937802C18785500652C75 /* ColorExtension.swift */; };
 		11973DFF2C17497C00DC011E /* StartScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11973DFE2C17497C00DC011E /* StartScreenViewController.swift */; };
 		11A80A1E2C1828ED002F9CE4 /* StartScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A80A1D2C1828ED002F9CE4 /* StartScreenView.swift */; };
-		B6AA5D992C19718400274F86 /* UIViewController+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AA5D982C19718400274F86 /* UIViewController+Preview.swift */; };
-		B6AA5D9D2C1971AB00274F86 /* FightResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AA5D9A2C1971AB00274F86 /* FightResultView.swift */; };
-		B6AA5D9E2C1971AB00274F86 /* FightResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AA5D9B2C1971AB00274F86 /* FightResultViewController.swift */; };
 		D9023F442C15CA7800FF0001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F432C15CA7800FF0001 /* AppDelegate.swift */; };
 		D9023F462C15CA7800FF0001 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F452C15CA7800FF0001 /* SceneDelegate.swift */; };
 		D9023F482C15CA7800FF0001 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F472C15CA7800FF0001 /* RulesViewController.swift */; };
 		D9023F4D2C15CA7A00FF0001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9023F4C2C15CA7A00FF0001 /* Assets.xcassets */; };
 		D9023F502C15CA7A00FF0001 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D9023F4F2C15CA7A00FF0001 /* Base */; };
 		D9023F5E2C1611C700FF0001 /* RulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F5D2C1611C700FF0001 /* RulesView.swift */; };
+		D906EB3C2C1979370090EA9C /* UIViewController+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D906EB3B2C1979370090EA9C /* UIViewController+Preview.swift */; };
+		D906EB402C1979400090EA9C /* FightResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D906EB3D2C1979400090EA9C /* FightResultView.swift */; };
+		D906EB412C1979400090EA9C /* FightResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D906EB3E2C1979400090EA9C /* FightResultViewController.swift */; };
 		D93C69062C1763220033BF0E /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93C69052C1763220033BF0E /* ButtonFactory.swift */; };
 		D93C69082C178F5A0033BF0E /* LabelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93C69072C178F5A0033BF0E /* LabelFactory.swift */; };
 /* End PBXBuildFile section */
@@ -39,9 +39,6 @@
 		117937802C18785500652C75 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		11973DFE2C17497C00DC011E /* StartScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenViewController.swift; sourceTree = "<group>"; };
 		11A80A1D2C1828ED002F9CE4 /* StartScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenView.swift; sourceTree = "<group>"; };
-		B6AA5D982C19718400274F86 /* UIViewController+Preview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Preview.swift"; sourceTree = "<group>"; };
-		B6AA5D9A2C1971AB00274F86 /* FightResultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FightResultView.swift; sourceTree = "<group>"; };
-		B6AA5D9B2C1971AB00274F86 /* FightResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FightResultViewController.swift; sourceTree = "<group>"; };
 		D9023F402C15CA7800FF0001 /* rps-game-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "rps-game-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9023F432C15CA7800FF0001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9023F452C15CA7800FF0001 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,6 +47,9 @@
 		D9023F4F2C15CA7A00FF0001 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D9023F512C15CA7A00FF0001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9023F5D2C1611C700FF0001 /* RulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesView.swift; sourceTree = "<group>"; };
+		D906EB3B2C1979370090EA9C /* UIViewController+Preview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Preview.swift"; sourceTree = "<group>"; };
+		D906EB3D2C1979400090EA9C /* FightResultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FightResultView.swift; sourceTree = "<group>"; };
+		D906EB3E2C1979400090EA9C /* FightResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FightResultViewController.swift; sourceTree = "<group>"; };
 		D93C69052C1763220033BF0E /* ButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFactory.swift; sourceTree = "<group>"; };
 		D93C69072C178F5A0033BF0E /* LabelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,11 +76,11 @@
 		1179376F2C181DF700652C75 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D906EB3B2C1979370090EA9C /* UIViewController+Preview.swift */,
 				117937702C181E2D00652C75 /* FontExtension .swift */,
 				117937792C182C3A00652C75 /* SoundExtension.swift */,
 				117937722C1823F300652C75 /* ImageExtension.swift */,
 				117937802C18785500652C75 /* ColorExtension.swift */,
-				B6AA5D982C19718400274F86 /* UIViewController+Preview.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -101,15 +101,6 @@
 				11A80A1D2C1828ED002F9CE4 /* StartScreenView.swift */,
 			);
 			path = StartScreen;
-			sourceTree = "<group>";
-		};
-		B6AA5D9C2C1971AB00274F86 /* FightResult */ = {
-			isa = PBXGroup;
-			children = (
-				B6AA5D9A2C1971AB00274F86 /* FightResultView.swift */,
-				B6AA5D9B2C1971AB00274F86 /* FightResultViewController.swift */,
-			);
-			path = FightResult;
 			sourceTree = "<group>";
 		};
 		D9023F372C15CA7800FF0001 = {
@@ -170,9 +161,9 @@
 		D9023F5A2C16110700FF0001 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				D906EB3F2C1979400090EA9C /* FightResult */,
 				D9023F572C160D0700FF0001 /* Rules */,
 				11A80A1C2C1827FF002F9CE4 /* StartScreen */,
-				B6AA5D9C2C1971AB00274F86 /* FightResult */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -186,6 +177,15 @@
 				D9023F4E2C15CA7A00FF0001 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		D906EB3F2C1979400090EA9C /* FightResult */ = {
+			isa = PBXGroup;
+			children = (
+				D906EB3D2C1979400090EA9C /* FightResultView.swift */,
+				D906EB3E2C1979400090EA9C /* FightResultViewController.swift */,
+			);
+			path = FightResult;
 			sourceTree = "<group>";
 		};
 		D93C69042C17630C0033BF0E /* Factories */ = {
@@ -271,7 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9023F5E2C1611C700FF0001 /* RulesView.swift in Sources */,
-				B6AA5D9E2C1971AB00274F86 /* FightResultViewController.swift in Sources */,
+				D906EB412C1979400090EA9C /* FightResultViewController.swift in Sources */,
 				11A80A1E2C1828ED002F9CE4 /* StartScreenView.swift in Sources */,
 				D93C69062C1763220033BF0E /* ButtonFactory.swift in Sources */,
 				1179377A2C182C3A00652C75 /* SoundExtension.swift in Sources */,
@@ -281,8 +281,8 @@
 				D9023F442C15CA7800FF0001 /* AppDelegate.swift in Sources */,
 				D9023F462C15CA7800FF0001 /* SceneDelegate.swift in Sources */,
 				11973DFF2C17497C00DC011E /* StartScreenViewController.swift in Sources */,
-				B6AA5D9D2C1971AB00274F86 /* FightResultView.swift in Sources */,
-				B6AA5D992C19718400274F86 /* UIViewController+Preview.swift in Sources */,
+				D906EB402C1979400090EA9C /* FightResultView.swift in Sources */,
+				D906EB3C2C1979370090EA9C /* UIViewController+Preview.swift in Sources */,
 				117937732C1823F300652C75 /* ImageExtension.swift in Sources */,
 				117937812C18785500652C75 /* ColorExtension.swift in Sources */,
 			);
