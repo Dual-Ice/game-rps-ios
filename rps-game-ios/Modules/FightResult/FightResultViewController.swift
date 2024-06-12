@@ -12,6 +12,15 @@ import SwiftUI
 
 final class FightResultViewController: UIViewController {
 
+	// MARK: - Public properties
+	
+	/// Картинка игрока.
+	var player: UIImage?
+	/// Количество побед.
+	var numberOfWin: Int?
+	/// Количество поражений.
+	var numberOfLose: Int?
+
 	// MARK: - Private properties
 
 	private lazy var fightResultView = FightResultView(delegate: self)
@@ -25,22 +34,46 @@ final class FightResultViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		fightResultView.setupUI()
-		fightResultView.setStubState()
+		showResultGame()
 	}
 
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
 		fightResultView.layout()
 	}
+
+	// MARK: - Private methods
+
+	private func showResultGame() {
+		guard
+			let player,
+			let numberOfWin,
+			let numberOfLose
+		else {
+			fightResultView.setStubState()
+			return
+		}
+
+		let score = "\(numberOfWin) - \(numberOfLose)"
+
+		if numberOfWin > numberOfLose {
+			fightResultView.setWinTheme(for: player, with: score)
+		} else {
+			fightResultView.setLoseTheme(for: player, with: score)
+		}
+	}
 }
 
-// MARK: - IFightResultViewControllerDelegate
+// MARK: - IFightResultViewDelegate
 
 extension FightResultViewController: IFightResultViewDelegate {
+
+	/// Возврат на главный экран.
 	func homeGame() {
 		print("Go home")
 	}
-	
+
+	/// Начинает игру заново.
 	func repeatGame() {
 		print("Repeat")
 	}

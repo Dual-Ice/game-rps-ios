@@ -10,8 +10,11 @@ import UIKit
 import SwiftUI
 #endif
 
+/// Протокол делегата.
 protocol IFightResultViewDelegate: AnyObject {
+	/// Домой.
 	func homeGame()
+	/// Повторить.
 	func repeatGame()
 }
 
@@ -30,7 +33,7 @@ final class FightResultView: UIView {
 	private lazy var characterImage: UIImageView = makeImageView()
 
 	private lazy var labelStack: UIStackView = makeStack()
-	private lazy var resultLabel: UILabel = LabelFactory.makeSmallLabel(text: ResultGame.lose.text)
+	private lazy var resultLabel: UILabel = LabelFactory.makeSmallLabel(text: "")
 	private lazy var scoreLabel: UILabel = makeLabel()
 
 	private lazy var buttonStack: UIStackView = makeStack()
@@ -54,8 +57,32 @@ final class FightResultView: UIView {
 	func setStubState() {
 		backgroundImageView.image = ResultGame.lose.backgroundImage
 		characterImage.image = UIImage(systemName: "person.fill")
+		resultLabel.text = ResultGame.lose.text
 		resultLabel.textColor = .black
 		scoreLabel.text = "1 - 3"
+	}
+
+	/// Устанавливает тему для победы
+	/// - Parameters:
+	///   - player: картинка игрока
+	///   - score: счет игрока
+	func setWinTheme(for player: UIImage, with score: String) {
+		backgroundImageView.image = ResultGame.win.backgroundImage
+		characterImage.image = player
+		resultLabel.text = ResultGame.win.text
+		scoreLabel.text = score
+	}
+
+	/// Устанавливает тему для поражения
+	/// - Parameters:
+	///   - player: картинка игрока
+	///   - score: счет игрока
+	func setLoseTheme(for player: UIImage, with score: String) {
+		backgroundImageView.image = ResultGame.lose.backgroundImage
+		characterImage.image = player
+		resultLabel.text = ResultGame.lose.text
+		resultLabel.textColor = .black
+		scoreLabel.text = score
 	}
 }
 
