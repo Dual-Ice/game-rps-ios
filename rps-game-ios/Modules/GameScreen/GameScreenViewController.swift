@@ -12,7 +12,6 @@ final class GameScreenViewController: UIViewController, GameScreenViewDelegate {
     private let gameScreenView = GameScreenView()
     
     override func loadView() {
-        //super.loadView() //?
         view = gameScreenView
     }
     

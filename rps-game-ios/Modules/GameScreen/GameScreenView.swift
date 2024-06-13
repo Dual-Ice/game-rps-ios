@@ -9,6 +9,7 @@ import UIKit
 
 protocol GameScreenViewDelegate: AnyObject {
     //Назад
+    
     //Пауза
     //Камень
     //Ножницы

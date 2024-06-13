@@ -15,6 +15,8 @@
 		1179377A2C182C3A00652C75 /* SoundExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117937792C182C3A00652C75 /* SoundExtension.swift */; };
 		117937812C18785500652C75 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117937802C18785500652C75 /* ColorExtension.swift */; };
 		11973DFF2C17497C00DC011E /* StartScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11973DFE2C17497C00DC011E /* StartScreenViewController.swift */; };
+		11A6509C2C1B0249001A90BD /* GameScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A6509A2C1B0249001A90BD /* GameScreenView.swift */; };
+		11A6509D2C1B0249001A90BD /* GameScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A6509B2C1B0249001A90BD /* GameScreenViewController.swift */; };
 		11A80A1E2C1828ED002F9CE4 /* StartScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A80A1D2C1828ED002F9CE4 /* StartScreenView.swift */; };
 		D9023F442C15CA7800FF0001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F432C15CA7800FF0001 /* AppDelegate.swift */; };
 		D9023F462C15CA7800FF0001 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F452C15CA7800FF0001 /* SceneDelegate.swift */; };
@@ -38,6 +40,8 @@
 		117937792C182C3A00652C75 /* SoundExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundExtension.swift; sourceTree = "<group>"; };
 		117937802C18785500652C75 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		11973DFE2C17497C00DC011E /* StartScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenViewController.swift; sourceTree = "<group>"; };
+		11A6509A2C1B0249001A90BD /* GameScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScreenView.swift; sourceTree = "<group>"; };
+		11A6509B2C1B0249001A90BD /* GameScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScreenViewController.swift; sourceTree = "<group>"; };
 		11A80A1D2C1828ED002F9CE4 /* StartScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenView.swift; sourceTree = "<group>"; };
 		D9023F402C15CA7800FF0001 /* rps-game-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "rps-game-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9023F432C15CA7800FF0001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +96,15 @@
 				117937752C182B1B00652C75 /* buttonClick.mp3 */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		11A6509F2C1B0268001A90BD /* GameScreen */ = {
+			isa = PBXGroup;
+			children = (
+				11A6509A2C1B0249001A90BD /* GameScreenView.swift */,
+				11A6509B2C1B0249001A90BD /* GameScreenViewController.swift */,
+			);
+			path = GameScreen;
 			sourceTree = "<group>";
 		};
 		11A80A1C2C1827FF002F9CE4 /* StartScreen */ = {
@@ -161,6 +174,7 @@
 		D9023F5A2C16110700FF0001 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				11A6509F2C1B0268001A90BD /* GameScreen */,
 				D906EB3F2C1979400090EA9C /* FightResult */,
 				D9023F572C160D0700FF0001 /* Rules */,
 				11A80A1C2C1827FF002F9CE4 /* StartScreen */,
@@ -270,10 +284,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11A6509D2C1B0249001A90BD /* GameScreenViewController.swift in Sources */,
 				D9023F5E2C1611C700FF0001 /* RulesView.swift in Sources */,
 				D906EB412C1979400090EA9C /* FightResultViewController.swift in Sources */,
 				11A80A1E2C1828ED002F9CE4 /* StartScreenView.swift in Sources */,
 				D93C69062C1763220033BF0E /* ButtonFactory.swift in Sources */,
+				11A6509C2C1B0249001A90BD /* GameScreenView.swift in Sources */,
 				1179377A2C182C3A00652C75 /* SoundExtension.swift in Sources */,
 				D9023F482C15CA7800FF0001 /* RulesViewController.swift in Sources */,
 				117937712C181E2D00652C75 /* FontExtension .swift in Sources */,
