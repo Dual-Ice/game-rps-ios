@@ -7,7 +7,22 @@
 
 import UIKit
 
+protocol RulesViewDelegate: AnyObject {
+    func didTapGoBackButton()
+}
+
 final class RulesView: UIView {
+    
+    private let returnToStartSrceen: UIButton = {
+        let button = UIButton(type: .system)
+        button.setBackgroundImage(UIImage(named: "backButton"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    weak var delegate: RulesViewDelegate?
+    
     
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
@@ -34,17 +49,24 @@ final class RulesView: UIView {
         let label = LabelFactory.makeScreenLabel(text: "Rules")
         return label
     }()
-    
+    //    MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setViews()
         layoutViews()
+        returnToStartSrceen.addTarget(self, action: #selector(toStartScreenView), for: .touchUpInside)
+        
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setViews()
         layoutViews()
+        returnToStartSrceen.addTarget(self, action: #selector(toStartScreenView), for: .touchUpInside)
+    }
+    
+    @objc func toStartScreenView() {
+        delegate?.didTapGoBackButton()
     }
     
     func setViews() {
@@ -54,6 +76,7 @@ final class RulesView: UIView {
         tableView.backgroundView = backgroundView
         
         [
+            returnToStartSrceen,
             title,
             tableView
         ].forEach { addSubview($0) }
@@ -63,16 +86,26 @@ final class RulesView: UIView {
         tableView.register(RulesTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
     }
     
+    //    MARK: - Constraints
+    
     func layoutViews() {
         
         NSLayoutConstraint.activate([
+            //            title constraints
             title.topAnchor.constraint(equalTo: self.topAnchor, constant: 70),
             title.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             
+            //            table constraints
             tableView.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 5),
             tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            
+            //            return button constraints
+            returnToStartSrceen.widthAnchor.constraint(equalToConstant: 11),
+            returnToStartSrceen.heightAnchor.constraint(equalToConstant: 19),
+            returnToStartSrceen.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
+            returnToStartSrceen.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 30)
         ])
     }
 }
@@ -102,5 +135,4 @@ extension RulesView: UITableViewDelegate, UITableViewDataSource {
         }
         return cell
     }
-    
 }

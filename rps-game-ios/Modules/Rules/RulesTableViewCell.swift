@@ -46,6 +46,7 @@ class RulesTableViewCell: UITableViewCell {
         return label
     }()
     
+    //    MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         shadowContainer.addSubview(numberLabel)
@@ -64,6 +65,7 @@ class RulesTableViewCell: UITableViewCell {
             descriptionLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
             iconImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            iconImageView.leadingAnchor.constraint(equalTo: numberLabel.trailingAnchor, constant: 10),
             iconImageView.widthAnchor.constraint(equalToConstant: 30),
             iconImageView.heightAnchor.constraint(equalToConstant: 30)
         ])
