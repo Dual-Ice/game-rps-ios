@@ -8,19 +8,16 @@
 import UIKit
 
 protocol GameScreenViewDelegate: AnyObject {
-    //Назад
-    
-    //Пауза
-    //Камень
-    //Ножницы
-    //Бумага
+    func didTapRockButton()
+    func didTapPaperButton()
+    func didTapScissorsButton()
 }
 
 final class GameScreenView: UIView {
     
     // MARK: - Dependencies
     weak var delegate: GameScreenViewDelegate?
-    
+        
     // MARK: - Private properties
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
@@ -29,8 +26,38 @@ final class GameScreenView: UIView {
         imageView.image = UIImage.CustomImage.backgroundImage
         return imageView
     }()
+            
+    private let topCharacterImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "playerOne")
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
     
-    private let topHandImageView: UIImageView = {
+    private let topScoreView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let bottomScoreView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let bottomCharacterImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "playerTwo")
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    let centralLabel: UILabel = LabelFactory.makeLargeLabel(text: "FIGHT")
+    
+    let topHandImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "femaleHand")
         imageView.contentMode = .scaleAspectFit
@@ -38,7 +65,15 @@ final class GameScreenView: UIView {
         return imageView
     }()
     
-    private let timerView: UIProgressView = {
+    let bottomHandImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "maleHand")
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    let timerProgressView: UIProgressView = {
         let progressView = UIProgressView()
         progressView.progress = 0.7
         progressView.progressTintColor = UIColor.CustomColors.darkGreenTimeline
@@ -50,7 +85,7 @@ final class GameScreenView: UIView {
         return progressView
     }()
     
-    private let timerLabel: UILabel = {
+    let timerLabel: UILabel = {
         let label = UILabel()
         label.text = "0:20"
         label.font = UIFont.systemFont(ofSize: 15)
@@ -59,81 +94,88 @@ final class GameScreenView: UIView {
         return label
     }()
     
-    private let centralLabel: UILabel = LabelFactory.makeLargeLabel(text: "FIGHT")
-    
-    private let scoreView: UIProgressView = {
+    let topScoreProgressView: UIProgressView = {
         let progressView = UIProgressView()
-        progressView.progress = 0.2
+        progressView.progress = 0.3
         progressView.progressTintColor = UIColor.CustomColors.pastelYellowText
         progressView.trackTintColor = UIColor.CustomColors.darkBlueCircle
-        progressView.layer.cornerRadius = 5
+        progressView.clipsToBounds = true
+        progressView.transform = CGAffineTransform(rotationAngle: .pi / 2)
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        return progressView
+    }()
+    
+    let bottomScoreProgressView: UIProgressView = {
+        let progressView = UIProgressView()
+        progressView.progress = 0.3
+        progressView.progressTintColor = UIColor.CustomColors.pastelYellowText
+        progressView.trackTintColor = UIColor.CustomColors.darkBlueCircle
         progressView.clipsToBounds = true
         progressView.transform = CGAffineTransform(rotationAngle: .pi / -2)
         progressView.translatesAutoresizingMaskIntoConstraints = false
         return progressView
     }()
     
-    private let bottomHandImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "maleHand")
-        imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-    
-    private let rockButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setBackgroundImage(UIImage(named: "rockIcon"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    private let paperButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setBackgroundImage(UIImage(named: "paperIcon"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    private let scissorsButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setBackgroundImage(UIImage(named: "scissorsIcon"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
+    let rockButton = ButtonFactory.makeActionButton(icon: "rockIcon")
+    let paperButton = ButtonFactory.makeActionButton(icon: "paperIcon")
+    let scissorsButton = ButtonFactory.makeActionButton(icon: "scissorsIcon")
     
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setViews()
         setupConstrains()
+        setupTargetAction()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setViews()
         setupConstrains()
+        setupTargetAction()
     }
-    
+}
+
+// MARK: - Selevtors
+private extension GameScreenView {
+    @objc func rockButtonAction() {
+        delegate?.didTapRockButton()
+    }
+    @objc func paperButtonAction() {
+        delegate?.didTapPaperButton()
+    }
+    @objc func scissorsButtonAction() {
+        delegate?.didTapScissorsButton()
+    }
 }
 
 // MARK: - Setup UI
 private extension GameScreenView {
     func setViews() {
+        topScoreView.addSubview(topScoreProgressView)
+        bottomScoreView.addSubview(bottomScoreProgressView)
         [
             backgroundImageView,
             topHandImageView,
-            timerView,
+            timerProgressView,
             timerLabel,
             centralLabel,
-            scoreView,
+            topScoreView,
+            topCharacterImage,
+            bottomScoreView,
+            bottomCharacterImage,
             bottomHandImageView,
             rockButton,
             paperButton,
             scissorsButton
             
         ].forEach{ addSubview($0) }
+    }
+    
+    func setupTargetAction() {
+        rockButton.addTarget(self, action: #selector(rockButtonAction), for: .touchUpInside)
+        paperButton.addTarget(self, action: #selector(paperButtonAction), for: .touchUpInside)
+        scissorsButton.addTarget(self, action: #selector(scissorsButtonAction), for: .touchUpInside)
     }
     
     func setupConstrains() {
@@ -143,37 +185,100 @@ private extension GameScreenView {
             backgroundImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             backgroundImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            topHandImageView.topAnchor.constraint(equalTo: topAnchor, constant: -80),
+            topHandImageView.bottomAnchor.constraint(equalTo: centerYAnchor, constant: -120),
             topHandImageView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: -40),
             
-            timerView.widthAnchor.constraint(equalToConstant: 200),
-            timerView.heightAnchor.constraint(equalToConstant: 10),
-            timerView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            timerView.centerXAnchor.constraint(equalTo: leadingAnchor, constant: 26),
+            timerProgressView.widthAnchor.constraint(equalToConstant: 200),
+            timerProgressView.heightAnchor.constraint(equalToConstant: 10),
+            timerProgressView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            timerProgressView.centerXAnchor.constraint(equalTo: leadingAnchor, constant: 26),
             
-            timerLabel.centerXAnchor.constraint(equalTo: timerView.centerXAnchor),
-            timerLabel.topAnchor.constraint(equalTo: timerView.bottomAnchor, constant: 100),
+            timerLabel.centerXAnchor.constraint(equalTo: timerProgressView.centerXAnchor),
+            timerLabel.topAnchor.constraint(equalTo: timerProgressView.bottomAnchor, constant: 100),
             
             centralLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             centralLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             
-            scoreView.widthAnchor.constraint(equalToConstant: 300),
-            scoreView.heightAnchor.constraint(equalToConstant: 10),
-            scoreView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            scoreView.centerXAnchor.constraint(equalTo: trailingAnchor, constant: -26),
+            topCharacterImage.widthAnchor.constraint(equalToConstant: 35),
+            topCharacterImage.centerYAnchor.constraint(equalTo: topScoreView.topAnchor),
+            topCharacterImage.centerXAnchor.constraint(equalTo: topScoreView.centerXAnchor),
+              
+            topScoreView.widthAnchor.constraint(equalToConstant: 10),
+            topScoreView.heightAnchor.constraint(equalToConstant: 150),
+            topScoreView.bottomAnchor.constraint(equalTo: centerYAnchor),
+            topScoreView.centerXAnchor.constraint(equalTo: trailingAnchor, constant: -26),
             
-            bottomHandImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 80),
+            topScoreProgressView.widthAnchor.constraint(equalToConstant: 150),
+            topScoreProgressView.heightAnchor.constraint(equalToConstant: 10),
+            topScoreProgressView.centerYAnchor.constraint(equalTo: topScoreView.centerYAnchor),
+            topScoreProgressView.centerXAnchor.constraint(equalTo: topScoreView.centerXAnchor),
+            
+            bottomScoreView.widthAnchor.constraint(equalToConstant: 10),
+            bottomScoreView.heightAnchor.constraint(equalToConstant: 150),
+            bottomScoreView.topAnchor.constraint(equalTo: centerYAnchor, constant: 1),
+            bottomScoreView.centerXAnchor.constraint(equalTo: trailingAnchor, constant: -26),
+            
+            bottomScoreProgressView.widthAnchor.constraint(equalToConstant: 150),
+            bottomScoreProgressView.heightAnchor.constraint(equalToConstant: 10),
+            bottomScoreProgressView.centerYAnchor.constraint(equalTo: bottomScoreView.centerYAnchor),
+            bottomScoreProgressView.centerXAnchor.constraint(equalTo: bottomScoreView.centerXAnchor),
+            
+            bottomCharacterImage.widthAnchor.constraint(equalToConstant: 35),
+            bottomCharacterImage.centerYAnchor.constraint(equalTo: bottomScoreView.bottomAnchor),
+            bottomCharacterImage.centerXAnchor.constraint(equalTo: bottomScoreView.centerXAnchor),
+            
+            bottomHandImageView.topAnchor.constraint(equalTo: centerYAnchor, constant: 120),
             bottomHandImageView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 40),
             
-            rockButton.centerXAnchor.constraint(equalTo: centerXAnchor, constant: -80),
+            rockButton.widthAnchor.constraint(equalToConstant: 80),
+            rockButton.heightAnchor.constraint(equalToConstant: 80),
+            rockButton.centerXAnchor.constraint(equalTo: centerXAnchor, constant: -100),
             rockButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -40),
             
+            paperButton.widthAnchor.constraint(equalToConstant: 80),
+            paperButton.heightAnchor.constraint(equalToConstant: 80),
             paperButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             paperButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -80),
             
-            scissorsButton.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 80),
+            scissorsButton.widthAnchor.constraint(equalToConstant: 80),
+            scissorsButton.heightAnchor.constraint(equalToConstant: 80),
+            scissorsButton.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 100),
             scissorsButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -40)
         ])
+    }
+}
+
+// MARK: - enum Gesture
+extension GameScreenViewController {
+    enum Gesture {
+        case topRock
+        case topPaper
+        case topScissors
+        case bottomRock
+        case bottomPaper
+        case bottomScissors
+        
+        var image: UIImage {
+            switch self {
+            case .topRock:
+                #imageLiteral(resourceName: "rockFemaleHand")
+            case .topPaper:
+                #imageLiteral(resourceName: "paperFemaleHand")
+            case .topScissors:
+                #imageLiteral(resourceName: "scissorsFemaleHand")
+            case .bottomRock:
+                #imageLiteral(resourceName: "rockMaleHand")
+            case .bottomPaper:
+                #imageLiteral(resourceName: "paperMaleHand")
+            case .bottomScissors:
+                #imageLiteral(resourceName: "scissorsMaleHand")
+            }
+        }
+    }
+    
+    enum PlayerSide {
+        case top
+        case bottom
     }
 }
 
