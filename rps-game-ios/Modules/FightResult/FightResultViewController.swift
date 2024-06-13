@@ -25,6 +25,20 @@ final class FightResultViewController: UIViewController {
 
 	private lazy var fightResultView = FightResultView(delegate: self)
 
+    init(winnerImage: UIImage, playerOneWins: Int, playerTwoWins: Int) {
+        self.player = winnerImage
+        
+        self.numberOfWin = playerOneWins
+        self.numberOfLose = playerTwoWins
+
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
 	// MARK: - Lifecycle
 
 	override func loadView() {
@@ -41,6 +55,11 @@ final class FightResultViewController: UIViewController {
 		super.viewDidLayoutSubviews()
 		fightResultView.layout()
 	}
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
 
 	// MARK: - Private methods
 
@@ -70,12 +89,13 @@ extension FightResultViewController: IFightResultViewDelegate {
 
 	/// Возврат на главный экран.
 	func homeGame() {
-		print("Go home")
+        let startVC = StartScreenViewController()
+        self.view.window?.rootViewController = startVC
 	}
 
 	/// Начинает игру заново.
 	func repeatGame() {
-		print("Repeat")
+        navigationController?.popViewController(animated: true)
 	}
 }
 
@@ -83,7 +103,7 @@ extension FightResultViewController: IFightResultViewDelegate {
 struct FightResultViewControllerProvider: PreviewProvider {
 	static var previews: some View {
 		Group {
-			FightResultViewController().previw()
+            FightResultViewController(winnerImage: UIImage.CustomImage.playerOneImage!, playerOneWins: 1, playerTwoWins: 2).previw()
 		}
 	}
 }

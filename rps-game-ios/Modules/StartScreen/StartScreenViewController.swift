@@ -34,7 +34,8 @@ final class StartScreenViewController: UIViewController {
 
 extension StartScreenViewController: StartScreenViewDelegate {
     func didTapStartButton() {
-        print("start")
+        let gameVC = GameScreenViewController()
+        navigationController?.pushViewController(gameVC, animated: true)
     }
     
     func didTapResultButton() {

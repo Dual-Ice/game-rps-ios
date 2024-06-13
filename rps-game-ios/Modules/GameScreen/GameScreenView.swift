@@ -85,6 +85,7 @@ final class GameScreenView: UIView {
         let button = UIButton(type: .system)
         button.setBackgroundImage(UIImage(named: "rockIcon"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.tag = Move.rock.rawValue
         return button
     }()
     
@@ -92,6 +93,8 @@ final class GameScreenView: UIView {
         let button = UIButton(type: .system)
         button.setBackgroundImage(UIImage(named: "paperIcon"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.tag = Move.paper.rawValue
         return button
     }()
     
@@ -99,6 +102,8 @@ final class GameScreenView: UIView {
         let button = UIButton(type: .system)
         button.setBackgroundImage(UIImage(named: "scissorsIcon"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.tag = Move.scissors.rawValue
         return button
     }()
     

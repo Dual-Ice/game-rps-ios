@@ -32,6 +32,8 @@
 		D906EB412C1979400090EA9C /* FightResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D906EB3E2C1979400090EA9C /* FightResultViewController.swift */; };
 		D93C69062C1763220033BF0E /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93C69052C1763220033BF0E /* ButtonFactory.swift */; };
 		D93C69082C178F5A0033BF0E /* LabelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93C69072C178F5A0033BF0E /* LabelFactory.swift */; };
+		D9B7035D2C1B607700616455 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B7035C2C1B607700616455 /* GameService.swift */; };
+		D9B703602C1B773000616455 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B7035F2C1B773000616455 /* Player.swift */; };
 		D9B703622C1B8A4700616455 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B703612C1B8A4700616455 /* ActionCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +65,8 @@
 		D906EB3E2C1979400090EA9C /* FightResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FightResultViewController.swift; sourceTree = "<group>"; };
 		D93C69052C1763220033BF0E /* ButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFactory.swift; sourceTree = "<group>"; };
 		D93C69072C178F5A0033BF0E /* LabelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelFactory.swift; sourceTree = "<group>"; };
+		D9B7035C2C1B607700616455 /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
+		D9B7035F2C1B773000616455 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		D9B703612C1B8A4700616455 /* ActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,6 +156,7 @@
 		D9023F422C15CA7800FF0001 /* rps-game-ios */ = {
 			isa = PBXGroup;
 			children = (
+				D9B7035E2C1B772300616455 /* Models */,
 				1179376F2C181DF700652C75 /* Extensions */,
 				D93C69042C17630C0033BF0E /* Factories */,
 				D9023F512C15CA7A00FF0001 /* Info.plist */,
@@ -177,6 +182,7 @@
 		D9023F582C1610F300FF0001 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D9B7035C2C1B607700616455 /* GameService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -229,6 +235,14 @@
 				D93C69072C178F5A0033BF0E /* LabelFactory.swift */,
 			);
 			path = Factories;
+			sourceTree = "<group>";
+		};
+		D9B7035E2C1B772300616455 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D9B7035F2C1B773000616455 /* Player.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,6 +321,7 @@
 				11A6509D2C1B0249001A90BD /* GameScreenViewController.swift in Sources */,
 				D9023F5E2C1611C700FF0001 /* RulesView.swift in Sources */,
 				D906EB412C1979400090EA9C /* FightResultViewController.swift in Sources */,
+				D9B7035D2C1B607700616455 /* GameService.swift in Sources */,
 				11A80A1E2C1828ED002F9CE4 /* StartScreenView.swift in Sources */,
 				11A80A262C1895D4002F9CE4 /* RulesTableViewCell.swift in Sources */,
 				D93C69062C1763220033BF0E /* ButtonFactory.swift in Sources */,
@@ -322,6 +337,7 @@
 				11973DFF2C17497C00DC011E /* StartScreenViewController.swift in Sources */,
 				D906EB402C1979400090EA9C /* FightResultView.swift in Sources */,
 				D906EB3C2C1979370090EA9C /* UIViewController+Preview.swift in Sources */,
+				D9B703602C1B773000616455 /* Player.swift in Sources */,
 				D9B703622C1B8A4700616455 /* ActionCell.swift in Sources */,
 				117937732C1823F300652C75 /* ImageExtension.swift in Sources */,
 				117937812C18785500652C75 /* ColorExtension.swift in Sources */,

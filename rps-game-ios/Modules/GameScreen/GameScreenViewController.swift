@@ -10,6 +10,7 @@ import UIKit
 final class GameScreenViewController: UIViewController, GameScreenViewDelegate {
     
     private let gameScreenView = GameScreenView()
+    private let gameService = GameService()
     
     override func loadView() {
         view = gameScreenView
@@ -18,10 +19,16 @@ final class GameScreenViewController: UIViewController, GameScreenViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         gameScreenView.delegate = self
-        
+        gameService.view = self
         setupNavigationBar()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        gameService.reset()
+        // так же сбросить таймер, полоски прогресса, картинки рук
+        
+    }
 }
 //MARK: - Privater Methods
 private extension GameScreenViewController {
@@ -50,6 +57,23 @@ private extension GameScreenViewController {
         
         title = "Игра"
     }
+}
+
+extension GameScreenViewController: GameServiceViewProtocol {
+    func endGame(winnerImage: UIImage, playerOneWins: Int, playerTwoWins: Int) {
+        let fightResultVC = FightResultViewController(winnerImage: winnerImage, playerOneWins: playerOneWins, playerTwoWins: playerTwoWins)
+        navigationController?.pushViewController(fightResultVC, animated: true)
+    }
+    
+    func showPlayersMoves(playerOneMove: Move, playerTwoMove: Move) {
+//        <#code#>
+    }
+    
+    func showDraw() {
+//        <#code#>
+    }
+    
+    
 }
 
 
