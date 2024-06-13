@@ -11,11 +11,6 @@ protocol RulesViewDelegate: AnyObject {
     func didTapGoBackButton()
 }
 
-protocol setTableViewDelegate: UITableViewDelegate, UITableViewDataSource {
-    
-}
-
-
 final class RulesView: UIView {
     
     private let returnToStartSrceen: UIButton = {
@@ -27,29 +22,16 @@ final class RulesView: UIView {
     }()
     
     weak var delegate: RulesViewDelegate?
-    weak var tableViewDelegate: setTableViewDelegate?
-    
     
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.separatorStyle = .none
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.isScrollEnabled = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-    
-    
-    let cellIdentifier = "RulesCell"
-    
-    let rules = [
-        ("Игра проводится между игроком и компьютером.", nil),
-        ("Жесты:", nil),
-        ("Кулак > Ножницы", UIImage(named: "stoneRules")),
-        ("Бумага > Кулак", UIImage(named: "paperRules")),
-        ("Ножницы > Бумага", UIImage(named: "scissorsRules")),
-        ("У игрока есть 30 сек. для выбора жеста.", nil),
-        ("Игра ведётся до трёх побед одного из участников.", nil),
-        ("За каждую победу игрок получает 500 баллов, которые можно посмотреть на доске лидеров.", nil)
-    ]
     
     private var title: UILabel = {
         let label = LabelFactory.makeScreenLabel(text: "Rules")
@@ -75,6 +57,12 @@ final class RulesView: UIView {
         delegate?.didTapGoBackButton()
     }
     
+    func setDelegates(_ value: RulesViewController) {
+        delegate = value
+        tableView.delegate = value
+        tableView.dataSource = value
+    }
+    
     func setViews() {
         backgroundColor = UIColor(red: 245/255.0, green: 247/255.0, blue: 251/255.0, alpha: 1.0)
         let backgroundView = UIView()
@@ -86,11 +74,9 @@ final class RulesView: UIView {
             title,
             tableView
         ].forEach { addSubview($0) }
-    
         
-//        tableView.delegate = self
-//        tableView.dataSource = self
-        tableView.register(RulesTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+        tableView.register(RulesTableViewCell.self, forCellReuseIdentifier: RulesTableViewCell.identifier)
+        tableView.register(ActionCell.self, forCellReuseIdentifier: ActionCell.identifier)
     }
     
     //    MARK: - Constraints
