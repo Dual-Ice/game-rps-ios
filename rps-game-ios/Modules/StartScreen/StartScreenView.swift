@@ -62,8 +62,8 @@ final class StartScreenView: UIView {
         return imageView
     }()
     
-//    MARK: - init
-
+    //    MARK: - Init
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setViews()
@@ -97,8 +97,8 @@ final class StartScreenView: UIView {
     }
     
     //    MARK: - Helpers
-
-     func setViews() {
+    
+    func setViews() {
         backgroundColor = UIColor(red: 245/255.0, green: 247/255.0, blue: 251/255.0, alpha: 1.0)
         [
             rulesButton,
@@ -111,13 +111,15 @@ final class StartScreenView: UIView {
         ].forEach { addSubview($0) }
     }
     
-//    таргет для кнопок
+    //    таргет для кнопок
     func targetAction() {
         rulesButton.addTarget(self, action: #selector(rulesVC), for: .touchUpInside)
         resultsButton.addTarget(self, action: #selector(resultsGame), for: .touchUpInside)
         startButton.addTarget(self, action: #selector(startGame), for: .touchUpInside)
         settingsButton.addTarget(self, action: #selector(settingsVC), for: .touchUpInside)
     }
+    
+    //    MARK: - Constraints
     
     func layoutView() {
         NSLayoutConstraint.activate([

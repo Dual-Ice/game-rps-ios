@@ -12,7 +12,7 @@ final class StartScreenViewController: UIViewController {
     private let startScreenView = StartScreenView()
     
     override func loadView() {
-         view = startScreenView
+        view = startScreenView
     }
     
     override func viewDidLoad() {
@@ -20,15 +20,15 @@ final class StartScreenViewController: UIViewController {
         startScreenView.delegate = self
         
         // Установка пустого текста для кнопки "Назад"
-            let backButton = UIBarButtonItem()
-            backButton.title = ""
-            navigationItem.backBarButtonItem = backButton
+        let backButton = UIBarButtonItem()
+        backButton.title = ""
+        navigationItem.backBarButtonItem = backButton
     }
     
     override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
-            navigationController?.navigationBar.isHidden = true
-        }
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
     
     func didTapRulesButton() {
         let secondVC = RulesViewController()
