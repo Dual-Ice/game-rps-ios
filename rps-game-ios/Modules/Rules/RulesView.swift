@@ -102,5 +102,5 @@ extension RulesView: UITableViewDelegate, UITableViewDataSource {
         }
         return cell
     }
-
+    
 }
