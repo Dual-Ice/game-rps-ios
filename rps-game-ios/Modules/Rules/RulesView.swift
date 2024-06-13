@@ -11,6 +11,11 @@ protocol RulesViewDelegate: AnyObject {
     func didTapGoBackButton()
 }
 
+protocol setTableViewDelegate: UITableViewDelegate, UITableViewDataSource {
+    
+}
+
+
 final class RulesView: UIView {
     
     private let returnToStartSrceen: UIButton = {
@@ -22,6 +27,7 @@ final class RulesView: UIView {
     }()
     
     weak var delegate: RulesViewDelegate?
+    weak var tableViewDelegate: setTableViewDelegate?
     
     
     private let tableView: UITableView = {
@@ -34,7 +40,7 @@ final class RulesView: UIView {
     
     let cellIdentifier = "RulesCell"
     
-    private let rules = [
+    let rules = [
         ("Игра проводится между игроком и компьютером.", nil),
         ("Жесты:", nil),
         ("Кулак > Ножницы", UIImage(named: "stoneRules")),
@@ -80,9 +86,10 @@ final class RulesView: UIView {
             title,
             tableView
         ].forEach { addSubview($0) }
+    
         
-        tableView.delegate = self
-        tableView.dataSource = self
+//        tableView.delegate = self
+//        tableView.dataSource = self
         tableView.register(RulesTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
     }
     
@@ -107,32 +114,5 @@ final class RulesView: UIView {
             returnToStartSrceen.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
             returnToStartSrceen.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 30)
         ])
-    }
-}
-
-extension RulesView: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        rules.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier , for: indexPath) as? RulesTableViewCell else { return UITableViewCell() }
-        
-        cell.backgroundColor = UIColor(red: 245/255.0, green: 247/255.0, blue: 251/255.0, alpha: 1.0)
-        cell.selectionStyle = .none
-        
-        let rule = rules[indexPath.row]
-        
-        if indexPath.row == 0 || indexPath.row == 1 {
-            cell.configureCell(number: indexPath.row + 1, description: rule.0)
-        } else if (2...4).contains(indexPath.row)  {
-            cell.configureCellWithImage(description: rule.0, icon: rule.1)
-            cell.iconImageView.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor, constant: 30).isActive = true
-            cell.descriptionLabel.leadingAnchor.constraint(equalTo: cell.iconImageView.trailingAnchor, constant: 10).isActive = true
-        } else {
-            cell.configureCell(number: indexPath.row - 2, description: rule.0)
-        }
-        return cell
     }
 }
