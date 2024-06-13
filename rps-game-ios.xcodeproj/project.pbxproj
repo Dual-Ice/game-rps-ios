@@ -30,6 +30,7 @@
 		D906EB412C1979400090EA9C /* FightResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D906EB3E2C1979400090EA9C /* FightResultViewController.swift */; };
 		D93C69062C1763220033BF0E /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93C69052C1763220033BF0E /* ButtonFactory.swift */; };
 		D93C69082C178F5A0033BF0E /* LabelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93C69072C178F5A0033BF0E /* LabelFactory.swift */; };
+		D9B703622C1B8A4700616455 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B703612C1B8A4700616455 /* ActionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		D906EB3E2C1979400090EA9C /* FightResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FightResultViewController.swift; sourceTree = "<group>"; };
 		D93C69052C1763220033BF0E /* ButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFactory.swift; sourceTree = "<group>"; };
 		D93C69072C178F5A0033BF0E /* LabelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelFactory.swift; sourceTree = "<group>"; };
+		D9B703612C1B8A4700616455 /* ActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 				D9023F472C15CA7800FF0001 /* RulesViewController.swift */,
 				D9023F5D2C1611C700FF0001 /* RulesView.swift */,
 				11A80A252C1895D4002F9CE4 /* RulesTableViewCell.swift */,
+				D9B703612C1B8A4700616455 /* ActionCell.swift */,
 			);
 			path = Rules;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				11973DFF2C17497C00DC011E /* StartScreenViewController.swift in Sources */,
 				D906EB402C1979400090EA9C /* FightResultView.swift in Sources */,
 				D906EB3C2C1979370090EA9C /* UIViewController+Preview.swift in Sources */,
+				D9B703622C1B8A4700616455 /* ActionCell.swift in Sources */,
 				117937732C1823F300652C75 /* ImageExtension.swift in Sources */,
 				117937812C18785500652C75 /* ColorExtension.swift in Sources */,
 			);

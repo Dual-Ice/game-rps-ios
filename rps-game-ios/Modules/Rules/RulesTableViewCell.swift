@@ -9,12 +9,7 @@ import UIKit
 
 class RulesTableViewCell: UITableViewCell {
     
-    //    инконки кулак, бумага, ножницы
-    let iconImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
+    static let identifier = RulesTableViewCell.debugDescription()
     
     //    Контейнер для тени кнопок
     private let shadowContainer: UIView = {
@@ -50,24 +45,25 @@ class RulesTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         shadowContainer.addSubview(numberLabel)
-        contentView.addSubview(iconImageView)
         contentView.addSubview(shadowContainer)
         contentView.addSubview(descriptionLabel)
         
         NSLayoutConstraint.activate([
-            numberLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
-            numberLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            shadowContainer.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10),
+            shadowContainer.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            shadowContainer.widthAnchor.constraint(equalToConstant: 30),
+            shadowContainer.heightAnchor.constraint(equalToConstant: 30),
+
+            numberLabel.centerXAnchor.constraint(equalTo: shadowContainer.centerXAnchor),
+            numberLabel.centerYAnchor.constraint(equalTo: shadowContainer.centerYAnchor),
             numberLabel.widthAnchor.constraint(equalToConstant: 30),
             numberLabel.heightAnchor.constraint(equalToConstant: 30),
-            
-            descriptionLabel.leadingAnchor.constraint(equalTo: numberLabel.trailingAnchor, constant: 10),
-            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+
+            descriptionLabel.leftAnchor.constraint(equalTo: shadowContainer.rightAnchor, constant: 10),
+            descriptionLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
             descriptionLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            
-            iconImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            iconImageView.leadingAnchor.constraint(equalTo: numberLabel.trailingAnchor, constant: 10),
-            iconImageView.widthAnchor.constraint(equalToConstant: 30),
-            iconImageView.heightAnchor.constraint(equalToConstant: 30)
+            descriptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10), // Ensure there is some space from the top
+            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10) // Ensure there is some space from the bottom
         ])
     }
     
@@ -76,15 +72,9 @@ class RulesTableViewCell: UITableViewCell {
     }
     
     //    конфигурация ячейки
-    func configureCell(number: Int, description: String) {
+    func configureCell(number: Int, description: NSAttributedString) {
         numberLabel.text = "\(number)"
-        descriptionLabel.text = description
-    }
-    
-    func configureCellWithImage(description: String, icon: UIImage?) {
-        numberLabel.backgroundColor = .clear
-        descriptionLabel.text = description
-        iconImageView.image = icon
+        descriptionLabel.attributedText = description
     }
 }
 
