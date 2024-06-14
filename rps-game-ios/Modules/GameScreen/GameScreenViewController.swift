@@ -27,14 +27,14 @@ final class GameScreenViewController: UIViewController, GameScreenViewDelegate {
         gameScreenView.delegate = self
         setupNavigationBar()
         
-        setupRules()
+        initializeGameState()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         startGame()
     }
     
-    private func setupRules() {
+    private func initializeGameState() {
         leftTime = gameTime
         gameScreenView.timerLabel.text = "0:\(gameTime)"
         gameScreenView.timerProgressView.progress = Float(1)
@@ -103,12 +103,6 @@ final class GameScreenViewController: UIViewController, GameScreenViewDelegate {
             }
          }
     }
-    
-    
-    //MARK: - TO DO
-    func didTap(_ gesture: Gesture) {
-        
-    }
 }
 
 // MARK: - Setup UI
@@ -123,11 +117,45 @@ private extension GameScreenViewController {
             target: self,
             action: #selector(pauseGame)
         )
-        
+                
         navigationController?.navigationBar.standardAppearance = navigationBarAppearance
         navigationController?.navigationBar.tintColor = .CustomColors.customBlack
         
         title = "Игра"
+    }
+}
+
+// MARK: - enum Gesture
+extension GameScreenViewController {
+    enum Gesture {
+        case topRock
+        case topPaper
+        case topScissors
+        case bottomRock
+        case bottomPaper
+        case bottomScissors
+        
+        var image: UIImage {
+            switch self {
+            case .topRock:
+                #imageLiteral(resourceName: "rockFemaleHand")
+            case .topPaper:
+                #imageLiteral(resourceName: "paperFemaleHand")
+            case .topScissors:
+                #imageLiteral(resourceName: "scissorsFemaleHand")
+            case .bottomRock:
+                #imageLiteral(resourceName: "rockMaleHand")
+            case .bottomPaper:
+                #imageLiteral(resourceName: "paperMaleHand")
+            case .bottomScissors:
+                #imageLiteral(resourceName: "scissorsMaleHand")
+            }
+        }
+    }
+    
+    enum PlayerSide {
+        case top
+        case bottom
     }
 }
 
@@ -139,7 +167,7 @@ import SwiftUI
 struct GameScreenViewControllerProvider: PreviewProvider {
     static var previews: some View {
         Group {
-            UINavigationController(rootViewController: StartScreenViewController()).previw()
+            UINavigationController(rootViewController: GameScreenViewController()).previw()
         }
     }
 }

@@ -248,40 +248,6 @@ private extension GameScreenView {
     }
 }
 
-// MARK: - enum Gesture
-extension GameScreenViewController {
-    enum Gesture {
-        case topRock
-        case topPaper
-        case topScissors
-        case bottomRock
-        case bottomPaper
-        case bottomScissors
-        
-        var image: UIImage {
-            switch self {
-            case .topRock:
-                #imageLiteral(resourceName: "rockFemaleHand")
-            case .topPaper:
-                #imageLiteral(resourceName: "paperFemaleHand")
-            case .topScissors:
-                #imageLiteral(resourceName: "scissorsFemaleHand")
-            case .bottomRock:
-                #imageLiteral(resourceName: "rockMaleHand")
-            case .bottomPaper:
-                #imageLiteral(resourceName: "paperMaleHand")
-            case .bottomScissors:
-                #imageLiteral(resourceName: "scissorsMaleHand")
-            }
-        }
-    }
-    
-    enum PlayerSide {
-        case top
-        case bottom
-    }
-}
-
 
 #if DEBUG
 import SwiftUI
