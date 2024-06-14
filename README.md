@@ -2,12 +2,14 @@
 Это простая и популярная игра для двух игроков, которая часто используется для быстрого принятия решений или просто для развлечения. Цель игры — выиграть как можно больше раундов, демонстрируя правильные жесты против жестов соперника.
 
 <div>
-<img src="rps-game-ios/Resources/images/Onbording/StartScreen.png" width="160" />
-<img src="rps-game-ios/Resources/images/Onbording/RulesScreen.png" width="160" />
-<img src="rps-game-ios/Resources/images/Onbording/SettingsScreen.png" width="160" />
-<img src="rps-game-ios/Resources/images/Onbording/LoadScreen.png" width="160" />
-<img src="rps-game-ios/Resources/images/Onbording/GameScreen.png" width="160" />
-<img src="rps-game-ios/Resources/images/Onbording/FightResultScreen.png" width="160" />
+<img src="rps-game-ios/Resources/images/Onbording/StartScreen.png" width="200" />
+<img src="rps-game-ios/Resources/images/Onbording/RulesScreen.png" width="200" />
+<img src="rps-game-ios/Resources/images/Onbording/SettingsScreen.png" width="200" />
+</div>
+<div>
+<img src="rps-game-ios/Resources/images/Onbording/LoadScreen.png" width="200" />
+<img src="rps-game-ios/Resources/images/Onbording/GameScreen.png" width="200" />
+<img src="rps-game-ios/Resources/images/Onbording/FightResultScreen.png" width="200" />
 </div>
 
 ## Stack: 
