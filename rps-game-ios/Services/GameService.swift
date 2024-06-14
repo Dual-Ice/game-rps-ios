@@ -79,6 +79,10 @@ class GameService {
         ]
     }
     
+    func getPlayersAvatars() -> [UIImage] {
+        return [playerOne.avatar, playerTwo.avatar]
+    }
+    
     // MARK: Private methods
     private func getPlayerRandomMove() -> Move {
         let moves: [Move] = [.rock, .paper, .scissors]

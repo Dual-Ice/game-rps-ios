@@ -29,7 +29,6 @@ final class GameScreenView: UIView {
             
     private let topCharacterImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "playerOne")
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -49,7 +48,6 @@ final class GameScreenView: UIView {
     
     private let bottomCharacterImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "playerTwo")
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -133,6 +131,11 @@ final class GameScreenView: UIView {
         setViews()
         setupConstrains()
         setupTargetAction()
+    }
+    
+    func setPlayersAvatars(avatars: [UIImage]) {
+        topCharacterImage.image = avatars[0]
+        bottomCharacterImage.image = avatars[1]
     }
 }
 

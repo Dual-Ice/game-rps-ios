@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class GameScreenViewController: UIViewController, GameScreenViewDelegate {
+final class GameScreenViewController: UIViewController {
     
     private let gameScreenView = GameScreenView()
     private var gameService: GameService
@@ -27,12 +27,15 @@ final class GameScreenViewController: UIViewController, GameScreenViewDelegate {
         super.viewDidLoad()
         gameScreenView.delegate = self
         gameService.view = self
+        gameScreenView.setPlayersAvatars(avatars: gameService.getPlayersAvatars())
         setupNavigationBar()
         
         setupRules()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        gameService.reset()
         startGame()
     }
     
@@ -42,13 +45,6 @@ final class GameScreenViewController: UIViewController, GameScreenViewDelegate {
         gameScreenView.timerProgressView.progress = Float(1)
         setPoint(0, for: .top)
         setPoint(0, for: .bottom)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        gameService.reset()
-        // так же сбросить таймер, полоски прогресса, картинки рук
-        
     }
     
     init(gameService: GameService) {
@@ -61,6 +57,22 @@ final class GameScreenViewController: UIViewController, GameScreenViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+extension GameScreenViewController: GameScreenViewDelegate {
+    func didTapRockButton() {
+        setBottomHand(to: .bottomRock)
+    }
+    
+    func didTapPaperButton() {
+        setBottomHand(to: .bottomPaper)
+    }
+    
+    func didTapScissorsButton() {
+        setBottomHand(to: .bottomScissors)
+    }
+}
+
+
 //MARK: - Privater Methods
 private extension GameScreenViewController {
     @objc
@@ -73,18 +85,6 @@ private extension GameScreenViewController {
         gameScreenView.paperButton.isEnabled = state
         gameScreenView.scissorsButton.isEnabled = state
         navigationController?.navigationItem.rightBarButtonItem?.isEnabled = state
-    }
-    
-    func didTapRockButton() {
-        setBottomHand(to: .bottomRock)
-    }
-    
-    func didTapPaperButton() {
-        setBottomHand(to: .bottomPaper)
-    }
-    
-    func didTapScissorsButton() {
-        setBottomHand(to: .bottomScissors)
     }
     
     func setTopHand(to gesture: Gesture) {
