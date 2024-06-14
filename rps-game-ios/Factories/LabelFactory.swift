@@ -40,7 +40,7 @@ final class LabelFactory {
     
     static func makeStartScreenLabel(text: String) -> UILabel {
         let label = UILabel()
-        label.textColor = #colorLiteral(red: 0.9395877719, green: 0.6671555638, blue: 0.5318560004, alpha: 1)
+        label.textColor = UIColor(red: 240/255.0, green: 170/255.0, blue: 136/255.0, alpha: 1.0)
         label.numberOfLines = 1
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -50,7 +50,7 @@ final class LabelFactory {
         attributedText.addAttribute(.font, value: customFont, range: NSRange(location: 0, length: attributedText.length))
         // Установка тени
         let shadow = NSShadow()
-        shadow.shadowColor = #colorLiteral(red: 0.9192885756, green: 0.6009836197, blue: 0.4597279429, alpha: 1)
+        shadow.shadowColor = UIColor(red: 234/255.0, green: 153/255.0, blue: 117/255.0, alpha: 1.0)
         shadow.shadowOffset = CGSize(width: 3, height: 3)
         shadow.shadowBlurRadius = 1
         attributedText.addAttribute(.shadow, value: shadow, range: NSRange(location: 0, length: attributedText.length))

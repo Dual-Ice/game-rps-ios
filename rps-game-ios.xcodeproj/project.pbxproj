@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1127501D2C1C52D400A970BA /* CustomMusicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1127501C2C1C52D400A970BA /* CustomMusicButton.swift */; };
 		1179376D2C181A7500652C75 /* Rubik-VariableFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1179376C2C181A7500652C75 /* Rubik-VariableFont.ttf */; };
 		117937712C181E2D00652C75 /* FontExtension .swift in Sources */ = {isa = PBXBuildFile; fileRef = 117937702C181E2D00652C75 /* FontExtension .swift */; };
 		117937732C1823F300652C75 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117937722C1823F300652C75 /* ImageExtension.swift */; };
@@ -14,10 +15,15 @@
 		117937782C182B5200652C75 /* backgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 117937772C182B5200652C75 /* backgroundMusic.mp3 */; };
 		1179377A2C182C3A00652C75 /* SoundExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117937792C182C3A00652C75 /* SoundExtension.swift */; };
 		117937812C18785500652C75 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117937802C18785500652C75 /* ColorExtension.swift */; };
+		117937842C1986FB00652C75 /* LoadScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117937832C1986FB00652C75 /* LoadScreenView.swift */; };
+		117937862C19872F00652C75 /* LoadScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117937852C19872F00652C75 /* LoadScreenViewController.swift */; };
+		117937892C19C06F00652C75 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117937882C19C06E00652C75 /* SettingsViewController.swift */; };
+		1179378B2C19C08400652C75 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1179378A2C19C08400652C75 /* SettingsView.swift */; };
 		11973DFF2C17497C00DC011E /* StartScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11973DFE2C17497C00DC011E /* StartScreenViewController.swift */; };
 		11A6509C2C1B0249001A90BD /* GameScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A6509A2C1B0249001A90BD /* GameScreenView.swift */; };
 		11A6509D2C1B0249001A90BD /* GameScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A6509B2C1B0249001A90BD /* GameScreenViewController.swift */; };
 		11A80A1E2C1828ED002F9CE4 /* StartScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A80A1D2C1828ED002F9CE4 /* StartScreenView.swift */; };
+		11A80A262C1895D4002F9CE4 /* RulesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A80A252C1895D4002F9CE4 /* RulesTableViewCell.swift */; };
 		D9023F442C15CA7800FF0001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F432C15CA7800FF0001 /* AppDelegate.swift */; };
 		D9023F462C15CA7800FF0001 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F452C15CA7800FF0001 /* SceneDelegate.swift */; };
 		D9023F482C15CA7800FF0001 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F472C15CA7800FF0001 /* RulesViewController.swift */; };
@@ -29,9 +35,11 @@
 		D906EB412C1979400090EA9C /* FightResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D906EB3E2C1979400090EA9C /* FightResultViewController.swift */; };
 		D93C69062C1763220033BF0E /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93C69052C1763220033BF0E /* ButtonFactory.swift */; };
 		D93C69082C178F5A0033BF0E /* LabelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93C69072C178F5A0033BF0E /* LabelFactory.swift */; };
+		D9B703622C1B8A4700616455 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B703612C1B8A4700616455 /* ActionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1127501C2C1C52D400A970BA /* CustomMusicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMusicButton.swift; sourceTree = "<group>"; };
 		1179376C2C181A7500652C75 /* Rubik-VariableFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-VariableFont.ttf"; sourceTree = "<group>"; };
 		117937702C181E2D00652C75 /* FontExtension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FontExtension .swift"; sourceTree = "<group>"; };
 		117937722C1823F300652C75 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
@@ -39,10 +47,15 @@
 		117937772C182B5200652C75 /* backgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backgroundMusic.mp3; sourceTree = "<group>"; };
 		117937792C182C3A00652C75 /* SoundExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundExtension.swift; sourceTree = "<group>"; };
 		117937802C18785500652C75 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		117937832C1986FB00652C75 /* LoadScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadScreenView.swift; sourceTree = "<group>"; };
+		117937852C19872F00652C75 /* LoadScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadScreenViewController.swift; sourceTree = "<group>"; };
+		117937882C19C06E00652C75 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		1179378A2C19C08400652C75 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		11973DFE2C17497C00DC011E /* StartScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenViewController.swift; sourceTree = "<group>"; };
 		11A6509A2C1B0249001A90BD /* GameScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScreenView.swift; sourceTree = "<group>"; };
 		11A6509B2C1B0249001A90BD /* GameScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScreenViewController.swift; sourceTree = "<group>"; };
 		11A80A1D2C1828ED002F9CE4 /* StartScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenView.swift; sourceTree = "<group>"; };
+		11A80A252C1895D4002F9CE4 /* RulesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesTableViewCell.swift; sourceTree = "<group>"; };
 		D9023F402C15CA7800FF0001 /* rps-game-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "rps-game-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9023F432C15CA7800FF0001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9023F452C15CA7800FF0001 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +69,7 @@
 		D906EB3E2C1979400090EA9C /* FightResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FightResultViewController.swift; sourceTree = "<group>"; };
 		D93C69052C1763220033BF0E /* ButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFactory.swift; sourceTree = "<group>"; };
 		D93C69072C178F5A0033BF0E /* LabelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelFactory.swift; sourceTree = "<group>"; };
+		D9B703612C1B8A4700616455 /* ActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +110,25 @@
 				117937752C182B1B00652C75 /* buttonClick.mp3 */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		117937822C19866500652C75 /* LoadScreen */ = {
+			isa = PBXGroup;
+			children = (
+				117937832C1986FB00652C75 /* LoadScreenView.swift */,
+				117937852C19872F00652C75 /* LoadScreenViewController.swift */,
+			);
+			path = LoadScreen;
+			sourceTree = "<group>";
+		};
+		117937872C19C04D00652C75 /* SettingsScreen */ = {
+			isa = PBXGroup;
+			children = (
+				1179378A2C19C08400652C75 /* SettingsView.swift */,
+				117937882C19C06E00652C75 /* SettingsViewController.swift */,
+				1127501C2C1C52D400A970BA /* CustomMusicButton.swift */,
+			);
+			path = SettingsScreen;
 			sourceTree = "<group>";
 		};
 		11A6509F2C1B0268001A90BD /* GameScreen */ = {
@@ -151,6 +184,8 @@
 			children = (
 				D9023F472C15CA7800FF0001 /* RulesViewController.swift */,
 				D9023F5D2C1611C700FF0001 /* RulesView.swift */,
+				11A80A252C1895D4002F9CE4 /* RulesTableViewCell.swift */,
+				D9B703612C1B8A4700616455 /* ActionCell.swift */,
 			);
 			path = Rules;
 			sourceTree = "<group>";
@@ -175,6 +210,8 @@
 			isa = PBXGroup;
 			children = (
 				11A6509F2C1B0268001A90BD /* GameScreen */,
+				117937872C19C04D00652C75 /* SettingsScreen */,
+				117937822C19866500652C75 /* LoadScreen */,
 				D906EB3F2C1979400090EA9C /* FightResult */,
 				D9023F572C160D0700FF0001 /* Rules */,
 				11A80A1C2C1827FF002F9CE4 /* StartScreen */,
@@ -287,18 +324,25 @@
 				11A6509D2C1B0249001A90BD /* GameScreenViewController.swift in Sources */,
 				D9023F5E2C1611C700FF0001 /* RulesView.swift in Sources */,
 				D906EB412C1979400090EA9C /* FightResultViewController.swift in Sources */,
+				1127501D2C1C52D400A970BA /* CustomMusicButton.swift in Sources */,
 				11A80A1E2C1828ED002F9CE4 /* StartScreenView.swift in Sources */,
+				11A80A262C1895D4002F9CE4 /* RulesTableViewCell.swift in Sources */,
 				D93C69062C1763220033BF0E /* ButtonFactory.swift in Sources */,
 				11A6509C2C1B0249001A90BD /* GameScreenView.swift in Sources */,
 				1179377A2C182C3A00652C75 /* SoundExtension.swift in Sources */,
+				117937892C19C06F00652C75 /* SettingsViewController.swift in Sources */,
 				D9023F482C15CA7800FF0001 /* RulesViewController.swift in Sources */,
 				117937712C181E2D00652C75 /* FontExtension .swift in Sources */,
 				D93C69082C178F5A0033BF0E /* LabelFactory.swift in Sources */,
 				D9023F442C15CA7800FF0001 /* AppDelegate.swift in Sources */,
+				117937862C19872F00652C75 /* LoadScreenViewController.swift in Sources */,
+				1179378B2C19C08400652C75 /* SettingsView.swift in Sources */,
 				D9023F462C15CA7800FF0001 /* SceneDelegate.swift in Sources */,
+				117937842C1986FB00652C75 /* LoadScreenView.swift in Sources */,
 				11973DFF2C17497C00DC011E /* StartScreenViewController.swift in Sources */,
 				D906EB402C1979400090EA9C /* FightResultView.swift in Sources */,
 				D906EB3C2C1979370090EA9C /* UIViewController+Preview.swift in Sources */,
+				D9B703622C1B8A4700616455 /* ActionCell.swift in Sources */,
 				117937732C1823F300652C75 /* ImageExtension.swift in Sources */,
 				117937812C18785500652C75 /* ColorExtension.swift in Sources */,
 			);
