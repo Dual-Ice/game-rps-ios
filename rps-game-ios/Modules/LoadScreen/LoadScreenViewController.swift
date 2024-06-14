@@ -19,7 +19,7 @@ class LoadScreenViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        loadScreenView.fillLoadingData(data: gameService.getPlayersLoadingData())
     }
     
     

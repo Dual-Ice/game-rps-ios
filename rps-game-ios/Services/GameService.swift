@@ -25,6 +25,12 @@ protocol GameServiceViewProtocol: AnyObject {
     func showDraw()
 }
 
+struct PlayerLoadingData {
+    let image: UIImage
+    let win: Int
+    let lose: Int
+}
+
 class GameService {
     
     weak var view: GameServiceViewProtocol!
@@ -64,6 +70,13 @@ class GameService {
     func reset() {
         playerOne.roundWin = 0
         playerTwo.roundWin = 0
+    }
+    
+    func getPlayersLoadingData() -> [PlayerLoadingData] {
+        return [
+            PlayerLoadingData(image: playerOne.avatar, win: playerOne.gameWin, lose: playerOne.gameLose),
+            PlayerLoadingData(image: playerTwo.avatar, win: playerTwo.gameWin, lose: playerTwo.gameLose)
+        ]
     }
     
     // MARK: Private methods

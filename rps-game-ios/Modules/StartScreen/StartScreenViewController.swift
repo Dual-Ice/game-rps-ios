@@ -39,10 +39,10 @@ extension StartScreenViewController: StartScreenViewDelegate {
         let loadingVC = LoadScreenViewController(gameService: gameService)
         navigationController?.pushViewController(loadingVC, animated: true)
         
-         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-             let gameVC = GameScreenViewController(gameService: self.gameService)
-             self.navigationController?.pushViewController(gameVC, animated: true)
-         }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            let gameVC = GameScreenViewController(gameService: self.gameService)
+            self.navigationController?.pushViewController(gameVC, animated: true)
+        }
     }
     
     func didTapResultButton() {
