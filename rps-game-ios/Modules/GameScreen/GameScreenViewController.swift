@@ -12,6 +12,13 @@ final class GameScreenViewController: UIViewController, GameScreenViewDelegate {
     private let gameScreenView = GameScreenView()
     private var gameService: GameService
     
+    private var timer = Timer()
+    private var leftTime: Int!
+    
+    var point = 0
+    
+    var gameTime = 30
+    
     override func loadView() {
         view = gameScreenView
     }
@@ -21,6 +28,20 @@ final class GameScreenViewController: UIViewController, GameScreenViewDelegate {
         gameScreenView.delegate = self
         gameService.view = self
         setupNavigationBar()
+        
+        setupRules()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        startGame()
+    }
+    
+    private func setupRules() {
+        leftTime = gameTime
+        gameScreenView.timerLabel.text = "0:\(gameTime)"
+        gameScreenView.timerProgressView.progress = Float(1)
+        setPoint(0, for: .top)
+        setPoint(0, for: .bottom)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,6 +65,69 @@ final class GameScreenViewController: UIViewController, GameScreenViewDelegate {
 private extension GameScreenViewController {
     @objc
     private func pauseGame() {
+        timer.isValid ? timer.invalidate() : startGame()
+    }
+    
+    private func enableButtons(_ state: Bool) {
+        gameScreenView.rockButton.isEnabled = state
+        gameScreenView.paperButton.isEnabled = state
+        gameScreenView.scissorsButton.isEnabled = state
+        navigationController?.navigationItem.rightBarButtonItem?.isEnabled = state
+    }
+    
+    func didTapRockButton() {
+        setBottomHand(to: .bottomRock)
+    }
+    
+    func didTapPaperButton() {
+        setBottomHand(to: .bottomPaper)
+    }
+    
+    func didTapScissorsButton() {
+        setBottomHand(to: .bottomScissors)
+    }
+    
+    func setTopHand(to gesture: Gesture) {
+        gameScreenView.topHandImageView.image = gesture.image
+    }
+    
+    func setBottomHand(to gesture: Gesture) {
+        enableButtons(false)
+        setCentralLabel("")
+        timer.invalidate()
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [unowned self] timer in
+            gameScreenView.bottomHandImageView.image = gesture.image
+        }
+    }
+    
+    func setPoint(_ point: Int, for player: PlayerSide) {
+        switch player {
+        case .top:
+            gameScreenView.topScoreProgressView.progress = Float(point) * 0.40
+        case .bottom:
+            gameScreenView.bottomScoreProgressView.progress = Float(point) * 0.40
+        }
+    }
+    
+    func setCentralLabel(_ text: String) {
+        gameScreenView.centralLabel.text = text
+    }
+    
+    func startGame() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] time in
+            leftTime -= 1
+            gameScreenView.timerLabel.text = "0:\(leftTime ?? 0)"
+            gameScreenView.timerProgressView.progress = Float(leftTime ?? 0) / Float(gameTime)
+            if leftTime == 0 {
+                setCentralLabel("ROUND OVER") //game mechanics
+                timer.invalidate()
+            }
+         }
+    }
+    
+    
+    //MARK: - TO DO
+    func didTap(_ gesture: Gesture) {
         
     }
     
@@ -53,8 +137,7 @@ private extension GameScreenViewController {
     }
 }
 
-
-//MARK: - Setup UI
+// MARK: - Setup UI
 private extension GameScreenViewController {
     func setupNavigationBar() {
         let backButton = UIBarButtonItem(image: UIImage(named: "backButton"), style: .plain, target: self, action: #selector(backButtonTapped))
@@ -62,13 +145,13 @@ private extension GameScreenViewController {
         
         let navigationBarAppearance = UINavigationBarAppearance()
         
+        navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.CustomColors.customBlack]
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .pause,
             target: self,
             action: #selector(pauseGame)
         )
-        
-        navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.CustomColors.customBlack]
         
         navigationController?.navigationBar.standardAppearance = navigationBarAppearance
         navigationController?.navigationBar.tintColor = .CustomColors.customBlack
@@ -97,13 +180,14 @@ extension GameScreenViewController: GameServiceViewProtocol {
 }
 
 
+
 #if DEBUG
 import SwiftUI
 
 struct GameScreenViewControllerProvider: PreviewProvider {
     static var previews: some View {
         Group {
-            UINavigationController(rootViewController: GameScreenViewController()).previw()
+            UINavigationController(rootViewController: StartScreenViewController()).previw()
         }
     }
 }
