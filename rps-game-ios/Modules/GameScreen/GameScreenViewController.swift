@@ -10,7 +10,7 @@ import UIKit
 final class GameScreenViewController: UIViewController, GameScreenViewDelegate {
     
     private let gameScreenView = GameScreenView()
-    private let gameService = GameService()
+    private var gameService: GameService
     
     override func loadView() {
         view = gameScreenView
@@ -29,6 +29,16 @@ final class GameScreenViewController: UIViewController, GameScreenViewDelegate {
         // так же сбросить таймер, полоски прогресса, картинки рук
         
     }
+    
+    init(gameService: GameService) {
+        self.gameService = gameService
+
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 //MARK: - Privater Methods
 private extension GameScreenViewController {
@@ -36,12 +46,20 @@ private extension GameScreenViewController {
     private func pauseGame() {
         
     }
+    
+
+    @objc private func backButtonTapped() {
+        navigationController?.popToRootViewController(animated: true)
+    }
 }
 
 
 //MARK: - Setup UI
 private extension GameScreenViewController {
     func setupNavigationBar() {
+        let backButton = UIBarButtonItem(image: UIImage(named: "backButton"), style: .plain, target: self, action: #selector(backButtonTapped))
+        navigationItem.leftBarButtonItem = backButton
+        
         let navigationBarAppearance = UINavigationBarAppearance()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -56,6 +74,8 @@ private extension GameScreenViewController {
         navigationController?.navigationBar.tintColor = .CustomColors.customBlack
         
         title = "Игра"
+        
+        navigationController?.navigationBar.isHidden = false
     }
 }
 

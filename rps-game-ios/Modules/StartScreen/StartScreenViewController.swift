@@ -10,6 +10,7 @@ import UIKit
 final class StartScreenViewController: UIViewController {
     
     private let startScreenView = StartScreenView()
+    private let gameService = GameService()
     
     override func loadView() {
         view = startScreenView
@@ -34,8 +35,14 @@ final class StartScreenViewController: UIViewController {
 
 extension StartScreenViewController: StartScreenViewDelegate {
     func didTapStartButton() {
-        let gameVC = GameScreenViewController()
-        navigationController?.pushViewController(gameVC, animated: true)
+        
+        let loadingVC = LoadScreenViewController(gameService: gameService)
+        navigationController?.pushViewController(loadingVC, animated: true)
+        
+         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+             let gameVC = GameScreenViewController(gameService: self.gameService)
+             self.navigationController?.pushViewController(gameVC, animated: true)
+         }
     }
     
     func didTapResultButton() {

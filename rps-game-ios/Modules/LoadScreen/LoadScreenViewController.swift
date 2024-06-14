@@ -10,6 +10,7 @@ import UIKit
 class LoadScreenViewController: UIViewController {
     
     private let loadScreenView = LoadScreenView()
+    private var gameService: GameService
     
     override func loadView() {
         super.loadView()
@@ -20,5 +21,15 @@ class LoadScreenViewController: UIViewController {
         super.viewDidLoad()
 
     }
+    
+    
+    init(gameService: GameService) {
+        self.gameService = gameService
 
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
