@@ -68,8 +68,7 @@ extension GameScreenViewController: GameScreenViewDelegate {
 
 //MARK: - Privater Methods
 private extension GameScreenViewController {
-    @objc
-    private func pauseGame() {
+    @objc func pauseGame() {
         if TimeManager.shared.isRun() {
             TimeManager.shared.stop()
             navigationItem.rightBarButtonItem?.tintColor = UIColor.CustomColors.pastelYellowText
@@ -80,18 +79,7 @@ private extension GameScreenViewController {
         startGame()
     }
     
-    private func resetHands() {
-        gameScreenView.topHandImageView.image = UIImage.CustomImage.femaleHandImage
-        gameScreenView.bottomHandImageView.image = UIImage.CustomImage.maleHandImage
-    }
-    
-    private func resetTimer() {
-        leftTime = gameTime
-        gameScreenView.timerLabel.text = "0:\(gameTime)"
-        gameScreenView.timerProgressView.progress = Float(1)
-    }
-    
-    private func switchStateForActionButtons(_ state: Bool) {
+    func switchStateForActionButtons(_ state: Bool) {
         gameScreenView.rockButton.isUserInteractionEnabled = state
         gameScreenView.paperButton.isUserInteractionEnabled = state
         gameScreenView.scissorsButton.isUserInteractionEnabled = state
@@ -121,9 +109,16 @@ private extension GameScreenViewController {
            self?.setCentralLabel("")
         }
     }
-
-    @objc private func backButtonTapped() {
-        navigationController?.popToRootViewController(animated: true)
+    
+    private func resetHands() {
+        gameScreenView.topHandImageView.image = UIImage.CustomImage.femaleHandImage
+        gameScreenView.bottomHandImageView.image = UIImage.CustomImage.maleHandImage
+    }
+    
+    private func resetTimer() {
+        leftTime = gameTime
+        gameScreenView.timerLabel.text = "0:\(gameTime)"
+        gameScreenView.timerProgressView.progress = Float(1)
     }
 }
 
@@ -147,6 +142,11 @@ private extension GameScreenViewController {
         navigationController?.navigationBar.tintColor = .CustomColors.customBlack
         
         title = "Игра"
+    }
+    
+
+    @objc private func backButtonTapped() {
+        navigationController?.popToRootViewController(animated: true)
     }
 }
 
