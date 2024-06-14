@@ -8,9 +8,7 @@
 import UIKit
 
 protocol GameScreenViewDelegate: AnyObject {
-    func didTapRockButton()
-    func didTapPaperButton()
-    func didTapScissorsButton()
+    func actionButtonPressed(_ sender: UIButton)
 }
 
 final class GameScreenView: UIView {
@@ -114,9 +112,9 @@ final class GameScreenView: UIView {
         return progressView
     }()
     
-    let rockButton = ButtonFactory.makeActionButton(icon: "rockIcon")
-    let paperButton = ButtonFactory.makeActionButton(icon: "paperIcon")
-    let scissorsButton = ButtonFactory.makeActionButton(icon: "scissorsIcon")
+    let rockButton = ButtonFactory.makeActionButton(icon: "rockIcon", tag: Move.rock.rawValue)
+    let paperButton = ButtonFactory.makeActionButton(icon: "paperIcon", tag: Move.paper.rawValue)
+    let scissorsButton = ButtonFactory.makeActionButton(icon: "scissorsIcon", tag: Move.scissors.rawValue)
     
     // MARK: - Init
     override init(frame: CGRect) {
@@ -141,14 +139,8 @@ final class GameScreenView: UIView {
 
 // MARK: - Selevtors
 private extension GameScreenView {
-    @objc func rockButtonAction() {
-        delegate?.didTapRockButton()
-    }
-    @objc func paperButtonAction() {
-        delegate?.didTapPaperButton()
-    }
-    @objc func scissorsButtonAction() {
-        delegate?.didTapScissorsButton()
+    @objc func actionButtonClicked(_ sender: UIButton) {
+        delegate?.actionButtonPressed(sender)
     }
 }
 
@@ -176,9 +168,9 @@ private extension GameScreenView {
     }
     
     func setupTargetAction() {
-        rockButton.addTarget(self, action: #selector(rockButtonAction), for: .touchUpInside)
-        paperButton.addTarget(self, action: #selector(paperButtonAction), for: .touchUpInside)
-        scissorsButton.addTarget(self, action: #selector(scissorsButtonAction), for: .touchUpInside)
+        rockButton.addTarget(self, action: #selector(actionButtonClicked), for: .touchUpInside)
+        paperButton.addTarget(self, action: #selector(actionButtonClicked), for: .touchUpInside)
+        scissorsButton.addTarget(self, action: #selector(actionButtonClicked), for: .touchUpInside)
     }
     
     func setupConstrains() {
@@ -251,50 +243,16 @@ private extension GameScreenView {
     }
 }
 
-// MARK: - enum Gesture
-extension GameScreenViewController {
-    enum Gesture {
-        case topRock
-        case topPaper
-        case topScissors
-        case bottomRock
-        case bottomPaper
-        case bottomScissors
-        
-        var image: UIImage {
-            switch self {
-            case .topRock:
-                #imageLiteral(resourceName: "rockFemaleHand")
-            case .topPaper:
-                #imageLiteral(resourceName: "paperFemaleHand")
-            case .topScissors:
-                #imageLiteral(resourceName: "scissorsFemaleHand")
-            case .bottomRock:
-                #imageLiteral(resourceName: "rockMaleHand")
-            case .bottomPaper:
-                #imageLiteral(resourceName: "paperMaleHand")
-            case .bottomScissors:
-                #imageLiteral(resourceName: "scissorsMaleHand")
-            }
-        }
-    }
-    
-    enum PlayerSide {
-        case top
-        case bottom
-    }
-}
 
-
-#if DEBUG
-import SwiftUI
-
-struct GameScreenViewProvider: PreviewProvider {
-    static var previews: some View {
-        Group {
-            UINavigationController(rootViewController: GameScreenViewController()).previw()
-        }
-    }
-}
-#endif
- 
+//#if DEBUG
+//import SwiftUI
+//
+//struct GameScreenViewProvider: PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            UINavigationController(rootViewController: GameScreenViewController()).previw()
+//        }
+//    }
+//}
+//#endif
+// 

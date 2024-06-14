@@ -21,8 +21,9 @@ enum RoundResult {
 
 protocol GameServiceViewProtocol: AnyObject {
     func endGame(winnerImage: UIImage, playerOneWins: Int, playerTwoWins: Int)
-    func showPlayersMoves(playerOneMove: Move, playerTwoMove: Move)
+    func showPlayersMoves(playerTopMove: Move, playerBottomMove: Move)
     func showDraw()
+    func updateScore(score: Int, side: PlayerSide)
 }
 
 struct PlayerLoadingData {
@@ -35,15 +36,16 @@ class GameService {
     
     weak var view: GameServiceViewProtocol!
     
-    private var playerOne: Player
-    private var playerTwo: Player
+    private var playerTop: Player
+    private var playerBottom: Player
+    private let queue = DispatchQueue(label: "com.rps-game.queue")
     
     init () {
-        playerOne = Player(
+        playerTop = Player(
             name: "player 1",
             avatarName: "playerOne"
         )
-        playerTwo = Player(
+        playerBottom = Player(
             name: "player 2",
             avatarName: "playerTwo"
         )
@@ -51,36 +53,72 @@ class GameService {
         loadPlayersData()
     }
     
-    func play(playerOneMove: Move) {
-        let playerTwoMove = getPlayerRandomMove()
-        let roundResult = getRoundResult(playerOneMove: playerOneMove, playerTwoMove: playerTwoMove)
-        // wait 1 second
-        view.showPlayersMoves(playerOneMove: playerOneMove, playerTwoMove: playerTwoMove)
+    func play(playerBottomMove: Move) {
+        let playerTopMove = getPlayerRandomMove()
+        let roundResult = getRoundResult(playerTopMove: playerTopMove, playerBottomMove: playerBottomMove)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            guard let self = self else { return }
+            self.view?.showPlayersMoves(playerTopMove: playerTopMove, playerBottomMove: playerBottomMove)
 
-        switch roundResult {
+            switch roundResult {
             case .win:
-                updatePlayerStats(winner: &playerOne, loser: &playerTwo)
+                self.updatePlayerStats(winner: &self.playerBottom, loser: &self.playerTop)
+                self.view?.updateScore(score: self.playerBottom.roundWin, side: .bottom)
+                self.checkGameEnd(winner: playerBottom, playerTopWins: playerTop.roundWin, playerBottomWins: playerBottom.roundWin)
             case .lose:
-                updatePlayerStats(winner: &playerTwo, loser: &playerOne)
+                self.updatePlayerStats(winner: &self.playerTop, loser: &self.playerBottom)
+                self.view?.updateScore(score: self.playerTop.roundWin, side: .top)
+                self.checkGameEnd(winner: playerTop, playerTopWins: playerTop.roundWin, playerBottomWins: playerBottom.roundWin)
             case .draw:
-                view.showDraw()
+                self.view?.showDraw()
+            }
         }
     }
     
+    func playerTwoLose() {
+        updatePlayerStats(winner: &playerTop, loser: &playerBottom)
+    }
+    
     func reset() {
-        playerOne.roundWin = 0
-        playerTwo.roundWin = 0
+        playerTop.roundWin = 0
+        playerBottom.roundWin = 0
+        view?.updateScore(score: playerTop.roundWin, side: .top)
+        view?.updateScore(score: playerBottom.roundWin, side: .bottom)
     }
     
     func getPlayersLoadingData() -> [PlayerLoadingData] {
         return [
-            PlayerLoadingData(image: playerOne.avatar, win: playerOne.gameWin, lose: playerOne.gameLose),
-            PlayerLoadingData(image: playerTwo.avatar, win: playerTwo.gameWin, lose: playerTwo.gameLose)
+            PlayerLoadingData(image: playerTop.avatar, win: playerTop.gameWin, lose: playerTop.gameLose),
+            PlayerLoadingData(image: playerBottom.avatar, win: playerBottom.gameWin, lose: playerBottom.gameLose)
         ]
     }
     
     func getPlayersAvatars() -> [UIImage] {
-        return [playerOne.avatar, playerTwo.avatar]
+        return [playerTop.avatar, playerBottom.avatar]
+    }
+    
+    func getMoveImage(move: Move, position: PlayerSide)  -> UIImage {
+        if position == .top {
+            switch move {
+            case .rock:
+                return UIImage.CustomImage.rockFemaleHandImage!
+            case .paper:
+                return UIImage.CustomImage.paperFemaleHandImage!
+            case .scissors:
+                return UIImage.CustomImage.scissorsFemaleHandImage!
+            }
+        }
+        
+        switch move {
+        case .rock:
+            return UIImage.CustomImage.rockMaleHandImage!
+        case .paper:
+            return UIImage.CustomImage.paperMaleHandImage!
+        case .scissors:
+            return UIImage.CustomImage.scissorsMaleHandImage!
+        }
+        
+        
     }
     
     // MARK: Private methods
@@ -89,26 +127,34 @@ class GameService {
         return moves[Int.random(in: 0..<moves.count)]
     }
     
-    private func getRoundResult(playerOneMove: Move, playerTwoMove: Move) -> RoundResult {
-        switch (playerOneMove, playerTwoMove) {
+    // Returns result for bottom player
+    private func getRoundResult(playerTopMove: Move, playerBottomMove: Move) -> RoundResult {
+        switch (playerTopMove, playerBottomMove) {
         case (let x, let y) where x == y:
             return .draw
         case (.rock, .scissors), (.scissors, .paper), (.paper, .rock):
-            return .win
-        default:
             return .lose
+        default:
+            return .win
         }
     }
     
     private func updatePlayerStats(winner: inout Player, loser: inout Player) {
         winner.roundWin += 1
-        
+
         if winner.roundWin == 3 {
             winner.score += 500
             winner.gameWin += 1
             loser.gameLose += 1
-            view.endGame(winnerImage: winner.avatar, playerOneWins: playerOne.roundWin, playerTwoWins: playerTwo.roundWin)
-            savePlayersData()
+        }
+    }
+    
+    private func checkGameEnd(winner: Player, playerTopWins: Int, playerBottomWins: Int) {
+        if winner.roundWin == 3 {
+            DispatchQueue.main.async {
+                self.view.endGame(winnerImage: winner.avatar, playerOneWins: playerTopWins, playerTwoWins: playerBottomWins)
+                self.savePlayersData()
+            }
         }
     }
     
@@ -119,16 +165,16 @@ class GameService {
            let playerTwoData = UserDefaults.standard.data(forKey: "playerTwo") {
             if let loadedPlayerOne = try? decoder.decode(Player.self, from: playerOneData),
                let loadedPlayerTwo = try? decoder.decode(Player.self, from: playerTwoData) {
-                playerOne = loadedPlayerOne
-                playerTwo = loadedPlayerTwo
+                playerTop = loadedPlayerOne
+                playerBottom = loadedPlayerTwo
             }
         }
     }
     
     private func savePlayersData() {
         let encoder = JSONEncoder()
-        if let encodedPlayerOne = try? encoder.encode(playerOne),
-           let encodedPlayerTwo = try? encoder.encode(playerTwo) {
+        if let encodedPlayerOne = try? encoder.encode(playerTop),
+           let encodedPlayerTwo = try? encoder.encode(playerBottom) {
             UserDefaults.standard.set(encodedPlayerOne, forKey: "playerOne")
             UserDefaults.standard.set(encodedPlayerTwo, forKey: "playerTwo")
         }

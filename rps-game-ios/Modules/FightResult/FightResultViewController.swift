@@ -17,9 +17,9 @@ final class FightResultViewController: UIViewController {
 	/// Картинка игрока.
 	var player: UIImage?
 	/// Количество побед.
-	var numberOfWin: Int?
+	var playerTopWins: Int?
 	/// Количество поражений.
-	var numberOfLose: Int?
+	var playerBottomWins: Int?
 
 	// MARK: - Private properties
 
@@ -28,8 +28,8 @@ final class FightResultViewController: UIViewController {
     init(winnerImage: UIImage, playerOneWins: Int, playerTwoWins: Int) {
         self.player = winnerImage
         
-        self.numberOfWin = playerOneWins
-        self.numberOfLose = playerTwoWins
+        self.playerTopWins = playerOneWins
+        self.playerBottomWins = playerTwoWins
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -66,16 +66,16 @@ final class FightResultViewController: UIViewController {
 	private func showResultGame() {
 		guard
 			let player,
-			let numberOfWin,
-			let numberOfLose
+			let playerTopWins,
+			let playerBottomWins
 		else {
 			fightResultView.setStubState()
 			return
 		}
 
-		let score = "\(numberOfWin) - \(numberOfLose)"
+		let score = "\(playerTopWins) - \(playerBottomWins)"
 
-		if numberOfWin > numberOfLose {
+		if playerTopWins < playerBottomWins {
 			fightResultView.setWinTheme(for: player, with: score)
 		} else {
 			fightResultView.setLoseTheme(for: player, with: score)
@@ -89,8 +89,7 @@ extension FightResultViewController: IFightResultViewDelegate {
 
 	/// Возврат на главный экран.
 	func homeGame() {
-        let startVC = StartScreenViewController()
-        self.view.window?.rootViewController = startVC
+        navigationController?.popToRootViewController(animated: true)
 	}
 
 	/// Начинает игру заново.
@@ -103,7 +102,11 @@ extension FightResultViewController: IFightResultViewDelegate {
 struct FightResultViewControllerProvider: PreviewProvider {
 	static var previews: some View {
 		Group {
-            FightResultViewController(winnerImage: UIImage.CustomImage.playerOneImage!, playerOneWins: 1, playerTwoWins: 2).previw()
+            FightResultViewController(
+                winnerImage: UIImage.CustomImage.playerOneImage!,
+                playerOneWins: 1,
+                playerTwoWins: 2
+            ).previw()
 		}
 	}
 }
