@@ -17,7 +17,7 @@ final class GameScreenViewController: UIViewController {
     private let gameScreenView = GameScreenView()
     private var gameService: GameService
     
-    private var timer = Timer()
+    private var timer: Timer?
     private var leftTime: Int!
     private let gameTime = 30
     
@@ -31,6 +31,7 @@ final class GameScreenViewController: UIViewController {
         super.viewDidLoad()
         gameScreenView.delegate = self
         gameService.view = self
+        TimeManager.shared.delegate = self
         gameScreenView.setPlayersAvatars(avatars: gameService.getPlayersAvatars())
         setupNavigationBar()
         // play background music
@@ -60,7 +61,7 @@ extension GameScreenViewController: GameScreenViewDelegate {
         sender.tintColor = UIColor.CustomColors.pastelYellowText
         selectedActionButton = sender
         switchStateForActionButtons(false)
-        timer.invalidate()
+        TimeManager.shared.stop()
         // play button music
     }
 }
@@ -70,12 +71,13 @@ extension GameScreenViewController: GameScreenViewDelegate {
 private extension GameScreenViewController {
     @objc
     private func pauseGame() {
-        if timer.isValid {
-            timer.invalidate()
+        if TimeManager.shared.isRun() {
+            TimeManager.shared.stop()
+            navigationItem.rightBarButtonItem?.tintColor = UIColor.CustomColors.pastelYellowText
             switchStateForActionButtons(false)
             return
         }
-        
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.CustomColors.customBlack
         startGame()
     }
     
@@ -114,18 +116,10 @@ private extension GameScreenViewController {
         selectedActionButton?.tintColor = .white
         resetHands()
         resetTimer()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.setCentralLabel("")
-        }
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] time in
-            leftTime -= 1
-            gameScreenView.timerLabel.text = "0:\(leftTime ?? 0)"
-            gameScreenView.timerProgressView.progress = Float(leftTime ?? 0) / Float(gameTime)
-            if leftTime == 0 {
-                setCentralLabel("ROUND OVER") //game mechanics
-                timer.invalidate()
-                gameService.playerTwoLose()
-            }
+        
+        TimeManager.shared.start()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+           self?.setCentralLabel("")
         }
     }
 
@@ -163,23 +157,41 @@ extension GameScreenViewController: GameServiceViewProtocol {
     }
     
     func endGame(winnerImage: UIImage, playerOneWins: Int, playerTwoWins: Int) {
-        let fightResultVC = FightResultViewController(winnerImage: winnerImage, playerOneWins: playerOneWins, playerTwoWins: playerTwoWins)
-        navigationController?.pushViewController(fightResultVC, animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+            // stop background music
+            let fightResultVC = FightResultViewController(winnerImage: winnerImage, playerOneWins: playerOneWins, playerTwoWins: playerTwoWins)
+            self?.navigationController?.pushViewController(fightResultVC, animated: true)
+        }
     }
     
     func showPlayersMoves(playerTopMove: Move, playerBottomMove: Move) {
         gameScreenView.topHandImageView.image = gameService.getMoveImage(move: playerTopMove, position: .top)
         gameScreenView.bottomHandImageView.image = gameService.getMoveImage(move: playerBottomMove, position: .bottom)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.startGame()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+            self?.startGame()
         }
     }
     
     func showDraw() {
         setCentralLabel("DRAW")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.startGame()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+            self?.startGame()
+        }
+    }
+}
+
+extension GameScreenViewController: TimeManagerDelegate {
+    func timerTick() {
+        leftTime -= 1
+        gameScreenView.timerLabel.text = "0:\(leftTime ?? 0)"
+        gameScreenView.timerProgressView.progress = Float(leftTime ?? 0) / Float(gameTime)
+        if leftTime == 0 {
+            setCentralLabel("YOU LOSE") //game mechanics
+            TimeManager.shared.stop()
+            gameService.playerTwoLose()
+            startGame()
         }
     }
 }

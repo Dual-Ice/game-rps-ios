@@ -56,7 +56,9 @@ class GameService {
     func play(playerBottomMove: Move) {
         let playerTopMove = getPlayerRandomMove()
         let roundResult = getRoundResult(playerTopMove: playerTopMove, playerBottomMove: playerBottomMove)
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+//        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] timer in
             guard let self = self else { return }
             self.view?.showPlayersMoves(playerTopMove: playerTopMove, playerBottomMove: playerBottomMove)
 
@@ -77,6 +79,7 @@ class GameService {
     
     func playerTwoLose() {
         updatePlayerStats(winner: &playerTop, loser: &playerBottom)
+        view?.updateScore(score: playerTop.roundWin, side: .top)
     }
     
     func reset() {
