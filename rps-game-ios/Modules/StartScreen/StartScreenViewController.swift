@@ -7,12 +7,12 @@
 
 import UIKit
 
-final class StartScreenViewController: UIViewController, StartScreenViewDelegate {
+final class StartScreenViewController: UIViewController {
     
     private let startScreenView = StartScreenView()
     
     override func loadView() {
-         view = startScreenView
+        view = startScreenView
     }
     
     override func viewDidLoad() {
@@ -20,11 +20,19 @@ final class StartScreenViewController: UIViewController, StartScreenViewDelegate
         startScreenView.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
+    
     func didTapRulesButton() {
         let secondVC = RulesViewController()
         navigationController?.pushViewController(secondVC, animated: true)
     }
     
+}
+
+extension StartScreenViewController: StartScreenViewDelegate {
     func didTapStartButton() {
         print("start")
     }

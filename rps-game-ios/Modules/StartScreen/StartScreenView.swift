@@ -62,8 +62,8 @@ final class StartScreenView: UIView {
         return imageView
     }()
     
-//    MARK: - init
-
+    //    MARK: - Init
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setViews()
@@ -97,21 +97,29 @@ final class StartScreenView: UIView {
     }
     
     //    MARK: - Helpers
-
-     func setViews() {
-        backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.968627451, blue: 0.9843137255, alpha: 1)
+    
+    func setViews() {
+        backgroundColor = UIColor(red: 245/255.0, green: 247/255.0, blue: 251/255.0, alpha: 1.0)
         [
-            rulesButton, startButton, resultsButton, startLabel, settingsButton, rightHandImageView, leftHandImageView
+            rulesButton,
+            startButton,
+            resultsButton,
+            startLabel,
+            settingsButton,
+            rightHandImageView,
+            leftHandImageView
         ].forEach { addSubview($0) }
     }
     
-//    таргет для кнопок
+    //    таргет для кнопок
     func targetAction() {
         rulesButton.addTarget(self, action: #selector(rulesVC), for: .touchUpInside)
         resultsButton.addTarget(self, action: #selector(resultsGame), for: .touchUpInside)
         startButton.addTarget(self, action: #selector(startGame), for: .touchUpInside)
         settingsButton.addTarget(self, action: #selector(settingsVC), for: .touchUpInside)
     }
+    
+    //    MARK: - Constraints
     
     func layoutView() {
         NSLayoutConstraint.activate([
@@ -129,14 +137,14 @@ final class StartScreenView: UIView {
             //            startButton constraints
             startButton.widthAnchor.constraint(equalToConstant: 196),
             startButton.heightAnchor.constraint(equalToConstant: 53),
-            startButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 622),
             startButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 90.5),
+            startButton.bottomAnchor.constraint(equalTo: resultsButton.topAnchor, constant: -11),
             
             //            resultsButton constraints
             resultsButton.widthAnchor.constraint(equalToConstant: 196),
             resultsButton.heightAnchor.constraint(equalToConstant: 53),
-            resultsButton.topAnchor.constraint(equalTo: startButton.bottomAnchor, constant: 11),
             resultsButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 90.5),
+            resultsButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -20),
             
             //            settingsButton constraints
             settingsButton.widthAnchor.constraint(equalToConstant: 35),
@@ -144,14 +152,14 @@ final class StartScreenView: UIView {
             settingsButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 10),
             settingsButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 21),
             
-//            rightHand ImageView consraints
+            //            rightHand ImageView consraints
             rightHandImageView.widthAnchor.constraint(equalToConstant: 200),
             rightHandImageView.heightAnchor.constraint(equalToConstant: 83),
             rightHandImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             rightHandImageView.bottomAnchor.constraint(equalTo: startLabel.topAnchor, constant: -20),
             
             //            leftHand ImageView consraints
-                        leftHandImageView.widthAnchor.constraint(equalToConstant: 200),
+            leftHandImageView.widthAnchor.constraint(equalToConstant: 200),
             leftHandImageView.heightAnchor.constraint(equalToConstant: 83),
             leftHandImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             leftHandImageView.topAnchor.constraint(equalTo: startLabel.bottomAnchor, constant: 20)
