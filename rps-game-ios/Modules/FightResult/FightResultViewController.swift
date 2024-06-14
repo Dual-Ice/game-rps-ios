@@ -83,7 +83,7 @@ extension FightResultViewController: IFightResultViewDelegate {
 struct FightResultViewControllerProvider: PreviewProvider {
 	static var previews: some View {
 		Group {
-			FightResultViewController().previw()
+			FightResultViewController().preview()
 		}
 	}
 }

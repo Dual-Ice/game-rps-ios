@@ -21,5 +21,9 @@ extension UIColor {
         static let darkBrown = UIColor(named: "dark-brown") ?? UIColor()
         static let customBlack = UIColor(named: "customBlack") ?? UIColor()
 		static let darkBlueCircle = UIColor(named: "darkBlueCircle") ?? UIColor()
+		static let whiteGradientColorOne = UIColor(named: "whiteGradientColorOne") ?? UIColor()
+		static let whiteGradientColorTwo = UIColor(named: "whiteGradientColorTwo") ?? UIColor()
+		static let grayBorder = UIColor(named: "grayBorderColor") ?? UIColor()
+		static let grayBlueText = UIColor(named: "grayBlueTextColor") ?? UIColor()
     }
 }

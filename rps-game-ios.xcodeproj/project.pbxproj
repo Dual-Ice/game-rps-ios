@@ -19,6 +19,8 @@
 		11973DFF2C17497C00DC011E /* StartScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11973DFE2C17497C00DC011E /* StartScreenViewController.swift */; };
 		11A80A1E2C1828ED002F9CE4 /* StartScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A80A1D2C1828ED002F9CE4 /* StartScreenView.swift */; };
 		11A80A262C1895D4002F9CE4 /* RulesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A80A252C1895D4002F9CE4 /* RulesTableViewCell.swift */; };
+		B6101B782C1C022C00A5E273 /* LeaderBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6101B772C1C022C00A5E273 /* LeaderBoardViewController.swift */; };
+		B6101B7A2C1C039E00A5E273 /* LeaderBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6101B792C1C039E00A5E273 /* LeaderBoardView.swift */; };
 		D9023F442C15CA7800FF0001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F432C15CA7800FF0001 /* AppDelegate.swift */; };
 		D9023F462C15CA7800FF0001 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F452C15CA7800FF0001 /* SceneDelegate.swift */; };
 		D9023F482C15CA7800FF0001 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F472C15CA7800FF0001 /* RulesViewController.swift */; };
@@ -46,6 +48,8 @@
 		11973DFE2C17497C00DC011E /* StartScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenViewController.swift; sourceTree = "<group>"; };
 		11A80A1D2C1828ED002F9CE4 /* StartScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenView.swift; sourceTree = "<group>"; };
 		11A80A252C1895D4002F9CE4 /* RulesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesTableViewCell.swift; sourceTree = "<group>"; };
+		B6101B772C1C022C00A5E273 /* LeaderBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardViewController.swift; sourceTree = "<group>"; };
+		B6101B792C1C039E00A5E273 /* LeaderBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardView.swift; sourceTree = "<group>"; };
 		D9023F402C15CA7800FF0001 /* rps-game-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "rps-game-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9023F432C15CA7800FF0001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9023F452C15CA7800FF0001 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +124,15 @@
 			path = StartScreen;
 			sourceTree = "<group>";
 		};
+		B6101B762C1C019A00A5E273 /* LeaderBoard */ = {
+			isa = PBXGroup;
+			children = (
+				B6101B772C1C022C00A5E273 /* LeaderBoardViewController.swift */,
+				B6101B792C1C039E00A5E273 /* LeaderBoardView.swift */,
+			);
+			path = LeaderBoard;
+			sourceTree = "<group>";
+		};
 		D9023F372C15CA7800FF0001 = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +193,7 @@
 		D9023F5A2C16110700FF0001 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				B6101B762C1C019A00A5E273 /* LeaderBoard */,
 				117937822C19866500652C75 /* LoadScreen */,
 				D906EB3F2C1979400090EA9C /* FightResult */,
 				D9023F572C160D0700FF0001 /* Rules */,
@@ -304,7 +318,9 @@
 				D9023F462C15CA7800FF0001 /* SceneDelegate.swift in Sources */,
 				117937842C1986FB00652C75 /* LoadScreenView.swift in Sources */,
 				11973DFF2C17497C00DC011E /* StartScreenViewController.swift in Sources */,
+				B6101B782C1C022C00A5E273 /* LeaderBoardViewController.swift in Sources */,
 				D906EB402C1979400090EA9C /* FightResultView.swift in Sources */,
+				B6101B7A2C1C039E00A5E273 /* LeaderBoardView.swift in Sources */,
 				D906EB3C2C1979370090EA9C /* UIViewController+Preview.swift in Sources */,
 				D9B703622C1B8A4700616455 /* ActionCell.swift in Sources */,
 				117937732C1823F300652C75 /* ImageExtension.swift in Sources */,

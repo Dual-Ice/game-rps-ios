@@ -26,7 +26,7 @@ final class FightResultView: UIView {
 
 	// MARK: - Private properties
 
-	private lazy var backgroundImageView: UIImageView = makeImageView()
+	private lazy var backgroundImage: UIImageView = makeImageView()
 	private lazy var mainStack: UIStackView = makeStack()
 
 	private lazy var circleView: UIView = makeView()
@@ -53,32 +53,32 @@ final class FightResultView: UIView {
 	
 	// MARK: - Public methods
 
-	/// Заглушка для экрана
+	/// Заглушка для экрана.
 	func setStubState() {
-		backgroundImageView.image = ResultGame.lose.backgroundImage
+		backgroundImage.image = ResultGame.lose.backgroundImage
 		characterImage.image = UIImage.CustomImage.playerOneImage
 		resultLabel.text = ResultGame.lose.text
 		resultLabel.textColor = .black
 		scoreLabel.text = "1 - 3"
 	}
 
-	/// Устанавливает тему для победы
+	/// Устанавливает тему для победы.
 	/// - Parameters:
 	///   - player: картинка игрока
 	///   - score: счет игрока
 	func setWinTheme(for player: UIImage, with score: String) {
-		backgroundImageView.image = ResultGame.win.backgroundImage
+		backgroundImage.image = ResultGame.win.backgroundImage
 		characterImage.image = player
 		resultLabel.text = ResultGame.win.text
 		scoreLabel.text = score
 	}
 
-	/// Устанавливает тему для поражения
+	/// Устанавливает тему для поражения.
 	/// - Parameters:
 	///   - player: картинка игрока
 	///   - score: счет игрока
 	func setLoseTheme(for player: UIImage, with score: String) {
-		backgroundImageView.image = ResultGame.lose.backgroundImage
+		backgroundImage.image = ResultGame.lose.backgroundImage
 		characterImage.image = player
 		resultLabel.text = ResultGame.lose.text
 		resultLabel.textColor = .black
@@ -90,7 +90,7 @@ final class FightResultView: UIView {
 
 extension FightResultView {
 	
-	/// Установка UI элементов
+	/// Установка UI элементов.
 	func setupUI() {
 		addSubviews()
 		addActions()
@@ -144,13 +144,13 @@ extension FightResultView {
 
 extension FightResultView {
 
-	/// Настройка констреинтов
+	/// Настройка констреинтов.
 	func layout() {
 		NSLayoutConstraint.activate([
-			backgroundImageView.topAnchor.constraint(equalTo: topAnchor),
-			backgroundImageView.widthAnchor.constraint(equalTo: widthAnchor),
-			backgroundImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-			backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+			backgroundImage.topAnchor.constraint(equalTo: topAnchor),
+			backgroundImage.widthAnchor.constraint(equalTo: widthAnchor),
+			backgroundImage.trailingAnchor.constraint(equalTo: trailingAnchor),
+			backgroundImage.bottomAnchor.constraint(equalTo: bottomAnchor),
 
 			mainStack.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
 			mainStack.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
@@ -190,7 +190,7 @@ private extension FightResultView {
 private extension FightResultView {
 
 	func addSubviews() {
-		addSubview(backgroundImageView)
+		addSubview(backgroundImage)
 		addSubview(mainStack)
 
 		mainStack.addArrangedSubview(circleView)
@@ -266,7 +266,7 @@ import SwiftUI
 struct FightResultViewProvider: PreviewProvider {
 	static var previews: some View {
 		Group {
-			FightResultViewController().previw()
+			FightResultViewController().preview()
 		}
 	}
 }
