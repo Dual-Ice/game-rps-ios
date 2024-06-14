@@ -17,7 +17,6 @@ final class GameScreenViewController: UIViewController {
     private let gameScreenView = GameScreenView()
     private var gameService: GameService
     
-    private var timer: Timer?
     private var leftTime: Int!
     private let gameTime = 30
     
