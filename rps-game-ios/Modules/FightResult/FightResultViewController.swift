@@ -73,7 +73,7 @@ final class FightResultViewController: UIViewController {
 			return
 		}
 
-		let score = "\(playerTopWins) - \(playerBottomWins)"
+		let score = "\(playerBottomWins) - \(playerTopWins)"
 
 		if playerTopWins < playerBottomWins {
 			fightResultView.setWinTheme(for: player, with: score)
@@ -106,7 +106,7 @@ struct FightResultViewControllerProvider: PreviewProvider {
                 winnerImage: UIImage.CustomImage.playerOneImage!,
                 playerOneWins: 1,
                 playerTwoWins: 2
-            ).previw()
+            ).preview()
 		}
 	}
 }

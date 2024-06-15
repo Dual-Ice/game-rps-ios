@@ -46,7 +46,8 @@ extension StartScreenViewController: StartScreenViewDelegate {
     }
     
     func didTapResultButton() {
-        print("result")
+        let leaderBoardVC = LeaderBoardViewController(gameService: gameService)
+        navigationController?.pushViewController(leaderBoardVC, animated: true)
     }
     
     func didTapSettingsButton() {
