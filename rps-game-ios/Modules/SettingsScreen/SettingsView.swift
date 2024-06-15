@@ -87,31 +87,6 @@ class SettingsView: UIView {
     
     //StackView for time button
     private lazy var gameTimeStackView: UIStackView = {
-        //        let button30 = UIButton(type: .system)
-        //        let attributedTitle30 = NSAttributedString(
-        //            string: "30 сек.",
-        //            attributes: [
-        //                .font : RubikFont.Bold.size(of: 16),
-        //                .foregroundColor : UIColor.white
-        //            ]
-        //        )
-        //        button30.setAttributedTitle(attributedTitle30, for: .normal)
-        //        button30.backgroundColor = UIColor(red: 241/255, green: 170/255, blue: 131/255, alpha: 1)
-        //        button30.layer.cornerRadius = 10
-        //        button30.translatesAutoresizingMaskIntoConstraints = false
-        //
-        //        let button60 = UIButton(type: .system)
-        //        let attributedTitle60 = NSAttributedString(
-        //            string: "60 сек.",
-        //            attributes: [
-        //                .font : RubikFont.Bold.size(of: 16),
-        //                .foregroundColor : UIColor.white
-        //            ]
-        //        )
-        //        button60.setAttributedTitle(attributedTitle60, for: .normal)
-        //        button60.backgroundColor = UIColor(red: 241/255, green: 170/255, blue: 131/255, alpha: 1)
-        //        button60.layer.cornerRadius = 10
-        //        button60.translatesAutoresizingMaskIntoConstraints = false
         
         let stackView = UIStackView(arrangedSubviews: [button30, button60])
         stackView.axis = .horizontal
@@ -297,6 +272,7 @@ class SettingsView: UIView {
         delegate?.didTapBackButton()
     }
     
+    //MARK: - Functions
     func getMusicButton() -> CustomMusicButton {
         return musicButton
     }
