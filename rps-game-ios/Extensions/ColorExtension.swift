@@ -25,5 +25,13 @@ extension UIColor {
 		static let whiteGradientColorTwo = UIColor(named: "whiteGradientColorTwo") ?? UIColor()
 		static let grayBorder = UIColor(named: "grayBorderColor") ?? UIColor()
 		static let grayBlueText = UIColor(named: "grayBlueTextColor") ?? UIColor()
+		static let yellowLeader = UIColor(named: "yellowLeaderColor") ?? UIColor()
+		static let yellowLeaderText = UIColor(named: "yellowLeaderTextColor") ?? UIColor()
+		static let grayLeader = UIColor(named: "grayLeaderColor") ?? UIColor()
+		static let grayLeaderText = UIColor(named: "grayLeaderTextColor") ?? UIColor()
+		static let brownLeader = UIColor(named: "brownLeaderColor") ?? UIColor()
+		static let brownLeaderText = UIColor(named: "brownLeaderTextColor") ?? UIColor()
+		static let darkGrayText = UIColor(named: "darkGrayTextColor") ?? UIColor()
+		static let grayText = UIColor(named: "grayTextColor") ?? UIColor()
     }
 }

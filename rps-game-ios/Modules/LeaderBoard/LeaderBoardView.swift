@@ -39,6 +39,8 @@ final class LeaderBoardView: UIView {
 	private lazy var playerNameLabel: UILabel = makeLabel()
 	private lazy var playerNameButton: UIButton = makeButton()
 
+	private lazy var topLeader: UIView = makeLeaderView()
+
 	// MARK: - Initialization
 
 	init(delegate: ILeaderBoardViewDelegate) {
@@ -93,7 +95,7 @@ extension LeaderBoardView {
 	private func makeImageView() -> UIImageView {
 		let element = UIImageView()
 
-		element.contentMode = .scaleAspectFill
+		element.contentMode = .scaleAspectFit
 		element.translatesAutoresizingMaskIntoConstraints = false
 
 		return element
@@ -125,6 +127,22 @@ extension LeaderBoardView {
 		let element = UIButton()
 
 		element.configuration = .plain()
+		element.translatesAutoresizingMaskIntoConstraints = false
+
+		return element
+	}
+
+	private func makeLeaderView() -> UIView {
+		let element = LeaderView()
+
+		element.number = "10"
+		element.image = UIImage.CustomImage.playerTwoImage
+		element.name = "Harriett Singletrjjjjjj"
+		element.match = "15.220"
+		element.rate = "98%"
+		element.setTheme(.yellow)
+		element.layer.cornerRadius = 20
+
 		element.translatesAutoresizingMaskIntoConstraints = false
 
 		return element
@@ -163,6 +181,11 @@ extension LeaderBoardView {
 			playerNameButton.leadingAnchor.constraint(equalTo: playerNameView.leadingAnchor),
 			playerNameButton.trailingAnchor.constraint(equalTo: playerNameView.trailingAnchor),
 			playerNameButton.bottomAnchor.constraint(equalTo: playerNameView.bottomAnchor),
+
+			topLeader.centerYAnchor.constraint(equalTo: centerYAnchor),
+			topLeader.centerXAnchor.constraint(equalTo: centerXAnchor),
+			topLeader.widthAnchor.constraint(equalToConstant: 339),
+			topLeader.heightAnchor.constraint(equalToConstant: 65)
 		])
 	}
 }
@@ -189,6 +212,7 @@ private extension LeaderBoardView {
 	func addSubviews() {
 		addSubview(playerImage)
 		addSubview(playerNameView)
+		addSubview(topLeader)
 
 		playerImage.addSubview(playerImageButton)
 

@@ -25,5 +25,8 @@ extension UIImage {
         static let scissorsIcon = UIImage(named: "scissorsIcon")
         static let rockIcon = UIImage(named: "rockIcon")
         static let paperIcon = UIImage(named: "paperIcon")
+		static let yellowCircle = UIImage(named: "yellowCircle")
+		static let brownCircle = UIImage(named: "brownCircle")
+		static let grayCircle = UIImage(named: "grayCircle")
     }
 }

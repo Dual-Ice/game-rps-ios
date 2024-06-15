@@ -17,9 +17,9 @@ final class LeaderBoardViewController: UIViewController {
 	// MARK: - Public properties
 	
 	/// Картинка игрока.
-	var playerImage: UIImage?
+	var player: LeaderBoardModel.Player?
 	/// Имя игрока
-	var playerName: String?
+	var leaderList: [LeaderBoardModel.Leader]?
 	
 	// MARK: - Dependencies
 	
@@ -52,11 +52,11 @@ final class LeaderBoardViewController: UIViewController {
 	// MARK: - Private methods
 	
 	private func updatePlayerImage() {
-		leaderBoardView.setPlayerImage(playerImage ?? UIImage.playerOne)
+		leaderBoardView.setPlayerImage(player?.image ?? UIImage.playerOne)
 	}
 	
 	private func updatePlayerName() {
-		leaderBoardView.setPlayerName(playerName ?? "Player 1")
+		leaderBoardView.setPlayerName(player?.name ?? "Player 1")
 	}
 }
 
