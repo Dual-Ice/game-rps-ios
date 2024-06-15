@@ -16,6 +16,8 @@ class SettingsView: UIView {
     weak var delegate: SettingsViewDelegate?
     // MARK: - Private properties
     
+    
+    
     private var selectedTime: Int = 30 {
         didSet {
             updateButtonStates()
