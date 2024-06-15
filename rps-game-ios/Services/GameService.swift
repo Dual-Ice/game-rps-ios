@@ -31,9 +31,13 @@ struct PlayerLoadingData {
     let win: Int
     let lose: Int
 
+    var name = ""
+}
+
+struct PlayerData {
+    var image: UIImage
+    var imageName: String
 	var name = ""
-	var score = 0
-	var winRate = 0.0
 }
 
 struct LeaderBoardPlayer {
@@ -50,7 +54,6 @@ class GameService {
     
     private var playerTop: Player
     private var playerBottom: Player
-    private let queue = DispatchQueue(label: "com.rps-game.queue")
     
     init () {
         playerTop = Player(
@@ -59,7 +62,7 @@ class GameService {
         )
         playerBottom = Player(
             name: "player 2",
-            avatarName: "playerTwo"
+            avatarName: "character-1"
         )
         
         loadPlayersData()
@@ -70,7 +73,6 @@ class GameService {
         let roundResult = getRoundResult(playerTopMove: playerTopMove, playerBottomMove: playerBottomMove)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-//        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] timer in
             guard let self = self else { return }
             self.view?.showPlayersMoves(playerTopMove: playerTopMove, playerBottomMove: playerBottomMove)
 
@@ -117,11 +119,10 @@ class GameService {
         ]
     }
 
-	func getBottomPlayer() -> PlayerLoadingData {
-		PlayerLoadingData(
-			image: playerBottom.avatar,
-			win: playerBottom.gameWin,
-			lose: playerBottom.gameLose,
+	func getBottomPlayer() -> PlayerData {
+        PlayerData(
+            image: playerBottom.avatar,
+            imageName: playerBottom.avatarName,
 			name: playerBottom.name
 		)
 	}
@@ -141,6 +142,16 @@ class GameService {
         
         return players.sorted(by: { $0.score > $1.score })
 	}
+    
+    func setBottomPlayerName(_ name: String) {
+        playerBottom.name = name
+        savePlayersData()
+    }
+    
+    func setBottomPlayerAvatar(_ name: String) {
+        playerBottom.avatarName = name
+        savePlayersData()
+    }
     
     func getPlayersAvatars() -> [UIImage] {
         return [playerTop.avatar, playerBottom.avatar]
