@@ -16,12 +16,12 @@ final class GameScreenViewController: UIViewController {
     
     private let gameScreenView = GameScreenView()
     private var gameService: GameService
-    private var gameSettings = GameSettings.shared.getSettingsLoad()
+    private var gameSettings: Settings
     
-    private var musicService = AudioPleerController(backgroundMusicFileName: SoundFiles.backgroundMusic)
+    private var musicService: AudioPleerController
     
     private var leftTime: Int!
-    private lazy var gameTime = gameSettings.time
+//    private var gameTime: Int
     
     private var selectedActionButton: UIButton?
     
@@ -32,6 +32,7 @@ final class GameScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         gameScreenView.delegate = self
         gameService.view = self
         TimeManager.shared.delegate = self
@@ -51,7 +52,10 @@ final class GameScreenViewController: UIViewController {
     
     init(gameService: GameService) {
         self.gameService = gameService
-
+        
+        self.gameSettings = GameSettings.shared.getSettingsLoad()
+        self.musicService = AudioPleerController(backgroundMusicFileName: self.gameSettings.music)
+    
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -125,9 +129,11 @@ private extension GameScreenViewController {
     }
     
     private func resetTimer() {
+        let gameTime = gameSettings.time
         leftTime = gameTime
         gameScreenView.timerLabel.text = String(format: "%01i:%02i", gameTime / 60, gameTime % 60)
         gameScreenView.timerProgressView.progress = Float(1)
+        
     }
 }
 
@@ -194,7 +200,7 @@ extension GameScreenViewController: TimeManagerDelegate {
     func timerTick() {
         leftTime -= 1
         gameScreenView.timerLabel.text = String(format: "%01i:%02i", leftTime / 60, leftTime % 60)
-        gameScreenView.timerProgressView.progress = Float(leftTime ?? 0) / Float(gameTime)
+        gameScreenView.timerProgressView.progress = Float(leftTime ?? 0) / Float(gameSettings.time)
         if leftTime == 0 {
             setCentralLabel("YOU LOSE") //game mechanics
             TimeManager.shared.stop()

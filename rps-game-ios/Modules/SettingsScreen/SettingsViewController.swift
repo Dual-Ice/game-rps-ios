@@ -10,22 +10,34 @@ import UIKit
 class SettingsViewController: UIViewController {
 
     private let settingsScreen = SettingsView()
-    
+    private var settings: Settings?
     override func loadView() {
         view = settingsScreen
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        settings = GameSettings.shared.getSettingsLoad()
         settingsScreen.delegate = self
         settingsScreen.getMusicButton().delegate = self
+        settingsScreen.fillSettings(settings!)
     }
 }
 
 extension SettingsViewController: SettingsViewDelegate, CustomMusicButtonDelegate {
+    func changeTime(time: Int) {
+        settings?.time = time
+        GameSettings.shared.saveSettings(settings!)
+    }
+    
+    func setTwoPlayersGame(state: Bool) {
+        settings?.is2PlayersGame = state
+        GameSettings.shared.saveSettings(settings!)
+    }
+    
     func customMusicButton(_ button: CustomMusicButton, didSelectMusic music: String) {
-        print("Music - \(music)")
+        settings?.music = music
+        GameSettings.shared.saveSettings(settings!)
     }
     
     func didTapBackButton() {

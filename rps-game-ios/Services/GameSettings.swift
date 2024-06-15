@@ -8,16 +8,18 @@
 import UIKit
 
 class GameSettings {
-    
     static let shared = GameSettings()
     
     private var defaultSettings: Settings
     
     init () {
-        defaultSettings = Settings(time: 30, music: "background1", is2PlayersGame: false)
+        defaultSettings = Settings(
+            time: 30,
+            music: "background1",
+            is2PlayersGame: false
+        )
     }
 
-//    загрузка (отдает модель либо генерирует стандартную и ее отдает)
     func getSettingsLoad() -> Settings {
         let decoder = JSONDecoder()
         
@@ -25,13 +27,14 @@ class GameSettings {
            let settings = try? decoder.decode(Settings.self, from: gameSettings) {
             return settings
         }
-           return defaultSettings
+        
+        return defaultSettings
     }
     
-    func saveSettings() {
+    func saveSettings(_ settings: Settings) {
         let encoder = JSONEncoder()
-        if let encoderGameSettings = try? encoder.encode(defaultSettings) {
-            UserDefaults.standard.set(encoderGameSettings, forKey: "gameSettings")
+        if let encodedGameSettings = try? encoder.encode(settings) {
+            UserDefaults.standard.set(encodedGameSettings, forKey: "gameSettings")
         }
     }
 }
