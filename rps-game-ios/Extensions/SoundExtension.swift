@@ -7,10 +7,9 @@
 
 import AVFoundation
 
-extension AVAudioPlayer {
-    struct SoundFiles {
-        static let buttonClick = Bundle.main.url(forResource: "buttonClick", withExtension: "mp3")
-        static let backgroundMusic = Bundle.main.url(forResource: "backgroundMusic", withExtension: "mp3")
-        static let backgroundMusic2 = Bundle.main.url(forResource: "music2", withExtension: "mp3")
-    }
+enum SoundFiles {
+    static let buttonClick = "buttonClick"
+    static let backgroundMusic = "background1"
+    static let backgroundMusic2 = "background2"
 }
+

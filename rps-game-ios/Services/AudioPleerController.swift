@@ -10,29 +10,40 @@ import AVFoundation
 
 final class AudioPleerController {
     
+    private var buttonClickPlayer: AVAudioPlayer?
+    private var backgroundMusicPlayer: AVAudioPlayer?
     
-    var player: AVAudioPlayer!
-    
-    var musicClick = AVAudioPlayer.SoundFiles.self
-    
+    init(backgroundMusicFileName: String) {
+        if let buttonClickURL = Bundle.main.url(forResource: SoundFiles.buttonClick, withExtension: "mp3") {
+            do {
+                buttonClickPlayer = try AVAudioPlayer(contentsOf: buttonClickURL)
+            } catch {
+                print("Ошибка инициализации AVAudioPlayer для звука кнопки: \(error)")
+            }
+        }
+        
+        if let backgroundMusicURL = Bundle.main.url(forResource: backgroundMusicFileName, withExtension: "mp3") {
+            do {
+                backgroundMusicPlayer = try AVAudioPlayer(contentsOf: backgroundMusicURL)
+                backgroundMusicPlayer?.numberOfLoops = -1
+            } catch {
+                print("Ошибка инициализации AVAudioPlayer для фоновой музыки: \(error)")
+            }
+        }
+    }
     
     func playMusicClick() {
-        player = try! AVAudioPlayer(contentsOf: musicClick.buttonClick!)
-        player.play()
+        buttonClickPlayer?.play()
     }
     
-  
-    func playSound() {
-        player = try! AVAudioPlayer(contentsOf: musicClick.backgroundMusic!)
-        player.numberOfLoops = -1
-        player.play()
+    func playBackgroundMusic() {
+        backgroundMusicPlayer?.play()
     }
     
-    func stopSound() {
-        player = try! AVAudioPlayer(contentsOf: musicClick.backgroundMusic!)
-        player.stop()
+    func stopBackgroundMusic() {
+        backgroundMusicPlayer?.stop()
+        backgroundMusicPlayer?.currentTime = 0
     }
-    
 }
 
 
