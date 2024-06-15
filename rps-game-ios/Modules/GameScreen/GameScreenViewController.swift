@@ -16,6 +16,7 @@ final class GameScreenViewController: UIViewController {
     
     private let gameScreenView = GameScreenView()
     private var gameService: GameService
+    private var musicService = AudioPleerController(backgroundMusicFileName: SoundFiles.backgroundMusic)
     
     private var leftTime: Int!
     private let gameTime = 30
@@ -33,13 +34,13 @@ final class GameScreenViewController: UIViewController {
         TimeManager.shared.delegate = self
         gameScreenView.setPlayersAvatars(avatars: gameService.getPlayersAvatars())
         setupNavigationBar()
-        // play background music
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
         gameService.reset()
+        musicService.playBackgroundMusic()
         startGame()
     }
     
@@ -61,7 +62,7 @@ extension GameScreenViewController: GameScreenViewDelegate {
         selectedActionButton = sender
         switchStateForActionButtons(false)
         TimeManager.shared.stop()
-        // play button music
+        musicService.playMusicClick()
     }
 }
 
@@ -73,9 +74,12 @@ private extension GameScreenViewController {
             TimeManager.shared.stop()
             navigationItem.rightBarButtonItem?.tintColor = UIColor.CustomColors.pastelYellowText
             switchStateForActionButtons(false)
+            musicService.stopBackgroundMusic()
             return
         }
         navigationItem.rightBarButtonItem?.tintColor = UIColor.CustomColors.customBlack
+        
+        musicService.playBackgroundMusic()
         startGame()
     }
     
@@ -117,7 +121,7 @@ private extension GameScreenViewController {
     
     private func resetTimer() {
         leftTime = gameTime
-        gameScreenView.timerLabel.text = "0:\(gameTime)"
+        gameScreenView.timerLabel.text = String(format: "%01i:%02i", gameTime / 60, gameTime % 60)
         gameScreenView.timerProgressView.progress = Float(1)
     }
 }
@@ -157,7 +161,7 @@ extension GameScreenViewController: GameServiceViewProtocol {
     
     func endGame(winnerImage: UIImage, playerOneWins: Int, playerTwoWins: Int) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
-            // stop background music
+            self?.musicService.stopBackgroundMusic()
             let fightResultVC = FightResultViewController(winnerImage: winnerImage, playerOneWins: playerOneWins, playerTwoWins: playerTwoWins)
             self?.navigationController?.pushViewController(fightResultVC, animated: true)
         }
@@ -184,7 +188,7 @@ extension GameScreenViewController: GameServiceViewProtocol {
 extension GameScreenViewController: TimeManagerDelegate {
     func timerTick() {
         leftTime -= 1
-        gameScreenView.timerLabel.text = "0:\(leftTime ?? 0)"
+        gameScreenView.timerLabel.text = String(format: "%01i:%02i", leftTime / 60, leftTime % 60)
         gameScreenView.timerProgressView.progress = Float(leftTime ?? 0) / Float(gameTime)
         if leftTime == 0 {
             setCentralLabel("YOU LOSE") //game mechanics
