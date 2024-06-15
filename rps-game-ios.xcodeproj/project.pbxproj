@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1127501D2C1C52D400A970BA /* CustomMusicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1127501C2C1C52D400A970BA /* CustomMusicButton.swift */; };
+		112750212C1DB93B00A970BA /* music2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 112750202C1DB93B00A970BA /* music2.mp3 */; };
 		1179376D2C181A7500652C75 /* Rubik-VariableFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1179376C2C181A7500652C75 /* Rubik-VariableFont.ttf */; };
 		117937712C181E2D00652C75 /* FontExtension .swift in Sources */ = {isa = PBXBuildFile; fileRef = 117937702C181E2D00652C75 /* FontExtension .swift */; };
 		117937732C1823F300652C75 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117937722C1823F300652C75 /* ImageExtension.swift */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		1127501C2C1C52D400A970BA /* CustomMusicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMusicButton.swift; sourceTree = "<group>"; };
+		112750202C1DB93B00A970BA /* music2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music2.mp3; sourceTree = "<group>"; };
 		1179376C2C181A7500652C75 /* Rubik-VariableFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-VariableFont.ttf"; sourceTree = "<group>"; };
 		117937702C181E2D00652C75 /* FontExtension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FontExtension .swift"; sourceTree = "<group>"; };
 		117937722C1823F300652C75 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 		117937742C182B0B00652C75 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				112750202C1DB93B00A970BA /* music2.mp3 */,
 				117937772C182B5200652C75 /* backgroundMusic.mp3 */,
 				117937752C182B1B00652C75 /* buttonClick.mp3 */,
 			);
@@ -326,6 +329,7 @@
 				1179376D2C181A7500652C75 /* Rubik-VariableFont.ttf in Resources */,
 				117937762C182B1B00652C75 /* buttonClick.mp3 in Resources */,
 				D9023F4D2C15CA7A00FF0001 /* Assets.xcassets in Resources */,
+				112750212C1DB93B00A970BA /* music2.mp3 in Resources */,
 				117937782C182B5200652C75 /* backgroundMusic.mp3 in Resources */,
 				D9023F502C15CA7A00FF0001 /* Base in Resources */,
 			);

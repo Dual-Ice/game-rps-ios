@@ -17,5 +17,20 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        settingsScreen.delegate = self
+        settingsScreen.getMusicButton().delegate = self
     }
+}
+
+extension SettingsViewController: SettingsViewDelegate, CustomMusicButtonDelegate {
+    func customMusicButton(_ button: CustomMusicButton, didSelectMusic music: String) {
+        print("Music - \(music)")
+    }
+    
+    func didTapBackButton() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    
 }
