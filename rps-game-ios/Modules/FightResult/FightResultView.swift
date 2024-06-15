@@ -266,7 +266,11 @@ import SwiftUI
 struct FightResultViewProvider: PreviewProvider {
 	static var previews: some View {
 		Group {
-			FightResultViewController().preview()
+			FightResultViewController(
+				winnerImage: UIImage.CustomImage.playerOneImage!,
+				playerOneWins: 1,
+				playerTwoWins: 2
+			).preview()
 		}
 	}
 }

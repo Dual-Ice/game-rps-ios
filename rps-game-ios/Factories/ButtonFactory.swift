@@ -62,8 +62,9 @@ final class ButtonFactory {
         return button
     }
     
-    static func makeActionButton(icon: String) -> UIButton {
+    static func makeActionButton(icon: String, tag: Int) -> UIButton {
         let button = UIButton(type: .system)
+        button.tag = tag
         button.layer.cornerRadius = 40
         button.clipsToBounds = true
         button.setImage(UIImage(named: icon), for: .normal)
