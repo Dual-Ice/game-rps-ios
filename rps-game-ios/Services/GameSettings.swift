@@ -27,6 +27,13 @@ class GameSettings {
         }
            return defaultSettings
     }
+    
+    func saveSettings() {
+        let encoder = JSONEncoder()
+        if let encoderGameSettings = try? encoder.encode(defaultSettings) {
+            UserDefaults.standard.set(encoderGameSettings, forKey: "gameSettings")
+        }
+    }
 }
 
 
