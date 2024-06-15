@@ -16,11 +16,12 @@ final class GameScreenViewController: UIViewController {
     
     private let gameScreenView = GameScreenView()
     private var gameService: GameService
-
+    private var gameSettings = GameSettings.shared.getSettingsLoad()
+    
     private var musicService = AudioPleerController(backgroundMusicFileName: SoundFiles.backgroundMusic)
     
     private var leftTime: Int!
-    private var gameTime = 30
+    private lazy var gameTime = gameSettings.time
     
     private var selectedActionButton: UIButton?
     

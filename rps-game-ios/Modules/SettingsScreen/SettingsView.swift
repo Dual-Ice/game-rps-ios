@@ -75,6 +75,8 @@ class SettingsView: UIView {
         return view
     }()
     
+    private var gameSettings = GameSettings.shared.getSettingsLoad()
+    
     // 30 seconds button
     private lazy var button30: UIButton = {
         let button = createGameTimeButton(withTitle: "30 сек.", time: 30)
