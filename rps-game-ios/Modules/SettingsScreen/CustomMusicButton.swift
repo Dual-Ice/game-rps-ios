@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol CustomMusicButtonDelegate: AnyObject {
+    func customMusicButton(_ button: CustomMusicButton, didSelectMusic music: String)
+}
+
 final class CustomMusicButton: UIButton {
     
     private let label = UILabel()
@@ -15,7 +19,9 @@ final class CustomMusicButton: UIButton {
     
     private let dropdownTableView = UITableView()
     private var isDropdownVisible = false
-    private let dropdownItem = ["Мелодия 1", "Мелодия 2", "Мелодия 3"]
+    private let dropdownItem = ["Мелодия 1", "Мелодия 2"]
+    
+    weak var delegate: CustomMusicButtonDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -129,9 +135,11 @@ extension CustomMusicButton: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        secondLabel.text = dropdownItem[indexPath.row]
+        let selectedMusic = dropdownItem[indexPath.row]
+        secondLabel.text = selectedMusic
         isDropdownVisible = false
         dropdownTableView.isHidden = true
+        delegate?.customMusicButton(self, didSelectMusic: selectedMusic)
     }
     
 }

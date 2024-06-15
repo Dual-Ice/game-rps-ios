@@ -7,16 +7,20 @@
 
 import UIKit
 
-final class GameScreenViewController: UIViewController, GameScreenViewDelegate {
+enum PlayerSide {
+    case top
+    case bottom
+}
+
+final class GameScreenViewController: UIViewController {
     
     private let gameScreenView = GameScreenView()
+    private var gameService: GameService
     
-    private var timer = Timer()
     private var leftTime: Int!
+    private let gameTime = 30
     
-    var point = 0
-    
-    var gameTime = 30
+    private var selectedActionButton: UIButton?
     
     override func loadView() {
         view = gameScreenView
@@ -25,58 +29,60 @@ final class GameScreenViewController: UIViewController, GameScreenViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         gameScreenView.delegate = self
+        gameService.view = self
+        TimeManager.shared.delegate = self
+        gameScreenView.setPlayersAvatars(avatars: gameService.getPlayersAvatars())
         setupNavigationBar()
-        
-        initializeGameState()
+        // play background music
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
+        gameService.reset()
         startGame()
     }
     
-    private func initializeGameState() {
-        leftTime = gameTime
-        gameScreenView.timerLabel.text = "0:\(gameTime)"
-        gameScreenView.timerProgressView.progress = Float(1)
-        setPoint(0, for: .top)
-        setPoint(0, for: .bottom)
+    init(gameService: GameService) {
+        self.gameService = gameService
+
+        super.init(nibName: nil, bundle: nil)
     }
     
-    @objc
-    private func pauseGame() {
-        timer.isValid ? timer.invalidate() : startGame()
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    
-    private func enableButtons(_ state: Bool) {
-        gameScreenView.rockButton.isEnabled = state
-        gameScreenView.paperButton.isEnabled = state
-        gameScreenView.scissorsButton.isEnabled = state
-        navigationController?.navigationItem.rightBarButtonItem?.isEnabled = state
+}
+
+extension GameScreenViewController: GameScreenViewDelegate {
+    func actionButtonPressed(_ sender: UIButton) {
+        gameService.play(playerBottomMove: Move(rawValue: sender.tag)!)
+        sender.tintColor = UIColor.CustomColors.pastelYellowText
+        selectedActionButton = sender
+        switchStateForActionButtons(false)
+        TimeManager.shared.stop()
+        // play button music
     }
-    
-    func didTapRockButton() {
-        setBottomHand(to: .bottomRock)
-    }
-    
-    func didTapPaperButton() {
-        setBottomHand(to: .bottomPaper)
-    }
-    
-    func didTapScissorsButton() {
-        setBottomHand(to: .bottomScissors)
-    }
-    
-    func setTopHand(to gesture: Gesture) {
-        gameScreenView.topHandImageView.image = gesture.image
-    }
-    
-    func setBottomHand(to gesture: Gesture) {
-        enableButtons(false)
-        setCentralLabel("")
-        timer.invalidate()
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [unowned self] timer in
-            gameScreenView.bottomHandImageView.image = gesture.image
+}
+
+
+//MARK: - Privater Methods
+private extension GameScreenViewController {
+    @objc func pauseGame() {
+        if TimeManager.shared.isRun() {
+            TimeManager.shared.stop()
+            navigationItem.rightBarButtonItem?.tintColor = UIColor.CustomColors.pastelYellowText
+            switchStateForActionButtons(false)
+            return
         }
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.CustomColors.customBlack
+        startGame()
+    }
+    
+    func switchStateForActionButtons(_ state: Bool) {
+        gameScreenView.rockButton.isUserInteractionEnabled = state
+        gameScreenView.paperButton.isUserInteractionEnabled = state
+        gameScreenView.scissorsButton.isUserInteractionEnabled = state
     }
     
     func setPoint(_ point: Int, for player: PlayerSide) {
@@ -93,21 +99,35 @@ final class GameScreenViewController: UIViewController, GameScreenViewDelegate {
     }
     
     func startGame() {
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] time in
-            leftTime -= 1
-            gameScreenView.timerLabel.text = "0:\(leftTime ?? 0)"
-            gameScreenView.timerProgressView.progress = Float(leftTime ?? 0) / Float(gameTime)
-            if leftTime == 0 {
-                setCentralLabel("ROUND OVER") //game mechanics
-                timer.invalidate()
-            }
-         }
+        switchStateForActionButtons(true)
+        selectedActionButton?.tintColor = .white
+        resetHands()
+        resetTimer()
+        
+        TimeManager.shared.start()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+           self?.setCentralLabel("")
+        }
+    }
+    
+    private func resetHands() {
+        gameScreenView.topHandImageView.image = UIImage.CustomImage.femaleHandImage
+        gameScreenView.bottomHandImageView.image = UIImage.CustomImage.maleHandImage
+    }
+    
+    private func resetTimer() {
+        leftTime = gameTime
+        gameScreenView.timerLabel.text = "0:\(gameTime)"
+        gameScreenView.timerProgressView.progress = Float(1)
     }
 }
 
 // MARK: - Setup UI
 private extension GameScreenViewController {
     func setupNavigationBar() {
+        let backButton = UIBarButtonItem(image: UIImage(named: "backButton"), style: .plain, target: self, action: #selector(backButtonTapped))
+        navigationItem.leftBarButtonItem = backButton
+        
         let navigationBarAppearance = UINavigationBarAppearance()
         
         navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.CustomColors.customBlack]
@@ -123,52 +143,68 @@ private extension GameScreenViewController {
         
         title = "Игра"
     }
+    
+
+    @objc private func backButtonTapped() {
+        navigationController?.popToRootViewController(animated: true)
+    }
 }
 
-// MARK: - enum Gesture
-extension GameScreenViewController {
-    enum Gesture {
-        case topRock
-        case topPaper
-        case topScissors
-        case bottomRock
-        case bottomPaper
-        case bottomScissors
-        
-        var image: UIImage {
-            switch self {
-            case .topRock:
-                #imageLiteral(resourceName: "rockFemaleHand")
-            case .topPaper:
-                #imageLiteral(resourceName: "paperFemaleHand")
-            case .topScissors:
-                #imageLiteral(resourceName: "scissorsFemaleHand")
-            case .bottomRock:
-                #imageLiteral(resourceName: "rockMaleHand")
-            case .bottomPaper:
-                #imageLiteral(resourceName: "paperMaleHand")
-            case .bottomScissors:
-                #imageLiteral(resourceName: "scissorsMaleHand")
-            }
+extension GameScreenViewController: GameServiceViewProtocol {
+    func updateScore(score: Int, side: PlayerSide) {
+        setPoint(score, for: side)
+    }
+    
+    func endGame(winnerImage: UIImage, playerOneWins: Int, playerTwoWins: Int) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+            // stop background music
+            let fightResultVC = FightResultViewController(winnerImage: winnerImage, playerOneWins: playerOneWins, playerTwoWins: playerTwoWins)
+            self?.navigationController?.pushViewController(fightResultVC, animated: true)
         }
     }
     
-    enum PlayerSide {
-        case top
-        case bottom
+    func showPlayersMoves(playerTopMove: Move, playerBottomMove: Move) {
+        gameScreenView.topHandImageView.image = gameService.getMoveImage(move: playerTopMove, position: .top)
+        gameScreenView.bottomHandImageView.image = gameService.getMoveImage(move: playerBottomMove, position: .bottom)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+            self?.startGame()
+        }
     }
-}
-
-
-
-#if DEBUG
-import SwiftUI
-
-struct GameScreenViewControllerProvider: PreviewProvider {
-    static var previews: some View {
-        Group {
-            UINavigationController(rootViewController: GameScreenViewController()).previw()
+    
+    func showDraw() {
+        setCentralLabel("DRAW")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+            self?.startGame()
         }
     }
 }
-#endif
+
+extension GameScreenViewController: TimeManagerDelegate {
+    func timerTick() {
+        leftTime -= 1
+        gameScreenView.timerLabel.text = "0:\(leftTime ?? 0)"
+        gameScreenView.timerProgressView.progress = Float(leftTime ?? 0) / Float(gameTime)
+        if leftTime == 0 {
+            setCentralLabel("YOU LOSE") //game mechanics
+            TimeManager.shared.stop()
+            gameService.playerTwoLose()
+            startGame()
+        }
+    }
+}
+
+
+
+//#if DEBUG
+//import SwiftUI
+//
+//struct GameScreenViewControllerProvider: PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            UINavigationController(rootViewController: GameScreenViewController()).previw()
+//        }
+//    }
+//}
+//#endif

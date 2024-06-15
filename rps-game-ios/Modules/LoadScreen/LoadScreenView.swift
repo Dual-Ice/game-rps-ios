@@ -24,7 +24,6 @@ final class LoadScreenView: UIView {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage.CustomImage.playerOneImage
         return imageView
     }()
     
@@ -33,28 +32,12 @@ final class LoadScreenView: UIView {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage.CustomImage.playerTwoImage
         return imageView
     }()
     
     // Player one victories label
     private lazy var victoriesLabelPlayerOne: UILabel = {
         let label = UILabel()
-        let attributedText = NSMutableAttributedString(
-            string: "10 ",
-            attributes: [
-                NSAttributedString.Key.font : RubikFont.Bold.size(of: 20),
-                NSAttributedString.Key.foregroundColor : UIColor.CustomColors.pastelYellowText
-            ]
-        )
-        attributedText.append(NSAttributedString(
-            string: "Victories/",
-            attributes: [
-                NSAttributedString.Key.font : RubikFont.Bold.size(of: 20),
-                NSAttributedString.Key.foregroundColor : UIColor.white
-            ])
-        )
-        label.attributedText = attributedText
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -63,21 +46,6 @@ final class LoadScreenView: UIView {
     // Player one loses label
     private lazy var loseLabelPlayerOne: UILabel = {
         let label = UILabel()
-        let attributedText = NSMutableAttributedString(
-            string: "2 ",
-            attributes: [
-                NSAttributedString.Key.font : RubikFont.Bold.size(of: 20),
-                NSAttributedString.Key.foregroundColor : UIColor.CustomColors.darkYellowPinkText
-            ]
-        )
-        attributedText.append(NSAttributedString(
-            string: "Lose",
-            attributes: [
-                NSAttributedString.Key.font : RubikFont.Bold.size(of: 20),
-                NSAttributedString.Key.foregroundColor : UIColor.white
-            ])
-        )
-        label.attributedText = attributedText
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -86,21 +54,6 @@ final class LoadScreenView: UIView {
     // Player two victories label
     private lazy var victoriesLabelPlayerTwo: UILabel = {
         let label = UILabel()
-        let attributedText = NSMutableAttributedString(
-            string: "23 ",
-            attributes: [
-                NSAttributedString.Key.font : RubikFont.Bold.size(of: 20),
-                NSAttributedString.Key.foregroundColor : UIColor.CustomColors.pastelYellowText
-            ]
-        )
-        attributedText.append(NSAttributedString(
-            string: "Victories/",
-            attributes: [
-                NSAttributedString.Key.font : RubikFont.Bold.size(of: 20),
-                NSAttributedString.Key.foregroundColor : UIColor.white
-            ])
-        )
-        label.attributedText = attributedText
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -109,21 +62,6 @@ final class LoadScreenView: UIView {
     // Player two loses label
     private lazy var loseLabelPlayerTwo: UILabel = {
         let label = UILabel()
-        let attributedText = NSMutableAttributedString(
-            string: "1 ",
-            attributes: [
-                NSAttributedString.Key.font : RubikFont.Bold.size(of: 20),
-                NSAttributedString.Key.foregroundColor : UIColor.CustomColors.darkYellowPinkText
-            ]
-        )
-        attributedText.append(NSAttributedString(
-            string: "Lose",
-            attributes: [
-                NSAttributedString.Key.font : RubikFont.Bold.size(of: 20),
-                NSAttributedString.Key.foregroundColor : UIColor.white
-            ])
-        )
-        label.attributedText = attributedText
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -205,5 +143,59 @@ final class LoadScreenView: UIView {
             loseLabelPlayerTwo
         ].forEach { addSubview($0) }
 
+    }
+    
+    func fillLoadingData(data: [PlayerLoadingData]) {
+        let playerOneData = data[0]
+        let playerTwoData = data[1]
+        
+        playerOneImageView.image = playerOneData.image
+        victoriesLabelPlayerOne.attributedText = makeVictoriesText(count: playerOneData.win)
+        loseLabelPlayerOne.attributedText = makeLosesText(count: playerOneData.lose)
+        
+        playerTwoImageView.image = playerTwoData.image
+        victoriesLabelPlayerTwo.attributedText = makeVictoriesText(count: playerTwoData.win)
+        loseLabelPlayerTwo.attributedText = makeLosesText(count: playerTwoData.lose)
+        
+    }
+}
+
+extension LoadScreenView {
+    private func makeVictoriesText(count: Int) -> NSAttributedString {
+        let attributedText = NSMutableAttributedString(
+            string: "\(count) ",
+            attributes: [
+                NSAttributedString.Key.font : RubikFont.Bold.size(of: 20),
+                NSAttributedString.Key.foregroundColor : UIColor.CustomColors.pastelYellowText
+            ]
+        )
+        attributedText.append(NSAttributedString(
+            string: "Victories/",
+            attributes: [
+                NSAttributedString.Key.font : RubikFont.Bold.size(of: 20),
+                NSAttributedString.Key.foregroundColor : UIColor.white
+            ])
+        )
+        
+        return attributedText
+    }
+    
+    private func makeLosesText(count: Int) -> NSAttributedString {
+        let attributedText = NSMutableAttributedString(
+            string: "\(count) ",
+            attributes: [
+                NSAttributedString.Key.font : RubikFont.Bold.size(of: 20),
+                NSAttributedString.Key.foregroundColor : UIColor.CustomColors.darkYellowPinkText
+            ]
+        )
+        attributedText.append(NSAttributedString(
+            string: "Lose",
+            attributes: [
+                NSAttributedString.Key.font : RubikFont.Bold.size(of: 20),
+                NSAttributedString.Key.foregroundColor : UIColor.white
+            ])
+        )
+        
+        return attributedText
     }
 }
