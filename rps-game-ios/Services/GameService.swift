@@ -77,9 +77,18 @@ class GameService {
         }
     }
     
+    func playerTopWin() -> Bool {
+        playerTop.roundWin == 3
+    }
+    
     func playerTwoLose() {
         updatePlayerStats(winner: &playerTop, loser: &playerBottom)
         view?.updateScore(score: playerTop.roundWin, side: .top)
+        checkGameEnd(
+            winner: playerTop,
+            playerTopWins: playerTop.roundWin,
+            playerBottomWins: playerBottom.roundWin
+        )
     }
     
     func reset() {
