@@ -25,6 +25,8 @@
 		11A6509D2C1B0249001A90BD /* GameScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A6509B2C1B0249001A90BD /* GameScreenViewController.swift */; };
 		11A80A1E2C1828ED002F9CE4 /* StartScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A80A1D2C1828ED002F9CE4 /* StartScreenView.swift */; };
 		11A80A262C1895D4002F9CE4 /* RulesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A80A252C1895D4002F9CE4 /* RulesTableViewCell.swift */; };
+		11A9AD252C1E07A5009F9BD4 /* UIImageView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A9AD242C1E07A5009F9BD4 /* UIImageView+Animation.swift */; };
+		11A9AD272C1E35AF009F9BD4 /* punch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11A9AD262C1E35AF009F9BD4 /* punch.mp3 */; };
 		D9023F442C15CA7800FF0001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F432C15CA7800FF0001 /* AppDelegate.swift */; };
 		D9023F462C15CA7800FF0001 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F452C15CA7800FF0001 /* SceneDelegate.swift */; };
 		D9023F482C15CA7800FF0001 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F472C15CA7800FF0001 /* RulesViewController.swift */; };
@@ -62,6 +64,8 @@
 		11A6509B2C1B0249001A90BD /* GameScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScreenViewController.swift; sourceTree = "<group>"; };
 		11A80A1D2C1828ED002F9CE4 /* StartScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenView.swift; sourceTree = "<group>"; };
 		11A80A252C1895D4002F9CE4 /* RulesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesTableViewCell.swift; sourceTree = "<group>"; };
+		11A9AD242C1E07A5009F9BD4 /* UIImageView+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Animation.swift"; sourceTree = "<group>"; };
+		11A9AD262C1E35AF009F9BD4 /* punch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = punch.mp3; path = ../../../../punch.mp3; sourceTree = "<group>"; };
 		D9023F402C15CA7800FF0001 /* EPIC RPS Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EPIC RPS Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9023F432C15CA7800FF0001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9023F452C15CA7800FF0001 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +113,7 @@
 				117937792C182C3A00652C75 /* SoundExtension.swift */,
 				117937722C1823F300652C75 /* ImageExtension.swift */,
 				117937802C18785500652C75 /* ColorExtension.swift */,
+				11A9AD242C1E07A5009F9BD4 /* UIImageView+Animation.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 				112750202C1DB93B00A970BA /* background2.mp3 */,
 				117937772C182B5200652C75 /* background1.mp3 */,
 				117937752C182B1B00652C75 /* buttonClick.mp3 */,
+				11A9AD262C1E35AF009F9BD4 /* punch.mp3 */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -333,6 +339,7 @@
 				117937762C182B1B00652C75 /* buttonClick.mp3 in Resources */,
 				D9023F4D2C15CA7A00FF0001 /* Assets.xcassets in Resources */,
 				112750212C1DB93B00A970BA /* background2.mp3 in Resources */,
+				11A9AD272C1E35AF009F9BD4 /* punch.mp3 in Resources */,
 				117937782C182B5200652C75 /* background1.mp3 in Resources */,
 				D9023F502C15CA7A00FF0001 /* Base in Resources */,
 			);
@@ -349,6 +356,7 @@
 				D9023F5E2C1611C700FF0001 /* RulesView.swift in Sources */,
 				D906EB412C1979400090EA9C /* FightResultViewController.swift in Sources */,
 				1127501D2C1C52D400A970BA /* CustomMusicButton.swift in Sources */,
+				11A9AD252C1E07A5009F9BD4 /* UIImageView+Animation.swift in Sources */,
 				D9B7035D2C1B607700616455 /* GameService.swift in Sources */,
 				11A80A1E2C1828ED002F9CE4 /* StartScreenView.swift in Sources */,
 				11A80A262C1895D4002F9CE4 /* RulesTableViewCell.swift in Sources */,

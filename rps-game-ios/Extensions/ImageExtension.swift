@@ -26,5 +26,6 @@ extension UIImage {
         static let rockIcon = UIImage(named: "rockIcon")
         static let paperIcon = UIImage(named: "paperIcon")
         static let arrowLeft = UIImage(named: "Arrow")
+        static let blood = UIImage(named: "blood")
     }
 }

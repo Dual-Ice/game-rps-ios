@@ -24,6 +24,7 @@ protocol GameServiceViewProtocol: AnyObject {
     func showPlayersMoves(playerTopMove: Move, playerBottomMove: Move)
     func showDraw()
     func updateScore(score: Int, side: PlayerSide)
+    func animatePunch()
 }
 
 struct PlayerLoadingData {
@@ -61,6 +62,7 @@ class GameService {
 //        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] timer in
             guard let self = self else { return }
             self.view?.showPlayersMoves(playerTopMove: playerTopMove, playerBottomMove: playerBottomMove)
+            if roundResult != .draw { view.animatePunch() }
 
             switch roundResult {
             case .win:

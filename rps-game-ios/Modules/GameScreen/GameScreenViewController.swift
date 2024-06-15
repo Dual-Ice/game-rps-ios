@@ -183,6 +183,20 @@ extension GameScreenViewController: GameServiceViewProtocol {
             self?.startGame()
         }
     }
+    
+    func animatePunch() {
+        gameScreenView.topHandImageView.punch(up: false)
+        gameScreenView.bottomHandImageView.punch(up: true)
+        
+        gameScreenView.bloodImageView.isHidden = false
+        gameScreenView.bloodImageView.splashBlood()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) { [weak self] in
+            guard let self = self else { return }
+            self.gameScreenView.bloodImageView.isHidden = true
+        }
+        musicService.playPunchSound()
+    }
+
 }
 
 extension GameScreenViewController: TimeManagerDelegate {
