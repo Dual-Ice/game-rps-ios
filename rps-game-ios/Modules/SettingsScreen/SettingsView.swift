@@ -7,8 +7,23 @@
 
 import UIKit
 
+protocol SettingsViewDelegate: AnyObject {
+    func didTapGoBackButton()
+}
+
 class SettingsView: UIView {
     // MARK: - Private properties
+    
+    private let returnToStartSrceen: UIButton = {
+        let button = UIButton(type: .system)
+        button.setBackgroundImage(UIImage(named: "backButton"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    weak var delegate: SettingsViewDelegate?
+    
     //Title label
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -150,12 +165,20 @@ class SettingsView: UIView {
         super.init(frame: frame)
         setViews()
         layoutViews()
+        returnToStartSrceen.addTarget(self, action: #selector(toStartScreenView), for: .touchUpInside)
+        
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setViews()
         layoutViews()
+        returnToStartSrceen.addTarget(self, action: #selector(toStartScreenView), for: .touchUpInside)
+    }
+    
+    
+    @objc func toStartScreenView() {
+        delegate?.didTapGoBackButton()
     }
     
     // MARK: - Layout Views
@@ -193,6 +216,11 @@ class SettingsView: UIView {
             gameMusicStackView.trailingAnchor.constraint(equalTo: backgroundViewForMusic.trailingAnchor, constant: -18),
             gameMusicStackView.bottomAnchor.constraint(equalTo: backgroundViewForMusic.bottomAnchor, constant: -25),
             
+            //            return button constraints
+            returnToStartSrceen.widthAnchor.constraint(equalToConstant: 11),
+            returnToStartSrceen.heightAnchor.constraint(equalToConstant: 19),
+            returnToStartSrceen.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 14),
+            returnToStartSrceen.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 30)
         ])
     }
     
@@ -202,6 +230,7 @@ class SettingsView: UIView {
         
         [
             titleLabel,
+            returnToStartSrceen,
             backgroundViewForGameTime,
             backgroundViewForMusic,
         ].forEach { addSubview($0) }

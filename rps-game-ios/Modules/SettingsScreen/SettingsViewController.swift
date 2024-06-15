@@ -17,5 +17,14 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        settingsScreen.delegate = self
     }
+}
+
+extension SettingsViewController: SettingsViewDelegate {
+    func didTapGoBackButton() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    
 }
