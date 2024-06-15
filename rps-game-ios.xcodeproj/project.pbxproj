@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1127501D2C1C52D400A970BA /* CustomMusicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1127501C2C1C52D400A970BA /* CustomMusicButton.swift */; };
 		112750212C1DB93B00A970BA /* background2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 112750202C1DB93B00A970BA /* background2.mp3 */; };
+		1153F0682C1DF409004384FC /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153F0672C1DF409004384FC /* Settings.swift */; };
+		1153F06A2C1DF83B004384FC /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153F0692C1DF83B004384FC /* GameSettings.swift */; };
 		1179376D2C181A7500652C75 /* Rubik-VariableFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1179376C2C181A7500652C75 /* Rubik-VariableFont.ttf */; };
 		117937712C181E2D00652C75 /* FontExtension .swift in Sources */ = {isa = PBXBuildFile; fileRef = 117937702C181E2D00652C75 /* FontExtension .swift */; };
 		117937732C1823F300652C75 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117937722C1823F300652C75 /* ImageExtension.swift */; };
@@ -46,6 +48,8 @@
 /* Begin PBXFileReference section */
 		1127501C2C1C52D400A970BA /* CustomMusicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMusicButton.swift; sourceTree = "<group>"; };
 		112750202C1DB93B00A970BA /* background2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background2.mp3; sourceTree = "<group>"; };
+		1153F0672C1DF409004384FC /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		1153F0692C1DF83B004384FC /* GameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
 		1179376C2C181A7500652C75 /* Rubik-VariableFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-VariableFont.ttf"; sourceTree = "<group>"; };
 		117937702C181E2D00652C75 /* FontExtension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FontExtension .swift"; sourceTree = "<group>"; };
 		117937722C1823F300652C75 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
@@ -208,6 +212,7 @@
 				D9BFFF072C1DD7FF00C92388 /* AudioPleerController.swift */,
 				D9B7035C2C1B607700616455 /* GameService.swift */,
 				D9C4A8172C1CDD8500010056 /* TimeManager.swift */,
+				1153F0692C1DF83B004384FC /* GameSettings.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -267,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				D9B7035F2C1B773000616455 /* Player.swift */,
+				1153F0672C1DF409004384FC /* Settings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -345,7 +351,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1153F0682C1DF409004384FC /* Settings.swift in Sources */,
 				11A6509D2C1B0249001A90BD /* GameScreenViewController.swift in Sources */,
+				1153F06A2C1DF83B004384FC /* GameSettings.swift in Sources */,
 				D9023F5E2C1611C700FF0001 /* RulesView.swift in Sources */,
 				D906EB412C1979400090EA9C /* FightResultViewController.swift in Sources */,
 				1127501D2C1C52D400A970BA /* CustomMusicButton.swift in Sources */,
