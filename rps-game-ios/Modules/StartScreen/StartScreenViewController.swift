@@ -42,6 +42,7 @@ extension StartScreenViewController: StartScreenViewDelegate {
     }
     
     func didTapSettingsButton() {
-        print("settings")
+        let settingsVC = SettingsViewController()
+        navigationController?.pushViewController(settingsVC, animated: true)
     }
 }
