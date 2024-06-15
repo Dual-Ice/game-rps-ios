@@ -16,14 +16,18 @@ final class GameScreenViewController: UIViewController {
     
     private let gameScreenView = GameScreenView()
     private var gameService: GameService
+    private let settingsView = SettingsView()
     
     private var leftTime: Int!
-    private let gameTime = 30
+    private var gameTime = 30
     
     private var selectedActionButton: UIButton?
     
     override func loadView() {
         view = gameScreenView
+        
+        
+        settingsView.timeDelegate = self
     }
     
     override func viewDidLoad() {
@@ -33,6 +37,9 @@ final class GameScreenViewController: UIViewController {
         TimeManager.shared.delegate = self
         gameScreenView.setPlayersAvatars(avatars: gameService.getPlayersAvatars())
         setupNavigationBar()
+        
+        settingsView.timeDelegate = self
+        
         // play background music
     }
     
@@ -195,7 +202,14 @@ extension GameScreenViewController: TimeManagerDelegate {
     }
 }
 
-
+extension GameScreenViewController: SettingsTimeGameDelegate {
+    func didSetTimeGame(_ time: Int) -> Int {
+        gameTime = time
+        resetTimer()
+        print(time)
+        return gameTime
+    }
+}
 
 //#if DEBUG
 //import SwiftUI

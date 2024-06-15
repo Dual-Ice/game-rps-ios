@@ -11,6 +11,10 @@ protocol SettingsViewDelegate: AnyObject {
     func didTapGoBackButton()
 }
 
+protocol SettingsTimeGameDelegate: AnyObject {
+    func didSetTimeGame(_ time: Int) -> Int
+}
+
 class SettingsView: UIView {
     // MARK: - Private properties
     
@@ -23,6 +27,7 @@ class SettingsView: UIView {
     }()
     
     weak var delegate: SettingsViewDelegate?
+    weak var timeDelegate: SettingsTimeGameDelegate?
     
     //Title label
     private lazy var titleLabel: UILabel = {
@@ -77,6 +82,8 @@ class SettingsView: UIView {
         button30.layer.cornerRadius = 10
         button30.translatesAutoresizingMaskIntoConstraints = false
         
+        button30.addTarget(self, action: #selector(setThirtyTimer), for: .touchUpInside)
+        
         let button60 = UIButton(type: .system)
         let attributedTitle60 = NSAttributedString(
             string: "60 сек.",
@@ -89,6 +96,8 @@ class SettingsView: UIView {
         button60.backgroundColor = UIColor(red: 241/255, green: 170/255, blue: 131/255, alpha: 1)
         button60.layer.cornerRadius = 10
         button60.translatesAutoresizingMaskIntoConstraints = false
+        
+        button60.addTarget(self, action: #selector(setSixtyTimer), for: .touchUpInside)
         
         let stackView = UIStackView(arrangedSubviews: [button30, button60])
         stackView.axis = .horizontal
@@ -179,6 +188,14 @@ class SettingsView: UIView {
     
     @objc func toStartScreenView() {
         delegate?.didTapGoBackButton()
+    }
+    
+    @objc func setThirtyTimer() {
+        timeDelegate?.didSetTimeGame(30)
+    }
+    
+    @objc func setSixtyTimer() {
+        timeDelegate?.didSetTimeGame(60)
     }
     
     // MARK: - Layout Views
