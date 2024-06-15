@@ -198,7 +198,9 @@ extension GameScreenViewController: TimeManagerDelegate {
             setCentralLabel("YOU LOSE") //game mechanics
             TimeManager.shared.stop()
             gameService.playerTwoLose()
-            startGame()
+            if !gameService.playerTopWin() {
+                startGame()
+            }
         }
     }
 }
