@@ -8,7 +8,7 @@
 import Foundation
 import AVFoundation
 
-struct GameMusic {
+final class AudioPleerController {
     
     
     var player: AVAudioPlayer!
@@ -16,19 +16,19 @@ struct GameMusic {
     var musicClick = AVAudioPlayer.SoundFiles.self
     
     
-    mutating func  playMusicClick() {
+    func playMusicClick() {
         player = try! AVAudioPlayer(contentsOf: musicClick.buttonClick!)
         player.play()
     }
     
   
-    mutating func playSound() {
+    func playSound() {
         player = try! AVAudioPlayer(contentsOf: musicClick.backgroundMusic!)
+        player.numberOfLoops = -1
         player.play()
-      //  player.currentTime
     }
     
-    mutating func stopSound() {
+    func stopSound() {
         player = try! AVAudioPlayer(contentsOf: musicClick.backgroundMusic!)
         player.stop()
     }
