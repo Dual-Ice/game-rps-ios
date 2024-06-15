@@ -80,11 +80,11 @@ class GameService {
             case .win:
                 self.updatePlayerStats(winner: &self.playerBottom, loser: &self.playerTop)
                 self.view?.updateScore(score: self.playerBottom.roundWin, side: .bottom)
-                self.checkGameEnd(winner: playerBottom, playerTopWins: playerTop.roundWin, playerBottomWins: playerBottom.roundWin)
+                self.checkGameEnd(winner: self.playerBottom, playerTopWins: self.playerTop.roundWin, playerBottomWins: self.playerBottom.roundWin)
             case .lose:
                 self.updatePlayerStats(winner: &self.playerTop, loser: &self.playerBottom)
                 self.view?.updateScore(score: self.playerTop.roundWin, side: .top)
-                self.checkGameEnd(winner: playerTop, playerTopWins: playerTop.roundWin, playerBottomWins: playerBottom.roundWin)
+                self.checkGameEnd(winner: self.playerTop, playerTopWins: self.playerTop.roundWin, playerBottomWins: self.playerBottom.roundWin)
             case .draw:
                 self.view?.showDraw()
             }
