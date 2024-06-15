@@ -117,7 +117,7 @@ private extension GameScreenViewController {
     
     private func resetTimer() {
         leftTime = gameTime
-        gameScreenView.timerLabel.text = "0:\(gameTime)"
+        gameScreenView.timerLabel.text = String(format: "%01i:%02i", gameTime / 60, gameTime % 60)
         gameScreenView.timerProgressView.progress = Float(1)
     }
 }
@@ -184,7 +184,7 @@ extension GameScreenViewController: GameServiceViewProtocol {
 extension GameScreenViewController: TimeManagerDelegate {
     func timerTick() {
         leftTime -= 1
-        gameScreenView.timerLabel.text = "0:\(leftTime ?? 0)"
+        gameScreenView.timerLabel.text = String(format: "%01i:%02i", leftTime / 60, leftTime % 60)
         gameScreenView.timerProgressView.progress = Float(leftTime ?? 0) / Float(gameTime)
         if leftTime == 0 {
             setCentralLabel("YOU LOSE") //game mechanics
