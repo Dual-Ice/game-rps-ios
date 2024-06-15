@@ -36,6 +36,14 @@ struct PlayerLoadingData {
 	var winRate = 0.0
 }
 
+struct LeaderBoardPlayer {
+    let name: String
+    let avatar: UIImage
+    let score: Int
+    let rate: Double
+}
+
+
 class GameService {
     
     weak var view: GameServiceViewProtocol!
@@ -108,50 +116,21 @@ class GameService {
 			name: playerBottom.name
 		)
 	}
+    
 
-	func getLeaderList() -> [PlayerLoadingData] {
-		[
-			PlayerLoadingData(
-				image: playerTop.avatar,
-				win: playerTop.gameWin, 
-				lose: playerTop.gameLose,
-				name: playerTop.name,
-				score: playerTop.score,
-				winRate: playerTop.winRate
-			),
-			PlayerLoadingData(
-				image: playerBottom.avatar,
-				win: playerBottom.gameWin,
-				lose: playerBottom.gameLose,
-				name: playerBottom.name,
-				score: playerBottom.score,
-				winRate: playerBottom.winRate
-			),
-			PlayerLoadingData(
-				image: playerTop.avatar,
-				win: playerTop.gameWin,
-				lose: playerTop.gameLose,
-				name: playerTop.name,
-				score: 1000,
-				winRate: 98
-			),
-			PlayerLoadingData(
-				image: playerBottom.avatar,
-				win: playerBottom.gameWin,
-				lose: playerBottom.gameLose,
-				name: playerBottom.name,
-				score: 1500,
-				winRate: 99
-			),
-			PlayerLoadingData(
-				image: playerBottom.avatar,
-				win: playerBottom.gameWin,
-				lose: playerBottom.gameLose,
-				name: playerBottom.name,
-				score: 6500,
-				winRate: 99
-			)
-		]
+	func getLeaderList() -> [LeaderBoardPlayer] {
+        var players = (1...8).map { _ in generateRandomPlayer() }
+        
+        [playerTop, playerBottom].forEach {
+            players.append(LeaderBoardPlayer(
+                name: $0.name,
+                avatar: $0.avatar,
+                score: $0.score,
+                rate:  (Double($0.gameWin) / Double($0.gameWin + $0.gameLose)) * 100
+            ))
+        }
+        
+        return players.sorted(by: { $0.score > $1.score })
 	}
     
     func getPlayersAvatars() -> [UIImage] {
@@ -183,6 +162,21 @@ class GameService {
     }
     
     // MARK: Private methods
+    
+    private func generateRandomPlayer() -> LeaderBoardPlayer {
+        let names = ["Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Hank", "Ivy", "Jack"]
+        let randomName = names.randomElement()!
+        let randomAvatarNumber = Int.random(in: 1...8)
+        let randomAvatar = UIImage(named: "character-\(randomAvatarNumber)")!
+        
+        let gameWin = Int.random(in: 4...30)
+        let gameLose = Int.random(in: 0...gameWin)
+        let score = gameWin * 500
+        let rate = (Double(gameWin) / Double(gameWin + gameLose)) * 100
+        
+        return LeaderBoardPlayer(name: randomName, avatar: randomAvatar, score: score, rate: rate)
+    }
+    
     private func getPlayerRandomMove() -> Move {
         let moves: [Move] = [.rock, .paper, .scissors]
         return moves[Int.random(in: 0..<moves.count)]

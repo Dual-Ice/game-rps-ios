@@ -66,6 +66,14 @@ final class LeaderView: UIView {
 		rateLabel.textColor = theme.textColor
 		circleImage.image = theme.circle
 	}
+    
+    func resetValues() {
+        numberLabel.text = nil
+        playerImage.image = nil
+        nameLabel.text = nil
+        matchLabel.text = nil
+        rateLabel.text = nil
+    }
 }
 
 // MARK: - Theme View

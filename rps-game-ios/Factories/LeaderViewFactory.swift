@@ -9,14 +9,14 @@ import UIKit
 
 final class LeaderViewFactory {
 
-	static func makeLeaderView(number: Int, player: PlayerLoadingData) -> UIView {
+	static func makeLeaderView(number: Int, player: LeaderBoardPlayer) -> LeaderView {
 		let view = LeaderView()
 
 		view.number = "\(number)"
-		view.image = player.image
+		view.image = player.avatar
 		view.name = player.name
 		view.match = "\(player.score)"
-		view.rate = String(format: "%.0f", player.winRate) + "%"
+		view.rate = String(format: "%.0f", player.rate) + "%"
 		view.layer.cornerRadius = 20
 
 		switch number {

@@ -24,7 +24,7 @@ final class LeaderBoardViewController: UIViewController {
 	private let gameService: GameService
 	
 	private var player: PlayerLoadingData?
-	private var leaderList: [PlayerLoadingData]?
+	private var leaderList: [LeaderBoardPlayer]?
 	
 	// MARK: - Initialization
 
@@ -50,7 +50,7 @@ final class LeaderBoardViewController: UIViewController {
 		setupUI()
 		updatePlayerImage()
 		updatePlayerName()
-		leaderBoardView.fillLeaderList(leaderList?.sorted { $0.score > $1.score } ?? [])
+		leaderBoardView.fillLeaderList(leaderList ?? [])
 	}
 	
 	override func viewDidLayoutSubviews() {
@@ -84,6 +84,10 @@ extension LeaderBoardViewController: ILeaderBoardViewDelegate {
 	func editName() {
 		print("player name")
 	}
+    
+    func didTapBackButton() {
+        navigationController?.popViewController(animated: true)
+    }
 }
 
 // MARK: - Setup UI
