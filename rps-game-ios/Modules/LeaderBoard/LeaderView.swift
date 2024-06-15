@@ -222,7 +222,7 @@ private extension LeaderView {
 struct LeaderViewProvider: PreviewProvider {
 	static var previews: some View {
 		Group {
-			UINavigationController(rootViewController: LeaderBoardViewController()).preview()
+			UINavigationController(rootViewController: LeaderBoardViewController(gameService: GameService())).preview()
 		}
 	}
 }

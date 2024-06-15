@@ -29,6 +29,7 @@ final class LeaderBoardView: UIView {
 	private weak var delegate: ILeaderBoardViewDelegate?
 
 	// MARK: - Private properties
+	private var leaderList: [PlayerLoadingData]?
 
 	private lazy var backgroundLayer: CAGradientLayer = makeGradientLayer()
 
@@ -39,7 +40,9 @@ final class LeaderBoardView: UIView {
 	private lazy var playerNameLabel: UILabel = makeLabel()
 	private lazy var playerNameButton: UIButton = makeButton()
 
-	private lazy var topLeader: UIView = makeLeaderView()
+	private lazy var leaderListView = makeView()
+	private lazy var leaderListStack = makeStackView()
+	private lazy var leaderTableView = makeTableView()
 
 	// MARK: - Initialization
 
@@ -64,6 +67,11 @@ final class LeaderBoardView: UIView {
 		playerNameLabel.text = name
 	}
 
+	func fillLeaderList(_ leaderList: [PlayerLoadingData]) {
+		self.leaderList = leaderList
+		setupLeaderListStak()
+	}
+
 	// MARK: - Private methods
 }
 
@@ -77,6 +85,8 @@ extension LeaderBoardView {
 		addAction()
 
 		setupPlayerImage()
+		setupPlayerNameView()
+		setupLeaderListView()
 	}
 
 	private func makeGradientLayer() -> CAGradientLayer {
@@ -105,9 +115,6 @@ extension LeaderBoardView {
 		let element = UIView()
 
 		element.backgroundColor = .white
-		element.layer.borderWidth = 1
-		element.layer.borderColor = UIColor.CustomColors.grayBorder.cgColor
-		element.layer.cornerRadius = 23
 		element.translatesAutoresizingMaskIntoConstraints = false
 
 		return element
@@ -132,17 +139,22 @@ extension LeaderBoardView {
 		return element
 	}
 
-	private func makeLeaderView() -> UIView {
-		let element = LeaderView()
+	private func makeStackView() -> UIStackView {
+		let element = UIStackView()
 
-		element.number = "10"
-		element.image = UIImage.CustomImage.playerTwoImage
-		element.name = "Harriett Singletrjjjjjj"
-		element.match = "15.220"
-		element.rate = "98%"
-		element.setTheme(.yellow)
-		element.layer.cornerRadius = 20
+		element.axis = .vertical
+		element.spacing = 10
+		element.distribution = .fill
+		element.translatesAutoresizingMaskIntoConstraints = false
+		return element
+	}
 
+	private func makeTableView() -> UITableView {
+		let element = UITableView()
+
+		element.dataSource = self
+		element.delegate = self
+		element.register(LeaderViewCell.self, forCellReuseIdentifier: LeaderViewCell.Identifier)
 		element.translatesAutoresizingMaskIntoConstraints = false
 
 		return element
@@ -182,11 +194,46 @@ extension LeaderBoardView {
 			playerNameButton.trailingAnchor.constraint(equalTo: playerNameView.trailingAnchor),
 			playerNameButton.bottomAnchor.constraint(equalTo: playerNameView.bottomAnchor),
 
-			topLeader.centerYAnchor.constraint(equalTo: centerYAnchor),
-			topLeader.centerXAnchor.constraint(equalTo: centerXAnchor),
-			topLeader.widthAnchor.constraint(equalToConstant: 339),
-			topLeader.heightAnchor.constraint(equalToConstant: 65)
+			leaderListView.topAnchor.constraint(equalTo: playerImage.bottomAnchor, constant: 45),
+			leaderListView.leadingAnchor.constraint(equalTo: leadingAnchor),
+			leaderListView.trailingAnchor.constraint(equalTo: trailingAnchor),
+			leaderListView.bottomAnchor.constraint(equalTo: bottomAnchor),
+
+			leaderListStack.topAnchor.constraint(equalTo: leaderListView.topAnchor, constant: 100),
+			leaderListStack.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+			leaderListStack.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+
+			leaderTableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
 		])
+	}
+}
+
+// MARK: - TableViewDataSource
+
+extension LeaderBoardView: UITableViewDataSource {
+
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		guard let numberOfRows = leaderList?.count, numberOfRows > 3 else { return 0 }
+		return numberOfRows - 3
+	}
+	
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(withIdentifier: LeaderViewCell.Identifier, for: indexPath)
+		guard let cell = cell as? LeaderViewCell else { return UITableViewCell() }
+
+		let player = leaderList![indexPath.row + 3]
+		cell.configure(by: indexPath, with: player)
+		
+		return cell
+	}
+}
+
+// MARK: - TableViewDelegate
+
+extension LeaderBoardView: UITableViewDelegate {
+
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		65
 	}
 }
 
@@ -212,12 +259,14 @@ private extension LeaderBoardView {
 	func addSubviews() {
 		addSubview(playerImage)
 		addSubview(playerNameView)
-		addSubview(topLeader)
+		addSubview(leaderListView)
 
 		playerImage.addSubview(playerImageButton)
 
 		playerNameView.addSubview(playerNameLabel)
 		playerNameView.addSubview(playerNameButton)
+
+		leaderListView.addSubview(leaderListStack)
 	}
 
 	func addAction() {
@@ -228,13 +277,37 @@ private extension LeaderBoardView {
 	func setupPlayerImage() {
 		playerImage.isUserInteractionEnabled = true
 	}
+
+	func setupPlayerNameView() {
+		playerNameView.layer.borderWidth = 1
+		playerNameView.layer.borderColor = UIColor.CustomColors.grayBorder.cgColor
+		playerNameView.layer.cornerRadius = 23
+	}
+
+	func setupLeaderListView() {
+		leaderListView.layer.cornerRadius = 40
+	}
+
+	func setupLeaderListStak() {
+		guard let leaderList else { return }
+
+		let topThere = leaderList.prefix(3)
+		
+		for (index, player) in topThere.enumerated() {
+			let view = LeaderViewFactory.makeLeaderView(number: index, player: player)
+			leaderListStack.addArrangedSubview(view)
+			view.heightAnchor.constraint(equalToConstant: 65).isActive = true
+		}
+		
+		leaderListStack.addArrangedSubview(leaderTableView)
+	}
 }
 
 #if DEBUG
 struct LeaderBoardViewProvider: PreviewProvider {
 	static var previews: some View {
 		Group {
-			UINavigationController(rootViewController: LeaderBoardViewController()).preview()
+			UINavigationController(rootViewController: LeaderBoardViewController(gameService: GameService())).preview()
 		}
 	}
 }

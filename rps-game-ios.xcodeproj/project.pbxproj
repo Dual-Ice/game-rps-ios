@@ -24,10 +24,15 @@
 		11A6509D2C1B0249001A90BD /* GameScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A6509B2C1B0249001A90BD /* GameScreenViewController.swift */; };
 		11A80A1E2C1828ED002F9CE4 /* StartScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A80A1D2C1828ED002F9CE4 /* StartScreenView.swift */; };
 		11A80A262C1895D4002F9CE4 /* RulesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A80A252C1895D4002F9CE4 /* RulesTableViewCell.swift */; };
-		B603C8E62C1D65B000010DF3 /* LeaderBoardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B603C8E52C1D65B000010DF3 /* LeaderBoardModel.swift */; };
-		B6101B782C1C022C00A5E273 /* LeaderBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6101B772C1C022C00A5E273 /* LeaderBoardViewController.swift */; };
-		B6101B7A2C1C039E00A5E273 /* LeaderBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6101B792C1C039E00A5E273 /* LeaderBoardView.swift */; };
-		B6101B7C2C1C5C7C00A5E273 /* LeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6101B7B2C1C5C7C00A5E273 /* LeaderView.swift */; };
+		B603C8E62C1D65B000010DF3 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		B6101B782C1C022C00A5E273 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		B6101B7A2C1C039E00A5E273 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		B6101B7C2C1C5C7C00A5E273 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		B65623772C1DA54600AA0D3A /* LeaderBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65623722C1DA54600AA0D3A /* LeaderBoardView.swift */; };
+		B65623782C1DA54600AA0D3A /* LeaderBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65623732C1DA54600AA0D3A /* LeaderBoardViewController.swift */; };
+		B65623792C1DA54600AA0D3A /* LeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65623742C1DA54600AA0D3A /* LeaderView.swift */; };
+		B656237B2C1DB99D00AA0D3A /* LeaderViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B656237A2C1DB99D00AA0D3A /* LeaderViewFactory.swift */; };
+		B656237D2C1DCDC600AA0D3A /* LeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B656237C2C1DCDC600AA0D3A /* LeaderViewCell.swift */; };
 		D9023F442C15CA7800FF0001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F432C15CA7800FF0001 /* AppDelegate.swift */; };
 		D9023F462C15CA7800FF0001 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F452C15CA7800FF0001 /* SceneDelegate.swift */; };
 		D9023F482C15CA7800FF0001 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023F472C15CA7800FF0001 /* RulesViewController.swift */; };
@@ -63,6 +68,11 @@
 		11A6509B2C1B0249001A90BD /* GameScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScreenViewController.swift; sourceTree = "<group>"; };
 		11A80A1D2C1828ED002F9CE4 /* StartScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenView.swift; sourceTree = "<group>"; };
 		11A80A252C1895D4002F9CE4 /* RulesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesTableViewCell.swift; sourceTree = "<group>"; };
+		B65623722C1DA54600AA0D3A /* LeaderBoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderBoardView.swift; sourceTree = "<group>"; };
+		B65623732C1DA54600AA0D3A /* LeaderBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderBoardViewController.swift; sourceTree = "<group>"; };
+		B65623742C1DA54600AA0D3A /* LeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderView.swift; sourceTree = "<group>"; };
+		B656237A2C1DB99D00AA0D3A /* LeaderViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderViewFactory.swift; sourceTree = "<group>"; };
+		B656237C2C1DCDC600AA0D3A /* LeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderViewCell.swift; sourceTree = "<group>"; };
 		D9023F402C15CA7800FF0001 /* EPIC RPS Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EPIC RPS Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9023F432C15CA7800FF0001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9023F452C15CA7800FF0001 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -159,13 +169,13 @@
 			path = StartScreen;
 			sourceTree = "<group>";
 		};
-		B6101B762C1C019A00A5E273 /* LeaderBoard */ = {
+		B65623752C1DA54600AA0D3A /* LeaderBoard */ = {
 			isa = PBXGroup;
 			children = (
-				B6101B772C1C022C00A5E273 /* LeaderBoardViewController.swift */,
-				B6101B792C1C039E00A5E273 /* LeaderBoardView.swift */,
-				B6101B7B2C1C5C7C00A5E273 /* LeaderView.swift */,
-				B603C8E52C1D65B000010DF3 /* LeaderBoardModel.swift */,
+				B65623722C1DA54600AA0D3A /* LeaderBoardView.swift */,
+				B65623732C1DA54600AA0D3A /* LeaderBoardViewController.swift */,
+				B65623742C1DA54600AA0D3A /* LeaderView.swift */,
+				B656237C2C1DCDC600AA0D3A /* LeaderViewCell.swift */,
 			);
 			path = LeaderBoard;
 			sourceTree = "<group>";
@@ -239,6 +249,7 @@
 				D906EB3F2C1979400090EA9C /* FightResult */,
 				D9023F572C160D0700FF0001 /* Rules */,
 				11A80A1C2C1827FF002F9CE4 /* StartScreen */,
+				B65623752C1DA54600AA0D3A /* LeaderBoard */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -268,6 +279,7 @@
 			children = (
 				D93C69052C1763220033BF0E /* ButtonFactory.swift */,
 				D93C69072C178F5A0033BF0E /* LabelFactory.swift */,
+				B656237A2C1DB99D00AA0D3A /* LeaderViewFactory.swift */,
 			);
 			path = Factories;
 			sourceTree = "<group>";
@@ -353,11 +365,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B65623782C1DA54600AA0D3A /* LeaderBoardViewController.swift in Sources */,
 				11A6509D2C1B0249001A90BD /* GameScreenViewController.swift in Sources */,
 				D9023F5E2C1611C700FF0001 /* RulesView.swift in Sources */,
 				D906EB412C1979400090EA9C /* FightResultViewController.swift in Sources */,
+				B65623792C1DA54600AA0D3A /* LeaderView.swift in Sources */,
 				1127501D2C1C52D400A970BA /* CustomMusicButton.swift in Sources */,
 				D9B7035D2C1B607700616455 /* GameService.swift in Sources */,
+				B656237D2C1DCDC600AA0D3A /* LeaderViewCell.swift in Sources */,
 				11A80A1E2C1828ED002F9CE4 /* StartScreenView.swift in Sources */,
 				11A80A262C1895D4002F9CE4 /* RulesTableViewCell.swift in Sources */,
 				D93C69062C1763220033BF0E /* ButtonFactory.swift in Sources */,
@@ -366,19 +381,21 @@
 				117937892C19C06F00652C75 /* SettingsViewController.swift in Sources */,
 				D9023F482C15CA7800FF0001 /* RulesViewController.swift in Sources */,
 				117937712C181E2D00652C75 /* FontExtension .swift in Sources */,
+				B656237B2C1DB99D00AA0D3A /* LeaderViewFactory.swift in Sources */,
 				D93C69082C178F5A0033BF0E /* LabelFactory.swift in Sources */,
 				D9C4A8182C1CDD8500010056 /* TimeManager.swift in Sources */,
 				D9023F442C15CA7800FF0001 /* AppDelegate.swift in Sources */,
-				B603C8E62C1D65B000010DF3 /* LeaderBoardModel.swift in Sources */,
+				B603C8E62C1D65B000010DF3 /* (null) in Sources */,
 				117937862C19872F00652C75 /* LoadScreenViewController.swift in Sources */,
 				1179378B2C19C08400652C75 /* SettingsView.swift in Sources */,
 				D9023F462C15CA7800FF0001 /* SceneDelegate.swift in Sources */,
-				B6101B7C2C1C5C7C00A5E273 /* LeaderView.swift in Sources */,
+				B6101B7C2C1C5C7C00A5E273 /* (null) in Sources */,
 				117937842C1986FB00652C75 /* LoadScreenView.swift in Sources */,
+				B65623772C1DA54600AA0D3A /* LeaderBoardView.swift in Sources */,
 				11973DFF2C17497C00DC011E /* StartScreenViewController.swift in Sources */,
-				B6101B782C1C022C00A5E273 /* LeaderBoardViewController.swift in Sources */,
+				B6101B782C1C022C00A5E273 /* (null) in Sources */,
 				D906EB402C1979400090EA9C /* FightResultView.swift in Sources */,
-				B6101B7A2C1C039E00A5E273 /* LeaderBoardView.swift in Sources */,
+				B6101B7A2C1C039E00A5E273 /* (null) in Sources */,
 				D906EB3C2C1979370090EA9C /* UIViewController+Preview.swift in Sources */,
 				D9B703602C1B773000616455 /* Player.swift in Sources */,
 				D9B703622C1B8A4700616455 /* ActionCell.swift in Sources */,

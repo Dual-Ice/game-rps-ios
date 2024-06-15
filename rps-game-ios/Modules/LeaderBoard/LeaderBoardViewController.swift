@@ -15,19 +15,29 @@ final class LeaderBoardViewController: UIViewController {
 	// MARK: - Outlets
 	
 	// MARK: - Public properties
-	
-	/// Картинка игрока.
-	var player: LeaderBoardModel.Player?
-	/// Имя игрока
-	var leaderList: [LeaderBoardModel.Leader]?
-	
+
 	// MARK: - Dependencies
 	
 	// MARK: - Private properties
 	
 	private lazy var leaderBoardView = LeaderBoardView(delegate: self)
+	private let gameService: GameService
+	
+	private var player: PlayerLoadingData?
+	private var leaderList: [PlayerLoadingData]?
 	
 	// MARK: - Initialization
+
+	init(gameService: GameService) {
+		self.gameService = gameService
+		player = gameService.getBottomPlayer()
+		leaderList = gameService.getLeaderList()
+		super.init(nibName: nil, bundle: nil)
+	}
+	
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
 	
 	// MARK: - Lifecycle
 	
@@ -40,6 +50,7 @@ final class LeaderBoardViewController: UIViewController {
 		setupUI()
 		updatePlayerImage()
 		updatePlayerName()
+		leaderBoardView.fillLeaderList(leaderList?.sorted { $0.score > $1.score } ?? [])
 	}
 	
 	override func viewDidLayoutSubviews() {
@@ -91,7 +102,7 @@ private extension LeaderBoardViewController {
 struct LeaderBoardViewControllerProvider: PreviewProvider {
 	static var previews: some View {
 		Group {
-			UINavigationController(rootViewController: LeaderBoardViewController()).preview()
+			UINavigationController(rootViewController: LeaderBoardViewController(gameService: GameService())).preview()
 		}
 	}
 }

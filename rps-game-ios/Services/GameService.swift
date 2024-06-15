@@ -30,6 +30,10 @@ struct PlayerLoadingData {
     let image: UIImage
     let win: Int
     let lose: Int
+
+	var name = ""
+	var score = 0
+	var winRate = 0.0
 }
 
 class GameService {
@@ -95,6 +99,60 @@ class GameService {
             PlayerLoadingData(image: playerBottom.avatar, win: playerBottom.gameWin, lose: playerBottom.gameLose)
         ]
     }
+
+	func getBottomPlayer() -> PlayerLoadingData {
+		PlayerLoadingData(
+			image: playerBottom.avatar,
+			win: playerBottom.gameWin,
+			lose: playerBottom.gameLose,
+			name: playerBottom.name
+		)
+	}
+
+	func getLeaderList() -> [PlayerLoadingData] {
+		[
+			PlayerLoadingData(
+				image: playerTop.avatar,
+				win: playerTop.gameWin, 
+				lose: playerTop.gameLose,
+				name: playerTop.name,
+				score: playerTop.score,
+				winRate: playerTop.winRate
+			),
+			PlayerLoadingData(
+				image: playerBottom.avatar,
+				win: playerBottom.gameWin,
+				lose: playerBottom.gameLose,
+				name: playerBottom.name,
+				score: playerBottom.score,
+				winRate: playerBottom.winRate
+			),
+			PlayerLoadingData(
+				image: playerTop.avatar,
+				win: playerTop.gameWin,
+				lose: playerTop.gameLose,
+				name: playerTop.name,
+				score: 1000,
+				winRate: 98
+			),
+			PlayerLoadingData(
+				image: playerBottom.avatar,
+				win: playerBottom.gameWin,
+				lose: playerBottom.gameLose,
+				name: playerBottom.name,
+				score: 1500,
+				winRate: 99
+			),
+			PlayerLoadingData(
+				image: playerBottom.avatar,
+				win: playerBottom.gameWin,
+				lose: playerBottom.gameLose,
+				name: playerBottom.name,
+				score: 6500,
+				winRate: 99
+			)
+		]
+	}
     
     func getPlayersAvatars() -> [UIImage] {
         return [playerTop.avatar, playerBottom.avatar]
