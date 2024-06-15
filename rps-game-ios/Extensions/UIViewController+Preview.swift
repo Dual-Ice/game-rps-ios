@@ -19,7 +19,7 @@ extension UIViewController {
 		func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) { }
 	}
 	
-	func previw() -> some View {
+	func preview() -> some View {
 		Preview(viewController: self).edgesIgnoringSafeArea(.all)
 	}
 }
