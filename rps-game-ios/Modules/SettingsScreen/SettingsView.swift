@@ -8,26 +8,32 @@
 import UIKit
 
 protocol SettingsViewDelegate: AnyObject {
-    func didTapGoBackButton()
-}
-
-protocol SettingsTimeGameDelegate: AnyObject {
-    func didSetTimeGame(_ time: Int) -> Int
+    func didTapBackButton()
 }
 
 class SettingsView: UIView {
+    
+    weak var delegate: SettingsViewDelegate?
     // MARK: - Private properties
     
-    private let returnToStartSrceen: UIButton = {
+    private var selectedTime: Int = 30 {
+        didSet {
+            updateButtonStates()
+        }
+    }
+    
+    //Back button
+    private lazy var backButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setBackgroundImage(UIImage(named: "backButton"), for: .normal)
-        button.imageView?.contentMode = .scaleAspectFit
+        button.setImage(UIImage.CustomImage.arrowLeft, for: .normal)
+        button.tintColor = .black
         button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        
         return button
     }()
     
-    weak var delegate: SettingsViewDelegate?
-    weak var timeDelegate: SettingsTimeGameDelegate?
     
     //Title label
     private lazy var titleLabel: UILabel = {
@@ -67,37 +73,20 @@ class SettingsView: UIView {
         return view
     }()
     
+    // 30 seconds button
+    private lazy var button30: UIButton = {
+        let button = createGameTimeButton(withTitle: "30 сек.", time: 30)
+        return button
+    }()
+    
+    // 60 seconds button
+    private lazy var button60: UIButton = {
+        let button = createGameTimeButton(withTitle: "60 сек.", time: 60)
+        return button
+    }()
+    
     //StackView for time button
     private lazy var gameTimeStackView: UIStackView = {
-        let button30 = UIButton(type: .system)
-        let attributedTitle30 = NSAttributedString(
-            string: "30 сек.",
-            attributes: [
-                .font : RubikFont.Bold.size(of: 16),
-                .foregroundColor : UIColor.white
-            ]
-        )
-        button30.setAttributedTitle(attributedTitle30, for: .normal)
-        button30.backgroundColor = UIColor(red: 241/255, green: 170/255, blue: 131/255, alpha: 1)
-        button30.layer.cornerRadius = 10
-        button30.translatesAutoresizingMaskIntoConstraints = false
-        
-        button30.addTarget(self, action: #selector(setThirtyTimer), for: .touchUpInside)
-        
-        let button60 = UIButton(type: .system)
-        let attributedTitle60 = NSAttributedString(
-            string: "60 сек.",
-            attributes: [
-                .font : RubikFont.Bold.size(of: 16),
-                .foregroundColor : UIColor.white
-            ]
-        )
-        button60.setAttributedTitle(attributedTitle60, for: .normal)
-        button60.backgroundColor = UIColor(red: 241/255, green: 170/255, blue: 131/255, alpha: 1)
-        button60.layer.cornerRadius = 10
-        button60.translatesAutoresizingMaskIntoConstraints = false
-        
-        button60.addTarget(self, action: #selector(setSixtyTimer), for: .touchUpInside)
         
         let stackView = UIStackView(arrangedSubviews: [button30, button60])
         stackView.axis = .horizontal
@@ -124,10 +113,15 @@ class SettingsView: UIView {
         return view
     }()
     
+    // Music Button
+      private lazy var musicButton: CustomMusicButton = {
+          let button = CustomMusicButton()
+          button.translatesAutoresizingMaskIntoConstraints = false
+          return button
+      }()
+    
     //StackView for music button and switch
     private lazy var gameMusicStackView: UIStackView = {
-        
-        let button = CustomMusicButton()
         
         let friendModeView = UIView()
         friendModeView.backgroundColor = UIColor(red: 241/255, green: 170/255, blue: 131/255, alpha: 1)
@@ -160,7 +154,7 @@ class SettingsView: UIView {
             toggle.trailingAnchor.constraint(equalTo: friendModeView.trailingAnchor, constant: -10)
         ])
         
-        let stackView = UIStackView(arrangedSubviews: [button, friendModeView])
+        let stackView = UIStackView(arrangedSubviews: [musicButton, friendModeView])
         stackView.axis = .vertical
         stackView.spacing = 22
         stackView.distribution = .fillEqually
@@ -174,28 +168,14 @@ class SettingsView: UIView {
         super.init(frame: frame)
         setViews()
         layoutViews()
-        returnToStartSrceen.addTarget(self, action: #selector(toStartScreenView), for: .touchUpInside)
-        
+        updateButtonStates()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setViews()
         layoutViews()
-        returnToStartSrceen.addTarget(self, action: #selector(toStartScreenView), for: .touchUpInside)
-    }
-    
-    
-    @objc func toStartScreenView() {
-        delegate?.didTapGoBackButton()
-    }
-    
-    @objc func setThirtyTimer() {
-        timeDelegate?.didSetTimeGame(30)
-    }
-    
-    @objc func setSixtyTimer() {
-        timeDelegate?.didSetTimeGame(60)
+        updateButtonStates()
     }
     
     // MARK: - Layout Views
@@ -233,30 +213,68 @@ class SettingsView: UIView {
             gameMusicStackView.trailingAnchor.constraint(equalTo: backgroundViewForMusic.trailingAnchor, constant: -18),
             gameMusicStackView.bottomAnchor.constraint(equalTo: backgroundViewForMusic.bottomAnchor, constant: -25),
             
-            //            return button constraints
-            returnToStartSrceen.widthAnchor.constraint(equalToConstant: 11),
-            returnToStartSrceen.heightAnchor.constraint(equalToConstant: 19),
-            returnToStartSrceen.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 14),
-            returnToStartSrceen.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 30)
+            backButton.topAnchor.constraint(equalTo: titleLabel.topAnchor),
+            backButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 23),
+            backButton.heightAnchor.constraint(equalTo: titleLabel.heightAnchor),
+            backButton.widthAnchor.constraint(equalToConstant: 11)
+            
         ])
     }
     
     // MARK: - Setup Views
+    private func createGameTimeButton(withTitle title: String, time: Int) -> UIButton {
+        let button = UIButton(type: .system)
+        let attributedTitle = NSAttributedString(
+            string: title,
+            attributes: [
+                .font : RubikFont.Bold.size(of: 16),
+                .foregroundColor : UIColor.white
+            ]
+        )
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        button.backgroundColor = UIColor(red: 241/255, green: 170/255, blue: 131/255, alpha: 1)
+        button.layer.cornerRadius = 10
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.tag = time
+        button.addTarget(self, action: #selector(gameTimeButtonTapped(_:)), for: .touchUpInside)
+        return button
+    }
+    
+    private func updateButtonStates() {
+        button30.backgroundColor = selectedTime == 30 ? .darkGray : UIColor(red: 241/255, green: 170/255, blue: 131/255, alpha: 1)
+        button60.backgroundColor = selectedTime == 60 ? .darkGray : UIColor(red: 241/255, green: 170/255, blue: 131/255, alpha: 1)
+    }
+    
+    @objc private func gameTimeButtonTapped(_ sender: UIButton) {
+        selectedTime = sender.tag
+    }
+    
     func setViews() {
         backgroundColor = .white
         
         [
             titleLabel,
-            returnToStartSrceen,
             backgroundViewForGameTime,
             backgroundViewForMusic,
+            backButton
         ].forEach { addSubview($0) }
         
         backgroundViewForGameTime.addSubview(gameTimeStackView)
         backgroundViewForGameTime.addSubview(gameTimeLabel)
         
         backgroundViewForMusic.addSubview(gameMusicStackView)
+        
+    }
+    
+    //MARK: - Selectors
+    
+    @objc func backButtonTapped() {
+        delegate?.didTapBackButton()
+    }
+    
+    //MARK: - Functions
+    func getMusicButton() -> CustomMusicButton {
+        return musicButton
     }
     
 }
-

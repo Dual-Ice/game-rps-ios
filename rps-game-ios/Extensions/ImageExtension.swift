@@ -25,5 +25,6 @@ extension UIImage {
         static let scissorsIcon = UIImage(named: "scissorsIcon")
         static let rockIcon = UIImage(named: "rockIcon")
         static let paperIcon = UIImage(named: "paperIcon")
+        static let arrowLeft = UIImage(named: "Arrow")
     }
 }
