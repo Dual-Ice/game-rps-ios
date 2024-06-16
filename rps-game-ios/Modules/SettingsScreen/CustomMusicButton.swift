@@ -7,6 +7,11 @@
 
 import UIKit
 
+struct MusicItem {
+    let label: String
+    let value: String
+}
+
 protocol CustomMusicButtonDelegate: AnyObject {
     func customMusicButton(_ button: CustomMusicButton, didSelectMusic music: String)
 }
@@ -19,7 +24,10 @@ final class CustomMusicButton: UIButton {
     
     private let dropdownTableView = UITableView()
     private var isDropdownVisible = false
-    private let dropdownItem = ["Мелодия 1", "Мелодия 2"]
+    private let dropdownItem = [
+        MusicItem(label: "Мелодия 1", value: "background1"),
+        MusicItem(label: "Мелодия 2", value: "background2")
+    ]
     
     weak var delegate: CustomMusicButtonDelegate?
     
@@ -35,6 +43,14 @@ final class CustomMusicButton: UIButton {
         addViews()
         layoutViews()
         configure()
+    }
+    
+    func setMusicItem(_ value: String) {
+        if let selectedMusic = dropdownItem.first(where: { $0.value == value }) {
+            secondLabel.text = selectedMusic.label
+        } else {
+            secondLabel.text = "Мелодия 1"
+        }
     }
     
 }
@@ -130,16 +146,16 @@ extension CustomMusicButton: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DropdownCell", for: indexPath)
-        cell.textLabel?.text = dropdownItem[indexPath.row]
+        cell.textLabel?.text = dropdownItem[indexPath.row].label
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedMusic = dropdownItem[indexPath.row]
-        secondLabel.text = selectedMusic
+        secondLabel.text = selectedMusic.label
         isDropdownVisible = false
         dropdownTableView.isHidden = true
-        delegate?.customMusicButton(self, didSelectMusic: selectedMusic)
+        delegate?.customMusicButton(self, didSelectMusic: selectedMusic.value)
     }
     
 }
