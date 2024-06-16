@@ -12,6 +12,7 @@ final class AudioPleerController {
     
     private var buttonClickPlayer: AVAudioPlayer?
     private var backgroundMusicPlayer: AVAudioPlayer?
+    private var punchMusicPlayer: AVAudioPlayer?
     
     init(backgroundMusicFileName: String) {
         if let buttonClickURL = Bundle.main.url(forResource: SoundFiles.buttonClick, withExtension: "mp3") {
@@ -19,6 +20,14 @@ final class AudioPleerController {
                 buttonClickPlayer = try AVAudioPlayer(contentsOf: buttonClickURL)
             } catch {
                 print("Ошибка инициализации AVAudioPlayer для звука кнопки: \(error)")
+            }
+        }
+        
+        if let punchSoundURL = Bundle.main.url(forResource: SoundFiles.punch, withExtension: "mp3") {
+            do {
+                punchMusicPlayer = try AVAudioPlayer(contentsOf: punchSoundURL)
+            } catch {
+                print("Ошибка инициализации AVAudioPlayer для звука удара: \(error)")
             }
         }
         
@@ -38,6 +47,10 @@ final class AudioPleerController {
     
     func playBackgroundMusic() {
         backgroundMusicPlayer?.play()
+    }
+    
+    func playPunchSound() {
+        punchMusicPlayer?.play()
     }
     
     func stopBackgroundMusic() {

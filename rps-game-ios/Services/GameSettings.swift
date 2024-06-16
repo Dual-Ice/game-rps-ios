@@ -8,26 +8,35 @@
 import UIKit
 
 class GameSettings {
-    
     static let shared = GameSettings()
     
     private var defaultSettings: Settings
     
     init () {
-        defaultSettings = Settings(time: 30, music: "background1", is2PlayersGame: false)
+        defaultSettings = Settings(
+            time: 30,
+            music: "background1",
+            is2PlayersGame: false
+        )
     }
 
-//    загрузка (отдает модель либо генерирует стандартную и ее отдает)
-    func getSettingsLoad() {
-        defaultSettings.time
+    func getSettingsLoad() -> Settings {
+        let decoder = JSONDecoder()
+        
+        if let gameSettings = UserDefaults.standard.data(forKey: "gameSettings"),
+           let settings = try? decoder.decode(Settings.self, from: gameSettings) {
+            return settings
+        }
+        
+        return defaultSettings
     }
     
-//    сохранение (принимает модель)
-
-    
+    func saveSettings(_ settings: Settings) {
+        let encoder = JSONEncoder()
+        if let encodedGameSettings = try? encoder.encode(settings) {
+            UserDefaults.standard.set(encodedGameSettings, forKey: "gameSettings")
+        }
+    }
 }
 
 
-
-//Далее при измении любого из параметров сохранял бы ее обратно в userdefaults либо сохранял перед тем как контроллер исчезнет
-//Далее когда экран с игрой загрузится - берем эту модель из UD или создаем дефолтную и пользуемся

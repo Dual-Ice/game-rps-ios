@@ -24,6 +24,7 @@ protocol GameServiceViewProtocol: AnyObject {
     func showPlayersMoves(playerTopMove: Move, playerBottomMove: Move)
     func showDraw()
     func updateScore(score: Int, side: PlayerSide)
+    func animatePunch()
 }
 
 struct PlayerLoadingData {
@@ -75,6 +76,7 @@ class GameService {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
             guard let self = self else { return }
             self.view?.showPlayersMoves(playerTopMove: playerTopMove, playerBottomMove: playerBottomMove)
+            if roundResult != .draw { view.animatePunch() }
 
             switch roundResult {
             case .win:

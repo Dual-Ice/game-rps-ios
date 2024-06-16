@@ -9,6 +9,8 @@ import UIKit
 
 protocol SettingsViewDelegate: AnyObject {
     func didTapBackButton()
+    func setTwoPlayersGame(state: Bool)
+    func changeTime(time: Int)
 }
 
 class SettingsView: UIView {
@@ -122,6 +124,13 @@ class SettingsView: UIView {
           return button
       }()
     
+    private let toggleSwitch: UISwitch = {
+        let toggle = UISwitch()
+        toggle.isOn = true
+        toggle.translatesAutoresizingMaskIntoConstraints = false
+        return toggle
+    }()
+    
     //StackView for music button and switch
     private lazy var gameMusicStackView: UIStackView = {
         
@@ -141,19 +150,15 @@ class SettingsView: UIView {
         label.attributedText = attributedTitleLabel
         label.translatesAutoresizingMaskIntoConstraints = false
         
-        let toggle = UISwitch()
-        toggle.isOn = true
-        toggle.translatesAutoresizingMaskIntoConstraints = false
-        
         friendModeView.addSubview(label)
-        friendModeView.addSubview(toggle)
+        friendModeView.addSubview(toggleSwitch)
         
         NSLayoutConstraint.activate([
             label.centerYAnchor.constraint(equalTo: friendModeView.centerYAnchor),
             label.leadingAnchor.constraint(equalTo: friendModeView.leadingAnchor, constant: 10),
             
-            toggle.centerYAnchor.constraint(equalTo: friendModeView.centerYAnchor),
-            toggle.trailingAnchor.constraint(equalTo: friendModeView.trailingAnchor, constant: -10)
+            toggleSwitch.centerYAnchor.constraint(equalTo: friendModeView.centerYAnchor),
+            toggleSwitch.trailingAnchor.constraint(equalTo: friendModeView.trailingAnchor, constant: -10)
         ])
         
         let stackView = UIStackView(arrangedSubviews: [musicButton, friendModeView])
@@ -178,6 +183,12 @@ class SettingsView: UIView {
         setViews()
         layoutViews()
         updateButtonStates()
+    }
+    
+    func fillSettings(_ settings: Settings) {
+        selectedTime = settings.time
+        toggleSwitch.isOn = settings.is2PlayersGame
+        musicButton.setMusicItem(settings.music)
     }
     
     // MARK: - Layout Views
@@ -266,12 +277,25 @@ class SettingsView: UIView {
         
         backgroundViewForMusic.addSubview(gameMusicStackView)
         
+        toggleSwitch.addTarget(self, action: #selector(didChangeToggle(_:)), for: .valueChanged)
+        button30.addTarget(self, action: #selector(timeChanged(_:)), for: .touchUpInside)
+        button60.addTarget(self, action: #selector(timeChanged(_:)), for: .touchUpInside)
+                
+        
     }
     
     //MARK: - Selectors
     
+    @objc func timeChanged(_ sender: UIButton) {
+        delegate?.changeTime(time: sender.tag)
+    }
+    
     @objc func backButtonTapped() {
         delegate?.didTapBackButton()
+    }
+    
+    @objc func didChangeToggle(_ sender: UISwitch) {
+        delegate?.setTwoPlayersGame(state: sender.isOn)
     }
     
     //MARK: - Functions
