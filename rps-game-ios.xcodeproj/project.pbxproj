@@ -27,6 +27,7 @@
 		11A6509D2C1B0249001A90BD /* GameScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A6509B2C1B0249001A90BD /* GameScreenViewController.swift */; };
 		11A80A1E2C1828ED002F9CE4 /* StartScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A80A1D2C1828ED002F9CE4 /* StartScreenView.swift */; };
 		11A80A262C1895D4002F9CE4 /* RulesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A80A252C1895D4002F9CE4 /* RulesTableViewCell.swift */; };
+		11A9AD252C1E07A5009F9BD4 /* UIImageView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A9AD242C1E07A5009F9BD4 /* UIImageView+Animation.swift */; };
 		B603C8E62C1D65B000010DF3 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		B6101B782C1C022C00A5E273 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		B6101B7A2C1C039E00A5E273 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -53,6 +54,7 @@
 		D9BFFF082C1DD7FF00C92388 /* AudioPleerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BFFF072C1DD7FF00C92388 /* AudioPleerController.swift */; };
 		D9BFFF0A2C1DFB8C00C92388 /* NameModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BFFF092C1DFB8C00C92388 /* NameModalView.swift */; };
 		D9BFFF0C2C1E0C6800C92388 /* AvatarModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BFFF0B2C1E0C6800C92388 /* AvatarModalView.swift */; };
+		D9BFFF0E2C1ECDFB00C92388 /* punch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BFFF0D2C1ECDFB00C92388 /* punch.mp3 */; };
 		D9C4A8182C1CDD8500010056 /* TimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C4A8172C1CDD8500010056 /* TimeManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +79,7 @@
 		11A6509B2C1B0249001A90BD /* GameScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScreenViewController.swift; sourceTree = "<group>"; };
 		11A80A1D2C1828ED002F9CE4 /* StartScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenView.swift; sourceTree = "<group>"; };
 		11A80A252C1895D4002F9CE4 /* RulesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesTableViewCell.swift; sourceTree = "<group>"; };
+		11A9AD242C1E07A5009F9BD4 /* UIImageView+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Animation.swift"; sourceTree = "<group>"; };
 		B65623722C1DA54600AA0D3A /* LeaderBoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderBoardView.swift; sourceTree = "<group>"; };
 		B65623732C1DA54600AA0D3A /* LeaderBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderBoardViewController.swift; sourceTree = "<group>"; };
 		B65623742C1DA54600AA0D3A /* LeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderView.swift; sourceTree = "<group>"; };
@@ -101,6 +104,7 @@
 		D9BFFF072C1DD7FF00C92388 /* AudioPleerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPleerController.swift; sourceTree = "<group>"; };
 		D9BFFF092C1DFB8C00C92388 /* NameModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameModalView.swift; sourceTree = "<group>"; };
 		D9BFFF0B2C1E0C6800C92388 /* AvatarModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarModalView.swift; sourceTree = "<group>"; };
+		D9BFFF0D2C1ECDFB00C92388 /* punch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = punch.mp3; sourceTree = "<group>"; };
 		D9C4A8172C1CDD8500010056 /* TimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -131,6 +135,7 @@
 				117937792C182C3A00652C75 /* SoundExtension.swift */,
 				117937722C1823F300652C75 /* ImageExtension.swift */,
 				117937802C18785500652C75 /* ColorExtension.swift */,
+				11A9AD242C1E07A5009F9BD4 /* UIImageView+Animation.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -141,6 +146,7 @@
 				112750202C1DB93B00A970BA /* background2.mp3 */,
 				117937772C182B5200652C75 /* background1.mp3 */,
 				117937752C182B1B00652C75 /* buttonClick.mp3 */,
+				D9BFFF0D2C1ECDFB00C92388 /* punch.mp3 */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -372,6 +378,7 @@
 				117937762C182B1B00652C75 /* buttonClick.mp3 in Resources */,
 				D9023F4D2C15CA7A00FF0001 /* Assets.xcassets in Resources */,
 				112750212C1DB93B00A970BA /* background2.mp3 in Resources */,
+				D9BFFF0E2C1ECDFB00C92388 /* punch.mp3 in Resources */,
 				117937782C182B5200652C75 /* background1.mp3 in Resources */,
 				D9023F502C15CA7A00FF0001 /* Base in Resources */,
 			);
@@ -392,6 +399,7 @@
 				D906EB412C1979400090EA9C /* FightResultViewController.swift in Sources */,
 				B65623792C1DA54600AA0D3A /* LeaderView.swift in Sources */,
 				1127501D2C1C52D400A970BA /* CustomMusicButton.swift in Sources */,
+				11A9AD252C1E07A5009F9BD4 /* UIImageView+Animation.swift in Sources */,
 				D9B7035D2C1B607700616455 /* GameService.swift in Sources */,
 				B656237D2C1DCDC600AA0D3A /* LeaderViewCell.swift in Sources */,
 				11A80A1E2C1828ED002F9CE4 /* StartScreenView.swift in Sources */,
@@ -573,8 +581,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "EPIC RPS Game";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -583,9 +590,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.anyteam.rps-game-ios";
 				PRODUCT_NAME = "EPIC RPS Game";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -601,8 +612,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "EPIC RPS Game";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -611,9 +621,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.anyteam.rps-game-ios";
 				PRODUCT_NAME = "EPIC RPS Game";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
