@@ -15,7 +15,7 @@ final class GameScreenView: UIView {
     
     // MARK: - Dependencies
     weak var delegate: GameScreenViewDelegate?
-        
+    
     // MARK: - Private properties
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
@@ -24,7 +24,7 @@ final class GameScreenView: UIView {
         imageView.image = UIImage.CustomImage.backgroundImage
         return imageView
     }()
-            
+    
     private let topCharacterImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -57,6 +57,15 @@ final class GameScreenView: UIView {
         let imageView = UIImageView()
         imageView.image = UIImage.CustomImage.femaleHandImage
         imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    let bloodImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage.CustomImage.blood
+        imageView.contentMode = .scaleAspectFit
+        imageView.isHidden = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -159,6 +168,7 @@ private extension GameScreenView {
         [
             backgroundImageView,
             topHandImageView,
+            bloodImageView,
             timerProgressView,
             timerLabel,
             centralLabel,
@@ -190,6 +200,9 @@ private extension GameScreenView {
             
             topHandImageView.bottomAnchor.constraint(equalTo: centerYAnchor, constant: -120),
             topHandImageView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: -40),
+            
+            bloodImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            bloodImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
             
             timerProgressView.widthAnchor.constraint(equalToConstant: 200),
             timerProgressView.heightAnchor.constraint(equalToConstant: 10),

@@ -11,5 +11,6 @@ enum SoundFiles {
     static let buttonClick = "buttonClick"
     static let backgroundMusic = "background1"
     static let backgroundMusic2 = "background2"
+    static let punch = "punch"
 }
 
