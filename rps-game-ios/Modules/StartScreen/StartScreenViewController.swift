@@ -43,11 +43,7 @@ extension StartScreenViewController: StartScreenViewDelegate {
         navigationController?.pushViewController(loadingVC, animated: true)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            let gameVC = GameScreenViewController(
-                gameService: GameSettings.shared.getSettingsLoad().is2PlayersGame
-                            ? self.gameServiceTwoPlayer
-                            : self.gameService
-            )
+            let gameVC = GameScreenViewController(gameService:self.gameService)
             self.navigationController?.pushViewController(gameVC, animated: true)
         }
     }

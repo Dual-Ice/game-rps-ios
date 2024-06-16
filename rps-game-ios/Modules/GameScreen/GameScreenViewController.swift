@@ -12,15 +12,19 @@ enum PlayerSide {
     case bottom
 }
 
-final class GameScreenViewController: UIViewController {
+class GameScreenViewController: UIViewController {
     
     private let gameScreenView = GameScreenView()
-    private var gameService: GameService
-    private var gameSettings: Settings
+    var gameService: GameService
+    var gameSettings: Settings
     
-    private var musicService: AudioPleerController
+    var musicService: AudioPleerController
     
     private var leftTime: Int!
+    
+    var isTopPlayerMove = false
+    var playerTopMove: Move?
+    var playerBottomMove: Move?
     
     private var selectedActionButton: UIButton?
     
@@ -42,7 +46,10 @@ final class GameScreenViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.navigationBar.isHidden = false
-        gameScreenView.playerSelectorButton.isHidden = !gameSettings.is2PlayersGame
+        if gameSettings.is2PlayersGame {
+            gameScreenView.playerSelectorButton.isHidden = false
+            gameScreenView.playerSelectorButton.isEnabled = false
+        }
         gameService.reset()
         musicService.playBackgroundMusic()
         startGame()
@@ -57,22 +64,55 @@ final class GameScreenViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
-    init(gameService: GameServiceTwoPlayer) {
-        self.gameService = gameService
-        
-        self.gameSettings = GameSettings.shared.getSettingsLoad()
-        self.musicService = AudioPleerController(backgroundMusicFileName: self.gameSettings.music)
-    
-        super.init(nibName: nil, bundle: nil)
-    }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
 
 extension GameScreenViewController: GameScreenViewDelegate {
+    func selectorButtonPressed(_ sender: UIButton) {
+        isTopPlayerMove = true
+        switchStateForActionButtons(true)
+        TimeManager.shared.start()
+        sender.isEnabled = false
+    }
+    
     func actionButtonPressed(_ sender: UIButton) {
+        if gameSettings.is2PlayersGame {
+            
+            if !isTopPlayerMove && playerBottomMove == nil {
+                
+                playerBottomMove = Move(rawValue: sender.tag)!
+                TimeManager.shared.stop()
+                musicService.playMusicClick()
+                resetTimer()
+                switchStateForActionButtons(false)
+                gameScreenView.playerSelectorButton.isEnabled = true
+            
+                return
+            }
+            
+            if isTopPlayerMove && playerTopMove == nil {
+                
+                playerTopMove = Move(rawValue: sender.tag)!
+                TimeManager.shared.stop()
+                musicService.playMusicClick()
+                switchStateForActionButtons(false)
+                gameService.playTwoPlayer(
+                    playerTopMove: playerTopMove ?? .paper,
+                    playerBottomMove: playerBottomMove ?? .paper
+                )
+                isTopPlayerMove = false
+                playerTopMove = nil
+                playerBottomMove = nil
+                gameScreenView.playerSelectorButton.isEnabled = true
+                
+                return
+            }
+            
+            return
+        }
+        
         gameService.play(playerBottomMove: Move(rawValue: sender.tag)!)
         sender.tintColor = UIColor.CustomColors.pastelYellowText
         selectedActionButton = sender
@@ -80,6 +120,8 @@ extension GameScreenViewController: GameScreenViewDelegate {
         TimeManager.shared.stop()
         musicService.playMusicClick()
     }
+    
+    
 }
 
 
@@ -87,12 +129,22 @@ extension GameScreenViewController: GameScreenViewDelegate {
 private extension GameScreenViewController {
     @objc func pauseGame() {
         if TimeManager.shared.isRun() {
+            
+            if gameSettings.is2PlayersGame {
+                gameScreenView.playerSelectorButton.isEnabled = false
+            }
+            
             TimeManager.shared.stop()
             navigationItem.rightBarButtonItem?.tintColor = UIColor.CustomColors.pastelYellowText
             switchStateForActionButtons(false)
             musicService.stopBackgroundMusic()
             return
         }
+        
+        if gameSettings.is2PlayersGame {
+            gameScreenView.playerSelectorButton.isEnabled = true
+        }
+        
         navigationItem.rightBarButtonItem?.tintColor = UIColor.CustomColors.customBlack
         
         musicService.playBackgroundMusic()
@@ -145,31 +197,31 @@ private extension GameScreenViewController {
 }
 
 // MARK: - Setup UI
-private extension GameScreenViewController {
-    func setupNavigationBar() {
-        let backButton = UIBarButtonItem(image: UIImage(named: "backButton"), style: .plain, target: self, action: #selector(backButtonTapped))
-        navigationItem.leftBarButtonItem = backButton
-        
-        let navigationBarAppearance = UINavigationBarAppearance()
-        
-        navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.CustomColors.customBlack]
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: .pause,
-            target: self,
-            action: #selector(pauseGame)
-        )
-                
-        navigationController?.navigationBar.standardAppearance = navigationBarAppearance
-        navigationController?.navigationBar.tintColor = .CustomColors.customBlack
-        
-        title = "Игра"
-    }
+extension GameScreenViewController {
+func setupNavigationBar() {
+    let backButton = UIBarButtonItem(image: UIImage(named: "backButton"), style: .plain, target: self, action: #selector(backButtonTapped))
+    navigationItem.leftBarButtonItem = backButton
     
+    let navigationBarAppearance = UINavigationBarAppearance()
+    
+    navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.CustomColors.customBlack]
+    
+    navigationItem.rightBarButtonItem = UIBarButtonItem(
+        barButtonSystemItem: .pause,
+        target: self,
+        action: #selector(pauseGame)
+    )
+            
+    navigationController?.navigationBar.standardAppearance = navigationBarAppearance
+    navigationController?.navigationBar.tintColor = .CustomColors.customBlack
+    
+    title = "Игра"
+}
 
-    @objc private func backButtonTapped() {
-        navigationController?.popToRootViewController(animated: true)
-    }
+
+@objc private func backButtonTapped() {
+    navigationController?.popToRootViewController(animated: true)
+}
 }
 
 extension GameScreenViewController: GameServiceViewProtocol {
@@ -223,10 +275,26 @@ extension GameScreenViewController: TimeManagerDelegate {
         gameScreenView.timerLabel.text = String(format: "%01i:%02i", leftTime / 60, leftTime % 60)
         gameScreenView.timerProgressView.progress = Float(leftTime ?? 0) / Float(gameSettings.time)
         if leftTime == 0 {
+            if gameSettings.is2PlayersGame {
+                
+                if isTopPlayerMove {
+                    gameService.playerOneLose()
+                } else {
+                    gameService.playerTwoLose()
+                }
+                
+                isTopPlayerMove = false
+                playerTopMove = nil
+                playerBottomMove = nil
+                gameScreenView.playerSelectorButton.isEnabled = true
+                
+            } else {
+                gameService.playerTwoLose()
+            }
             setCentralLabel("YOU LOSE") //game mechanics
             TimeManager.shared.stop()
-            gameService.playerTwoLose()
-            if !gameService.playerTopWin() {
+            
+            if !gameService.playerTopWin() && !gameService.playerBottomWin() {
                 startGame()
             }
         }

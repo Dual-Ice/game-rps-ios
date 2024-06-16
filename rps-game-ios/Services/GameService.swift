@@ -94,8 +94,46 @@ class GameService {
         }
     }
     
+    func playTwoPlayer(playerTopMove: Move, playerBottomMove: Move) {
+
+        let roundResult = getRoundResult(playerTopMove: playerTopMove, playerBottomMove: playerBottomMove)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            guard let self = self else { return }
+            self.view?.showPlayersMoves(playerTopMove: playerTopMove, playerBottomMove: playerBottomMove)
+            if roundResult != .draw { view.animatePunch() }
+
+            switch roundResult {
+            case .win:
+                self.updatePlayerStats(winner: &self.playerBottom, loser: &self.playerTop)
+                self.view?.updateScore(score: self.playerBottom.roundWin, side: .bottom)
+                self.checkGameEnd(winner: self.playerBottom, playerTopWins: self.playerTop.roundWin, playerBottomWins: self.playerBottom.roundWin)
+            case .lose:
+                self.updatePlayerStats(winner: &self.playerTop, loser: &self.playerBottom)
+                self.view?.updateScore(score: self.playerTop.roundWin, side: .top)
+                self.checkGameEnd(winner: self.playerTop, playerTopWins: self.playerTop.roundWin, playerBottomWins: self.playerBottom.roundWin)
+            case .draw:
+                self.view?.showDraw()
+            }
+        }
+    }
+    
     func playerTopWin() -> Bool {
         playerTop.roundWin == 3
+    }
+    
+    func playerBottomWin() -> Bool {
+        playerBottom.roundWin == 3
+    }
+    
+    func playerOneLose() {
+        updatePlayerStats(winner: &playerBottom, loser: &playerTop)
+        view?.updateScore(score: playerBottom.roundWin, side: .bottom)
+        checkGameEnd(
+            winner: playerBottom,
+            playerTopWins: playerTop.roundWin,
+            playerBottomWins: playerBottom.roundWin
+        )
     }
     
     func playerTwoLose() {

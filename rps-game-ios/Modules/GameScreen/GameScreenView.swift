@@ -9,6 +9,7 @@ import UIKit
 
 protocol GameScreenViewDelegate: AnyObject {
     func actionButtonPressed(_ sender: UIButton)
+    func selectorButtonPressed(_ sender: UIButton)
 }
 
 final class GameScreenView: UIView {
@@ -158,6 +159,11 @@ private extension GameScreenView {
     @objc func actionButtonClicked(_ sender: UIButton) {
         delegate?.actionButtonPressed(sender)
     }
+    
+    @objc func selectorButtonClicked(_ sender: UIButton) {
+        delegate?.selectorButtonPressed(sender)
+    }
+    
 }
 
 // MARK: - Setup UI
@@ -188,7 +194,7 @@ private extension GameScreenView {
         rockButton.addTarget(self, action: #selector(actionButtonClicked), for: .touchUpInside)
         paperButton.addTarget(self, action: #selector(actionButtonClicked), for: .touchUpInside)
         scissorsButton.addTarget(self, action: #selector(actionButtonClicked), for: .touchUpInside)
-        playerSelectorButton.addTarget(self, action: #selector(actionButtonClicked), for: .touchUpInside)
+        playerSelectorButton.addTarget(self, action: #selector(selectorButtonClicked), for: .touchUpInside)
     }
     
     func setupConstrains() {

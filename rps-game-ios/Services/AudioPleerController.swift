@@ -42,11 +42,11 @@ final class AudioPleerController {
     }
     
     func playMusicClick() {
-        //buttonClickPlayer?.play()
+        buttonClickPlayer?.play()
     }
     
     func playBackgroundMusic() {
-        //backgroundMusicPlayer?.play()
+        backgroundMusicPlayer?.play()
     }
     
     func playPunchSound() {
