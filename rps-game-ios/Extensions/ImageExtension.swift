@@ -29,5 +29,6 @@ extension UIImage {
 		static let yellowCircle = UIImage(named: "yellowCircle")
 		static let brownCircle = UIImage(named: "brownCircle")
 		static let grayCircle = UIImage(named: "grayCircle")
+        static let playerSelector = UIImage(named: "playerSelector")
     }
 }

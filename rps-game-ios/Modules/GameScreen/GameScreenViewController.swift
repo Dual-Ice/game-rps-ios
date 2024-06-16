@@ -38,13 +38,13 @@ final class GameScreenViewController: UIViewController {
         TimeManager.shared.delegate = self
         gameScreenView.setPlayersAvatars(avatars: gameService.getPlayersAvatars())
         setupNavigationBar()
-        
-        // play background music
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         navigationController?.navigationBar.isHidden = false
+        gameScreenView.playerSelectorButton.isHidden = !gameSettings.is2PlayersGame
         gameService.reset()
         musicService.playBackgroundMusic()
         startGame()

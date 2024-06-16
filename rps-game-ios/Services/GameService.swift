@@ -11,6 +11,7 @@ enum Move: Int {
     case rock = 1
     case paper = 2
     case scissors = 3
+    case select = 4
 }
 
 enum RoundResult {
@@ -166,6 +167,8 @@ class GameService {
                 return UIImage.CustomImage.paperFemaleHandImage!
             case .scissors:
                 return UIImage.CustomImage.scissorsFemaleHandImage!
+            case .select:
+                return UIImage.CustomImage.femaleHandImage!
             }
         }
         
@@ -176,9 +179,9 @@ class GameService {
             return UIImage.CustomImage.paperMaleHandImage!
         case .scissors:
             return UIImage.CustomImage.scissorsMaleHandImage!
+        case .select:
+            return UIImage.CustomImage.maleHandImage!
         }
-        
-        
     }
     
     // MARK: Private methods
