@@ -12,6 +12,11 @@ class GameServiceTwoPlayer: GameService {
     private var playerTop: Player
     private var playerBottom: Player
     
+    private var topPlayerSelected = true
+    
+    private var playerTopMove: Move?
+    //private var playerBottomMove: Move?
+    
     override init () {
         playerTop = Player(
             name: "player 1",
@@ -27,26 +32,45 @@ class GameServiceTwoPlayer: GameService {
         loadPlayersData()
     }
     
-    override func play(playerBottomMove: Move) {
-        let playerTopMove = getPlayerRandomMove()
-        let roundResult = getRoundResult(playerTopMove: playerTopMove, playerBottomMove: playerBottomMove)
+    override func play(playerBottomMove playerMove: Move) {
+        print("TWO PLAYER GAME")
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-            guard let self = self else { return }
-            self.view?.showPlayersMoves(playerTopMove: playerTopMove, playerBottomMove: playerBottomMove)
-
-            switch roundResult {
-            case .win:
-                self.updatePlayerStats(winner: &self.playerBottom, loser: &self.playerTop)
-                self.view?.updateScore(score: self.playerBottom.roundWin, side: .bottom)
-                self.checkGameEnd(winner: self.playerBottom, playerTopWins: self.playerTop.roundWin, playerBottomWins: self.playerBottom.roundWin)
-            case .lose:
-                self.updatePlayerStats(winner: &self.playerTop, loser: &self.playerBottom)
-                self.view?.updateScore(score: self.playerTop.roundWin, side: .top)
-                self.checkGameEnd(winner: self.playerTop, playerTopWins: self.playerTop.roundWin, playerBottomWins: self.playerBottom.roundWin)
-            case .draw:
-                self.view?.showDraw()
+        if topPlayerSelected {
+            
+            if playerMove == .select  {
+                topPlayerSelected = false
+            } else {
+                playerTopMove = playerMove
             }
+            print("PLAYER1 move:", playerTopMove)
+            print("NOW SELECT:", playerMove)
+        } else {
+            
+            let playerTopMove = playerTopMove ?? .paper
+            let playerBottomMove = playerMove
+            
+            print("p1m:", playerTopMove, "p2m:", playerBottomMove)
+            
+            let roundResult = getRoundResult(playerTopMove: playerTopMove, playerBottomMove: playerBottomMove)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+                guard let self = self else { return }
+                self.view?.showPlayersMoves(playerTopMove: playerTopMove, playerBottomMove: playerBottomMove)
+
+                switch roundResult {
+                case .win:
+                    self.updatePlayerStats(winner: &self.playerBottom, loser: &self.playerTop)
+                    self.view?.updateScore(score: self.playerBottom.roundWin, side: .bottom)
+                    self.checkGameEnd(winner: self.playerBottom, playerTopWins: self.playerTop.roundWin, playerBottomWins: self.playerBottom.roundWin)
+                case .lose:
+                    self.updatePlayerStats(winner: &self.playerTop, loser: &self.playerBottom)
+                    self.view?.updateScore(score: self.playerTop.roundWin, side: .top)
+                    self.checkGameEnd(winner: self.playerTop, playerTopWins: self.playerTop.roundWin, playerBottomWins: self.playerBottom.roundWin)
+                case .draw:
+                    self.view?.showDraw()
+                }
+            }
+            
         }
     }
     

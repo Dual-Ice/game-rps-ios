@@ -117,7 +117,7 @@ final class GameScreenView: UIView {
     let scissorsButton = ButtonFactory.makeActionButton(icon: "scissorsIcon", tag: Move.scissors.rawValue)
     
     let playerSelectorButton: UIButton = {
-        let button = ButtonFactory.makeActionButton(icon: "playerSelectorIcon", tag: Move.rock.rawValue)
+        let button = ButtonFactory.makeActionButton(icon: "playerSelectorIcon", tag: Move.select.rawValue)
         button.layer.cornerRadius = 50
         button.isHidden = true
         return button
