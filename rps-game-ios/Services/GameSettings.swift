@@ -12,7 +12,7 @@ class GameSettings {
     
     private var defaultSettings: Settings
     
-    init () {
+    private init () {
         defaultSettings = Settings(
             time: 30,
             music: "background1",

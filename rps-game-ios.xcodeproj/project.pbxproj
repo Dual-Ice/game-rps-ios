@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1127501D2C1C52D400A970BA /* CustomMusicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1127501C2C1C52D400A970BA /* CustomMusicButton.swift */; };
 		112750212C1DB93B00A970BA /* background2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 112750202C1DB93B00A970BA /* background2.mp3 */; };
+		112D125C2C1EBE35004045E6 /* GameServiceTwoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112D125B2C1EBE35004045E6 /* GameServiceTwoPlayer.swift */; };
 		1153F0682C1DF409004384FC /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153F0672C1DF409004384FC /* Settings.swift */; };
 		1153F06A2C1DF83B004384FC /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153F0692C1DF83B004384FC /* GameSettings.swift */; };
 		1179376D2C181A7500652C75 /* Rubik-VariableFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1179376C2C181A7500652C75 /* Rubik-VariableFont.ttf */; };
@@ -61,6 +62,7 @@
 /* Begin PBXFileReference section */
 		1127501C2C1C52D400A970BA /* CustomMusicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMusicButton.swift; sourceTree = "<group>"; };
 		112750202C1DB93B00A970BA /* background2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background2.mp3; sourceTree = "<group>"; };
+		112D125B2C1EBE35004045E6 /* GameServiceTwoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameServiceTwoPlayer.swift; sourceTree = "<group>"; };
 		1153F0672C1DF409004384FC /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		1153F0692C1DF83B004384FC /* GameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
 		1179376C2C181A7500652C75 /* Rubik-VariableFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-VariableFont.ttf"; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 			children = (
 				D9BFFF072C1DD7FF00C92388 /* AudioPleerController.swift */,
 				D9B7035C2C1B607700616455 /* GameService.swift */,
+				112D125B2C1EBE35004045E6 /* GameServiceTwoPlayer.swift */,
 				D9C4A8172C1CDD8500010056 /* TimeManager.swift */,
 				1153F0692C1DF83B004384FC /* GameSettings.swift */,
 			);
@@ -407,6 +410,7 @@
 				D93C69062C1763220033BF0E /* ButtonFactory.swift in Sources */,
 				11A6509C2C1B0249001A90BD /* GameScreenView.swift in Sources */,
 				1179377A2C182C3A00652C75 /* SoundExtension.swift in Sources */,
+				112D125C2C1EBE35004045E6 /* GameServiceTwoPlayer.swift in Sources */,
 				117937892C19C06F00652C75 /* SettingsViewController.swift in Sources */,
 				D9023F482C15CA7800FF0001 /* RulesViewController.swift in Sources */,
 				117937712C181E2D00652C75 /* FontExtension .swift in Sources */,

@@ -11,6 +11,7 @@ final class StartScreenViewController: UIViewController {
     
     private let startScreenView = StartScreenView()
     private let gameService = GameService()
+    private let gameServiceTwoPlayer = GameServiceTwoPlayer()
     
     override func loadView() {
         view = startScreenView
@@ -36,11 +37,13 @@ final class StartScreenViewController: UIViewController {
 extension StartScreenViewController: StartScreenViewDelegate {
     func didTapStartButton() {
         
+        print(GameSettings.shared.getSettingsLoad().is2PlayersGame)
+        
         let loadingVC = LoadScreenViewController(gameService: gameService)
         navigationController?.pushViewController(loadingVC, animated: true)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            let gameVC = GameScreenViewController(gameService: self.gameService)
+            let gameVC = GameScreenViewController(gameService:self.gameService)
             self.navigationController?.pushViewController(gameVC, animated: true)
         }
     }

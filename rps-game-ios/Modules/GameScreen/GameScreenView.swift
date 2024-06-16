@@ -9,6 +9,7 @@ import UIKit
 
 protocol GameScreenViewDelegate: AnyObject {
     func actionButtonPressed(_ sender: UIButton)
+    func selectorButtonPressed(_ sender: UIButton)
 }
 
 final class GameScreenView: UIView {
@@ -125,6 +126,13 @@ final class GameScreenView: UIView {
     let paperButton = ButtonFactory.makeActionButton(icon: "paperIcon", tag: Move.paper.rawValue)
     let scissorsButton = ButtonFactory.makeActionButton(icon: "scissorsIcon", tag: Move.scissors.rawValue)
     
+    let playerSelectorButton: UIButton = {
+        let button = ButtonFactory.makeActionButton(icon: "playerSelectorIcon", tag: Move.select.rawValue)
+        button.layer.cornerRadius = 50
+        button.isHidden = true
+        return button
+    }()
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -151,6 +159,11 @@ private extension GameScreenView {
     @objc func actionButtonClicked(_ sender: UIButton) {
         delegate?.actionButtonPressed(sender)
     }
+    
+    @objc func selectorButtonClicked(_ sender: UIButton) {
+        delegate?.selectorButtonPressed(sender)
+    }
+    
 }
 
 // MARK: - Setup UI
@@ -172,8 +185,8 @@ private extension GameScreenView {
             bottomHandImageView,
             rockButton,
             paperButton,
-            scissorsButton
-            
+            scissorsButton,
+            playerSelectorButton
         ].forEach{ addSubview($0) }
     }
     
@@ -181,6 +194,7 @@ private extension GameScreenView {
         rockButton.addTarget(self, action: #selector(actionButtonClicked), for: .touchUpInside)
         paperButton.addTarget(self, action: #selector(actionButtonClicked), for: .touchUpInside)
         scissorsButton.addTarget(self, action: #selector(actionButtonClicked), for: .touchUpInside)
+        playerSelectorButton.addTarget(self, action: #selector(selectorButtonClicked), for: .touchUpInside)
     }
     
     func setupConstrains() {
@@ -251,7 +265,12 @@ private extension GameScreenView {
             scissorsButton.widthAnchor.constraint(equalToConstant: 80),
             scissorsButton.heightAnchor.constraint(equalToConstant: 80),
             scissorsButton.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 100),
-            scissorsButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -40)
+            scissorsButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -40),
+            
+            playerSelectorButton.widthAnchor.constraint(equalToConstant: 100),
+            playerSelectorButton.widthAnchor.constraint(equalToConstant: 100),
+            playerSelectorButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            playerSelectorButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 40)
         ])
     }
 }
