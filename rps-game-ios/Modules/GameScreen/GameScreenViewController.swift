@@ -21,13 +21,11 @@ final class GameScreenViewController: UIViewController {
     private var musicService: AudioPleerController
     
     private var leftTime: Int!
-//    private var gameTime: Int
     
     private var selectedActionButton: UIButton?
     
     override func loadView() {
         view = gameScreenView
-        
     }
     
     override func viewDidLoad() {
@@ -51,6 +49,15 @@ final class GameScreenViewController: UIViewController {
     }
     
     init(gameService: GameService) {
+        self.gameService = gameService
+        
+        self.gameSettings = GameSettings.shared.getSettingsLoad()
+        self.musicService = AudioPleerController(backgroundMusicFileName: self.gameSettings.music)
+    
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    init(gameService: GameServiceTwoPlayer) {
         self.gameService = gameService
         
         self.gameSettings = GameSettings.shared.getSettingsLoad()

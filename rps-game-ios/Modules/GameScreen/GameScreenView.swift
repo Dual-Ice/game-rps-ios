@@ -178,6 +178,7 @@ private extension GameScreenView {
         rockButton.addTarget(self, action: #selector(actionButtonClicked), for: .touchUpInside)
         paperButton.addTarget(self, action: #selector(actionButtonClicked), for: .touchUpInside)
         scissorsButton.addTarget(self, action: #selector(actionButtonClicked), for: .touchUpInside)
+        playerSelectorButton.addTarget(self, action: #selector(actionButtonClicked), for: .touchUpInside)
     }
     
     func setupConstrains() {
